@@ -8,7 +8,7 @@ const globalStyle = css`
     box-sizing: border-box;
   }
   body {
-    color: ${palette.black};
+    color: ${palette.black_denim};
   }
 `;
 const GlobalStyle = createGlobalStyle`
