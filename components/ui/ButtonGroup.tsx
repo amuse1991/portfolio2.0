@@ -1,7 +1,8 @@
+import { fadeIn } from "@styles/keyframes";
 import palette from "@styles/palette";
 import viewports from "const/viewports";
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 export enum TButtonGroupDirection {
   vertical,
@@ -39,11 +40,17 @@ const Container = styled.div<{ show: boolean }>`
     margin: 0;
     border-top: 0.5rem solid ${palette.blue_azure};
     padding-top: ${props => (props.show ? `0.5rem` : `0`)};
+
     /* background: ${palette.gray}; */
     button {
       display: ${props => (props.show ? `flex` : `none`)};
       margin: 0.25rem 0 0.25rem 2rem;
       width: calc(100%-2rem);
+      ${props =>
+        props.show &&
+        css`
+          animation: ${fadeIn} 1s;
+        `}
     }
   }
 `;
