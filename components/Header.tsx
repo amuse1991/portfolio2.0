@@ -7,7 +7,7 @@ import viewports from "../const/viewports";
 import ToggleButton, { TToggleButtonType } from "./ui/ToggleButton";
 import ButtonGroup from "./ui/ButtonGroup";
 
-const Container = styled.div`
+const Container = styled.header`
   position: sticky;
   top: 0;
   width: 100vw;
@@ -48,12 +48,12 @@ function Header() {
     setIsButtonShown(val => !val);
   };
   return (
-    <Container>
-      <Logo>
+    <Container role={"heading"}>
+      <Logo role={"img"} aria-label="logo">
         <MainLogoIcon className="header-logo" />
       </Logo>
       <ToggleButton onClick={toggleMenu} />
-      <ButtonGroup show={isButtonShown}>
+      <ButtonGroup role={"menu"} aria-label="header-menu" show={isButtonShown}>
         <Button>HOME</Button>
         <Button>ABOUT</Button>
         <Button>PORTFOLIO</Button>
