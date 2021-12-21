@@ -1,20 +1,22 @@
-import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import MainLogoIcon from "../public/static/img/logo/logo.svg";
 import Button from "@components/ui/Button";
 import { palette } from "../styles/palette";
+import viewports from "../const/viewports";
+import ToggleButton, { TToggleButtonType } from "./ui/ToggleButton";
+import ButtonGroup from "./ui/ButtonGroup";
 
 const Container = styled.div`
   position: sticky;
   top: 0;
-  width: 100%;
-  height: 80px;
+  width: 100vw;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   background: ${palette.black_denim};
   z-index: 10;
+  border-bottom: 0.5rem solid ${palette.blue_azure};
 
   .header-logo-wrapper {
     display: flex;
@@ -22,28 +24,13 @@ const Container = styled.div`
     justify-content: flex-start;
     .header-logo {
       margin-right: 6px;
-      width: 80px;
-      height: 80px;
+      width: 1rem;
+      height: rem;
     }
   }
-`;
 
-const ButtonGroup = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-left: auto;
-  margin-right: 2vw;
-  button {
-    font-size: 1.2rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: ${palette.white_snow};
-    margin-right: 2vw;
-  }
-  button:hover {
-    color: ${palette.blue_azure};
+  @media only screen and (max-width: ${viewports.tablet.width}) {
+    border-bottom: none;
   }
 `;
 
@@ -55,26 +42,24 @@ const Logo = styled.div`
   margin-left: 2vw;
 `;
 
-const DecoLabel = styled.div`
-  width: 100%;
-  height: 1vh;
-  background: ${palette.blue_azure};
-`;
-
 function Header() {
+  const [isButtonShown, setIsButtonShown] = useState(false);
+  const toggleMenu = () => {
+    setIsButtonShown(val => !val);
+  };
   return (
     <Container>
       <Logo>
         <MainLogoIcon className="header-logo" />
       </Logo>
-      <ButtonGroup>
+      <ToggleButton onClick={toggleMenu} />
+      <ButtonGroup show={isButtonShown}>
         <Button>HOME</Button>
         <Button>ABOUT</Button>
         <Button>PORTFOLIO</Button>
         <Button>BLOG</Button>
         <Button>CONTACT</Button>
       </ButtonGroup>
-      <DecoLabel />
     </Container>
   );
 }

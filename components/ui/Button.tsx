@@ -2,7 +2,7 @@ import React from "react";
 import styled, { StyledProps } from "styled-components";
 
 type TButtonProps = {
-  onClick?: string;
+  onClick?: () => {};
   color?: string;
   background?: string;
   children?: React.ReactNode;
