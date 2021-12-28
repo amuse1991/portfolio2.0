@@ -7,6 +7,6 @@ const Container = styled.div`
   background: red;
 `;
 
-const Summary = () => {
+const Resume = () => {
   return <Container></Container>;
 };
