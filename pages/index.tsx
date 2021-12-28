@@ -1,5 +1,6 @@
-import Header from "@components/Header";
-import Intro from "@components/Intro";
+import Header from "@components/header/Header";
+import Intro from "@components/intro/Intro";
+import About from "@components/about/About";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
@@ -12,6 +13,7 @@ const Home: NextPage = () => {
     <Container>
       <Header />
       <Intro />
+      <About />
     </Container>
   );
 };

@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import MainLogoIcon from "../public/static/img/logo/logo_small.svg";
 import Button from "@components/ui/Button";
-import { palette } from "../styles/palette";
-import viewports from "../const/viewports";
-import ToggleButton, { TToggleButtonType } from "./ui/ToggleButton";
-import ButtonGroup from "./ui/ButtonGroup";
+import { palette } from "../../styles/palette";
+import viewports from "../../const/viewports";
+import ToggleButton, { TToggleButtonType } from "../ui/ToggleButton";
+import ButtonGroup from "../ui/ButtonGroup";
 
 const Container = styled.header`
   position: sticky;
@@ -17,7 +17,6 @@ const Container = styled.header`
   background: ${palette.black_denim};
   z-index: 10;
   border-bottom: 0.5rem solid ${palette.blue_azure};
-  
 
   .header-logo-wrapper {
     display: flex;
@@ -26,7 +25,7 @@ const Container = styled.header`
     .header-logo {
       margin-right: 6px;
       width: 1rem;
-      height: rem;
+      /* height: 1rem; */
     }
   }
 

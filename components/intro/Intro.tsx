@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { palette } from "../styles/palette";
-import LogoBig from "../public/static/img/logo/logo_big.svg";
-import ListGroup from "@components/ui/list/ListGroup";
-import ListItem from "./ui/list/ListItem";
+import { palette } from "../../styles/palette";
+import LogoBig from "../../public/static/img/logo/logo_big.svg";
+import ListItem from "../ui/list/ListItem";
 
 const Container = styled.div`
   background: ${palette.black_denim};
