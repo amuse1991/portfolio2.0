@@ -13,6 +13,7 @@ type TButtonGroupProps = {
   direction?: TButtonGroupDirection;
   children?: React.ReactNode;
   show?: boolean;
+  role?: string;
 };
 
 const Container = styled.div<{ show: boolean }>`
@@ -62,7 +63,9 @@ function ButtonGroup({
   ...props
 }: TButtonGroupProps) {
   return (
-    <Container show={show === undefined ? true : show}>{children}</Container>
+    <Container show={show === undefined ? true : show} {...props}>
+      {children}
+    </Container>
   );
 }
 
