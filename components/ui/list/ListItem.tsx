@@ -11,6 +11,6 @@ const SListItem = styled.li`
   }
 `;
 
-export default function ListItem({ children }: TListItem) {
+export default function ListItem({ children, ...props }: TListItem) {
   return <SListItem>{children}</SListItem>;
 }

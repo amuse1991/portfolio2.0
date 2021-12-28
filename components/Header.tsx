@@ -17,6 +17,7 @@ const Container = styled.header`
   background: ${palette.black_denim};
   z-index: 10;
   border-bottom: 0.5rem solid ${palette.blue_azure};
+  
 
   .header-logo-wrapper {
     display: flex;

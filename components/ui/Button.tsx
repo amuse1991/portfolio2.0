@@ -9,7 +9,9 @@ type TButtonProps = {
   style?: React.CSSProperties;
 };
 
-const BtnContainer = styled.button<TButtonProps>``;
+const BtnContainer = styled.button<TButtonProps>`
+  font-family: DungGeunMo;
+`;
 
 export default function Button({
   onClick,

@@ -17,24 +17,31 @@ const Container = styled.div`
   }
 `;
 
-const Logo = styled.div`
+const SListGroup = styled.ul`
+  color: ${palette.white_snow};
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  height: 80px;
-  margin-left: 2vw;
+  li {
+    margin-bottom: 1rem;
+    cursor: pointer;
+  }
+
+  li:hover {
+    color: ${palette.blue_azure};
+  }
 `;
 
 function Intro() {
   return (
     <Container>
       <LogoBig />
-      <ListGroup>
+      <SListGroup>
         <ListItem>포트폴리오 보기</ListItem>
         <ListItem>블로그 보기</ListItem>
         <ListItem>설정하기</ListItem>
         <ListItem>종료</ListItem>
-      </ListGroup>
+      </SListGroup>
     </Container>
   );
 }
