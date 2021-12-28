@@ -3,20 +3,22 @@ import { PageTitle } from "@styles/textStyle";
 import React, { useState } from "react";
 import styled from "styled-components";
 import Introduce from "./Introduce";
+import Attitude from "./Attitude";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   background: ${palette.black_denim};
   width: 100vw;
-  height: 100vh;
+  height: 150vh;
 `;
 
 const About = () => {
   return (
     <Container>
       <PageTitle>ABOUT</PageTitle>
-      <Introduce></Introduce>
+      <Introduce />
+      <Attitude />
     </Container>
   );
 };
