@@ -1,5 +1,8 @@
-import { incrementByAmount } from "@store/modules/counter/counterSlice";
-import { AppState } from "@store/store";
+import {
+  increment,
+  incrementByAmount
+} from "@store/modules/counter/counter.slice";
+import { RootState } from "@store/store";
 import palette from "@styles/palette";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +13,7 @@ const SSpan = styled.span`
 `;
 
 const Skills = () => {
-  const content = useSelector((state: AppState) => state.counter.count);
+  const content = useSelector((state: RootState) => state.counter.value);
   const dispatch = useDispatch();
 
   return (
@@ -19,7 +22,7 @@ const Skills = () => {
       <button
         onClick={() => {
           console.log("onclick");
-          dispatch(incrementByAmount(2));
+          dispatch(increment({ value: 2, count: 1 }));
         }}
       >
         Up
