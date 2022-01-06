@@ -1,14 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
+
+type TCounterState = {
+  count: number;
+};
 
 const counterSlice = createSlice({
   name: "counter",
 
-  initialState: {} as any,
+  initialState: {
+    count: 1
+  } as TCounterState,
 
   reducers: {
     setEnt(state, action) {
       return action.payload;
+    },
+    incrementByAmount(state, action: PayloadAction<number>) {
+      state.count += action.payload;
     }
   },
 
@@ -17,10 +26,11 @@ const counterSlice = createSlice({
       console.log("HYDRATE", action.payload);
       return {
         ...state,
-        ...action.payload.subject
+        ...action.payload.count
       };
     }
   }
 });
 
+export const { incrementByAmount } = counterSlice.actions;
 export default counterSlice;
