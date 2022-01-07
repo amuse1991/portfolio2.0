@@ -6,6 +6,8 @@ import Head from "next/head";
 import Image from "next/image";
 import styled from "styled-components";
 import styles from "../styles/Home.module.css";
+import Portfolio from "@components/portfolio/Portfolio";
+import { useEffect } from "react";
 
 const Container = styled.div``;
 const Home: NextPage = () => {
@@ -14,6 +16,7 @@ const Home: NextPage = () => {
       <Header />
       <Intro />
       <About />
+      {/* <Portfolio /> */}
     </Container>
   );
 };
