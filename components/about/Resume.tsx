@@ -1,6 +1,8 @@
 import TimelineCard from "@components/ui/card/TimelineCard";
+import palette from "@styles/palette";
 import React, { useState } from "react";
 import styled from "styled-components";
+import Career from "./Career";
 
 const Container = styled.div`
   display: flex;
@@ -13,7 +15,7 @@ const Container = styled.div`
 const Resume = () => {
   return (
     <Container>
-      <TimelineCard />
+      <Career />
     </Container>
   );
 };
