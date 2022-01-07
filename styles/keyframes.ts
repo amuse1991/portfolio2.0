@@ -8,3 +8,8 @@ export const fadeIn = keyframes`
     opacity:1
   }
 `;
+
+export const slideIn = keyframes`
+  from { transform: scaleX(0) }
+  to   { transform: scaleX(1) }
+`;

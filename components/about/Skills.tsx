@@ -1,3 +1,4 @@
+import BarChart from "@components/ui/chart/BarChart";
 import {
   increment,
   incrementByAmount
@@ -8,6 +9,11 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
+const Container = styled.div`
+  width: 80%;
+  margin-top: 5rem;
+`;
+
 const SSpan = styled.span`
   color: ${palette.white_snow};
 `;
@@ -15,19 +21,19 @@ const SSpan = styled.span`
 const Skills = () => {
   const content = useSelector((state: RootState) => state.counter.value);
   const dispatch = useDispatch();
+  const dummy = [
+    { key: "js", value: 100 },
+    { key: "react", value: 80 },
+    { key: "asda", value: 40 },
+    { key: "cccc", value: 10 },
+    { key: "jsss", value: 60 }
+  ];
 
   return (
-    <div>
-      <SSpan>{content}</SSpan>
-      <button
-        onClick={() => {
-          console.log("onclick");
-          dispatch(increment({ value: 2, count: 1 }));
-        }}
-      >
-        Up
-      </button>
-    </div>
+    <Container>
+      <BarChart dataset={dummy} />
+      <SSpan>마우스를 올리면 상세한 정보를 볼 수 있어요!</SSpan>
+    </Container>
   );
 };
 

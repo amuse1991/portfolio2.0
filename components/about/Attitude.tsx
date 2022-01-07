@@ -10,7 +10,7 @@ import DoneIcon from "../../public/image/icons/done_all_black_48dp.svg";
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  margin: 6rem 20%;
+  margin-top: 6rem;
 `;
 
 const HoxagonContainer = styled.div`
@@ -61,17 +61,6 @@ const Title = styled.span`
   font-weight: bold;
 `;
 
-const createHoxagon = () => {
-  const width = "50px";
-  const fill = palette.white_snow;
-  const titles = [
-    "Can-Do Attitude",
-    "Responsible",
-    "Self-Motivated",
-    "Cooperative"
-  ];
-};
-
 const Attitude = () => {
   return (
     <Container>
@@ -97,7 +86,7 @@ const Attitude = () => {
         <Hoxagon>
           <DoneIcon fill={palette.white_snow} width={"50px"} />
         </Hoxagon>
-        <Title>Can-Do Attitude</Title>
+        <Title>Responsible</Title>
       </HoxagonContainer>
     </Container>
   );

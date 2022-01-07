@@ -17,8 +17,6 @@ const Container = styled.div`
   align-items: flex-start;
 `;
 const Text = styled.span`
-  display: block;
-  width: 50vw;
   margin-left: 0.5rem;
 `;
 
