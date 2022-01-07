@@ -6,6 +6,7 @@ import Introduce from "./Introduce";
 import Attitude from "./Attitude";
 import Resume from "./Resume";
 import Skills from "./Skills";
+import { useInView } from "react-intersection-observer";
 
 const Container = styled.div`
   display: flex;
@@ -22,13 +23,16 @@ const Section = styled.div`
 `;
 
 const About = () => {
+  const { ref, inView } = useInView({
+    threshold: 0
+  });
   return (
-    <Container>
+    <Container ref={ref}>
       <PageTitle>ABOUT</PageTitle>
       <Section>
         <Introduce />
         <Attitude />
-        <Skills />
+        {inView ? <Skills /> : <></>}
       </Section>
       <Section>
         <Resume />
