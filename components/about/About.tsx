@@ -33,16 +33,16 @@ const Section = styled.div<{ isSub?: boolean }>`
 `;
 
 const About = () => {
-  const { ref, inView } = useInView({
-    threshold: 0
-  });
+  // const { ref, inView } = useInView({
+  //   threshold: 0
+  // });
   return (
-    <Container ref={ref}>
+    <Container>
       <PageTitle>ABOUT</PageTitle>
       <Section>
         <Introduce />
         <Attitude />
-        {inView ? <Skills /> : <></>}
+        <Skills />
       </Section>
       <Section isSub={true}>
         <Resume />
