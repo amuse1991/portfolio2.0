@@ -1,7 +1,7 @@
 import viewports from "const/viewports";
 import React, { useState } from "react";
 import styled, { StyledProps } from "styled-components";
-import DoubleArrowDownIcon from "../../public/static/img/icons/double_arrow_down.svg";
+import DoubleArrowDownIcon from "../../public/image/icons/double_arrow_down.svg";
 
 export enum TToggleButtonType {
   arrow,

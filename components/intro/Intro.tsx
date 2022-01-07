@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { palette } from "../../styles/palette";
-import LogoBig from "../../public/static/img/logo/logo_big.svg";
+import LogoBig from "../../public/image/logo/logo_big.svg";
 import ListItem from "../ui/list/ListItem";
 
 const Container = styled.div`
