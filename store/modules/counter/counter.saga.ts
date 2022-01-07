@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
 import { takeEvery } from "redux-saga/effects";
-import TCounterState from "./counter.model";
+import TCounterState from "./counter.types";
 import { increment } from "./counter.slice";
 
 function* incrementSaga(action: PayloadAction<TCounterState>) {

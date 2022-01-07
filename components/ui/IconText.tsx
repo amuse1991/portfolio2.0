@@ -9,15 +9,22 @@ type TIconText = {
   iconHeight: number | string;
   children: React.ReactNode;
   alt: string;
+  onClick?: () => void;
 };
 
 const Container = styled.div`
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
+  cursor: pointer;
 `;
+
 const Text = styled.span`
   margin-left: 0.5rem;
+  color: ${palette.blue_cornflower};
+  &:hover {
+    color: ${palette.blue_azure};
+  }
 `;
 
 const IconText = ({
@@ -26,10 +33,11 @@ const IconText = ({
   iconWidth,
   alt,
   children,
+  onClick,
   ...props
 }: TIconText) => {
   return (
-    <Container {...props}>
+    <Container onClick={onClick} {...props}>
       <Image src={iconSrc} alt={alt} width={iconWidth} height={iconHeight} />
       <Text>{children}</Text>
     </Container>

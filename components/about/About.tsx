@@ -1,6 +1,6 @@
 import palette from "@styles/palette";
 import { PageTitle } from "@styles/textStyle";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import Introduce from "./Introduce";
 import Attitude from "./Attitude";
@@ -8,6 +8,9 @@ import Resume from "./Resume";
 import Skills from "./Skills";
 import { useInView } from "react-intersection-observer";
 import viewports from "const/viewports";
+import useWindowSize from "@hooks/useWindowSize";
+import Career from "./Career";
+import useModal from "@hooks/store/modal/useModal";
 
 const Container = styled.div`
   display: flex;
@@ -33,18 +36,21 @@ const Section = styled.div<{ isSub?: boolean }>`
 `;
 
 const About = () => {
-  // const { ref, inView } = useInView({
-  //   threshold: 0
-  // });
+  const toggleChangeSection = () => {
+    console.log("toggled");
+    openModal({ Component: Resume });
+  };
+  const { openModal } = useModal();
+
   return (
     <Container>
       <PageTitle>ABOUT</PageTitle>
       <Section>
-        <Introduce />
+        <Introduce onClickToggleSection={toggleChangeSection} />
         <Attitude />
         <Skills />
       </Section>
-      <Section isSub={true}>
+      <Section className="sub">
         <Resume />
       </Section>
     </Container>

@@ -3,6 +3,11 @@ import Image from "next/image";
 import styled from "styled-components";
 import palette from "@styles/palette";
 import IconText from "@components/ui/IconText";
+import viewports from "const/viewports";
+
+type TIntroduceProps = {
+  onClickToggleSection?: () => void;
+};
 
 const Container = styled.div`
   display: flex;
@@ -36,10 +41,6 @@ const Description = styled.span`
   }
 `;
 
-const SIconText = styled(IconText)<{ active?: boolean }>`
-  color: ${palette.blue_cornflower};
-`;
-
 const IconContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -50,7 +51,14 @@ const IconContainer = styled.div`
   }
 `;
 
-const Introduce = () => {
+const SIconText = styled(IconText)`
+  display: none;
+  @media only screen and (max-width: ${viewports.tablet.width}) {
+    display: block;
+  }
+`;
+
+const Introduce = ({ onClickToggleSection }: TIntroduceProps) => {
   return (
     <Container>
       <ImageContainer>
@@ -67,23 +75,6 @@ const Introduce = () => {
         {
           "풀스택 개발자가 되겠다는 목표를 가진 프론트엔드 개발자 입니다. 프로그래밍을 좋아하며 개발자들이 가진 공유와 소통 문화를 좋아합니다!😃"
         }
-        <SIconText
-          iconSrc={"/image/icons/file_download.svg"}
-          iconWidth={"20"}
-          iconHeight={"20"}
-          alt={"download icon"}
-        >
-          이력서 다운로드
-        </SIconText>
-        <SIconText
-          iconSrc={"/image/icons/double_arrow.svg"}
-          iconWidth={"20"}
-          iconHeight={"20"}
-          alt={"download icon"}
-          active={false}
-        >
-          이력 자세히 보기
-        </SIconText>
         <IconContainer>
           <Image
             src={"/image/logo/github_small.svg"}
@@ -103,7 +94,25 @@ const Introduce = () => {
             width={"20"}
             height={"20"}
           />
+          <IconText
+            iconSrc={"/image/icons/file_download.svg"}
+            iconWidth={"20"}
+            iconHeight={"20"}
+            alt={"download icon"}
+          >
+            이력서 다운로드
+          </IconText>
         </IconContainer>
+
+        <SIconText
+          iconSrc={"/image/icons/double_arrow.svg"}
+          iconWidth={"20"}
+          iconHeight={"20"}
+          alt={"download icon"}
+          onClick={onClickToggleSection}
+        >
+          이력 자세히 보기
+        </SIconText>
       </Description>
     </Container>
   );
