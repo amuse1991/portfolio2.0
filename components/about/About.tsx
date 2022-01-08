@@ -36,11 +36,11 @@ const Section = styled.div<{ isSub?: boolean }>`
 `;
 
 const About = () => {
-  const toggleChangeSection = () => {
-    console.log("toggled");
-    openModal({ Component: Resume });
-  };
   const { openModal } = useModal();
+  const toggleChangeSection = () => {
+    // openModal({ type: "about/Resume" });
+    openModal({ type: "SampleModal" });
+  };
 
   return (
     <Container>

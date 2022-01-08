@@ -5,11 +5,16 @@ import { TModalState } from "./modal.types";
 const modalSlice = createSlice({
   name: "modal",
 
-  initialState: [] as TModalState[],
+  initialState: {
+    opened: [] as TModalState[]
+  },
 
   reducers: {
     open(state, action: PayloadAction<TModalState>) {
-      const { payload } = action;
+      const modalConfig = action.payload;
+      const { type } = modalConfig;
+      !state.opened.find(mt => mt.type === type) &&
+        state.opened.push(modalConfig);
     },
     close(state, action: PayloadAction<number>) {
       // state.count += action.payload;
