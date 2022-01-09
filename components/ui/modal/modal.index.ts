@@ -3,8 +3,8 @@ import loadable from "@loadable/component";
 
 const modalIndex: TModalState[] = [
   {
-    type: "about/Resume",
-    component: loadable(() => import("@components/about/Resume"))
+    type: "about/Career",
+    component: loadable(() => import("@components/about/Career"))
   },
   {
     type: "SampleModal",

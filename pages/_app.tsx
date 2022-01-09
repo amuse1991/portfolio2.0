@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 import GlobalStyle from "@styles/GlobalStyle";
 import { wrapper } from "@store/store";
 import { Provider } from "react-redux";
-import ModalManager from "@components/ui/modal/ModalManager";
+import ModalManager from "@components/ui/modal/Modal";
 
 function MyApp({ Component, ...pageProps }: AppProps) {
   const { store, props } = wrapper.useWrappedStore(pageProps);

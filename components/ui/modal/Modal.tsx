@@ -5,11 +5,22 @@ import Modal from "react-modal";
 import { useSelector } from "react-redux";
 import { RootState } from "@store/store";
 import lodash from "lodash";
+import palette from "@styles/palette";
+import Image from "next/image";
 
 const Container = styled.div``;
-function filterInvalidValues(obj: Object) {
-  return;
-}
+const Header = styled.div``;
+const CloseButton = styled.div``;
+const modalStyle = {
+  content: {
+    width: "90%",
+    height: "90%",
+    background: palette.black_denim,
+    top: "52%",
+    left: "50%",
+    transform: "translate(-50%, -50%)"
+  }
+};
 
 export default function ModalManager() {
   const openedModals = useSelector((state: RootState) => state.modal.opened);
@@ -17,10 +28,6 @@ export default function ModalManager() {
   useEffect(() => {
     Modal.setAppElement("#__next");
   }, []);
-
-  useEffect(() => {
-    console.log(openedModals);
-  }, [openedModals]);
 
   return (
     <Container>
@@ -35,12 +42,25 @@ export default function ModalManager() {
 
         const { props, options } = modal;
 
+        console.log(props);
+
         return (
           <Modal
             key={idx}
             isOpen={true}
+            style={modalStyle}
             {...(options && lodash.omitBy(options, !lodash.isUndefined))}
           >
+            <Header>
+              <CloseButton>
+                <Image
+                  src={"/image/icons/close_black_48dp.svg"}
+                  alt="close button"
+                  width="15px"
+                  height="15px"
+                />
+              </CloseButton>
+            </Header>
             <ModalComponent {...props} />
           </Modal>
         );
