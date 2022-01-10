@@ -16,7 +16,7 @@ const Home: NextPage = () => {
       <Header />
       <Intro />
       <About />
-      {/* <Portfolio /> */}
+      <Portfolio />
     </Container>
   );
 };
