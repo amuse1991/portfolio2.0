@@ -6,10 +6,8 @@ import Introduce from "./Introduce";
 import Attitude from "./Attitude";
 import Resume from "./Resume";
 import Skills from "./Skills";
-import { useInView } from "react-intersection-observer";
-import viewports from "const/viewports";
-import useWindowSize from "@hooks/useWindowSize";
-import Career from "./Career";
+
+import viewports from "../../lib/viewports";
 import useModal from "@hooks/store/modal/useModal";
 
 const Container = styled.div`
@@ -19,7 +17,7 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const Section = styled.div<{ isSub?: boolean }>`
+const Section = styled.div`
   width: 50%;
   display: flex;
   flex-direction: column;

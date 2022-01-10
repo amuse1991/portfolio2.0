@@ -1,6 +1,6 @@
 import TimelineCard from "@components/ui/card/TimelineCard";
 import palette from "@styles/palette";
-import viewports from "const/viewports";
+import viewports from "../../lib/viewports";
 import React, { ReactPropTypes, useState } from "react";
 import styled from "styled-components";
 

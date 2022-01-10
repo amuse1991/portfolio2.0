@@ -3,7 +3,7 @@ import Image from "next/image";
 import styled from "styled-components";
 import palette from "@styles/palette";
 import IconText from "@components/ui/IconText";
-import viewports from "const/viewports";
+import viewports from "../../lib/viewports";
 
 type TIntroduceProps = {
   onClickToggleSection?: () => void;

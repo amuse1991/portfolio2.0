@@ -3,7 +3,7 @@ import styled from "styled-components";
 import MainLogoIcon from "../public/static/img/logo/logo_small.svg";
 import Button from "@components/ui/Button";
 import { palette } from "../../styles/palette";
-import viewports from "../../const/viewports";
+import viewports from "../../lib/viewports";
 import ToggleButton, { TToggleButtonType } from "../ui/ToggleButton";
 import ButtonGroup from "../ui/ButtonGroup";
 

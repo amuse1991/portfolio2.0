@@ -6,7 +6,7 @@ import CanDoIcon from "../../public/image/icons/emoji_people_black_48dp.svg";
 import SelfMotIcon from "../../public/image/icons/psychology_black_48dp.svg";
 import CooperativeIcon from "../../public/image/icons/group_add_black_48dp.svg";
 import DoneIcon from "../../public/image/icons/done_all_black_48dp.svg";
-import viewports from "const/viewports";
+import viewports from "../../lib/viewports";
 
 const Container = styled.div`
   display: flex;

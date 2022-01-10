@@ -1,7 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import Header from "@components/Header";
-import viewports from "const/viewports";
+import Header from "@components/header/Header";
 
 const resizeWindow = (x, y) => {
   window.innerWidth = x;
