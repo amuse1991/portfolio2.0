@@ -26,11 +26,9 @@ const Section = styled.div<{ isSub?: boolean }>`
   align-items: center;
 
   @media only screen and (max-width: ${viewports.tablet.width}) {
-    ${props =>
-      props.isSub &&
-      css`
-        display: none;
-      `}
+    &.sub {
+      display: none;
+    }
     width: 100%;
   }
 `;
