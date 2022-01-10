@@ -7,6 +7,11 @@ export default function useModal() {
   const openModal = (payload: TModalState) => {
     dispatch(open(payload));
   };
-  const closeModal = () => {};
+  const closeModal = (modalType: string) => {
+    dispatch(close({ type: modalType }));
+  };
+  const closeAllModal = () => {
+    dispatch(close({ type: "*" }));
+  };
   return { openModal, closeModal };
 }

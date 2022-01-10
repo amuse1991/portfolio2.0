@@ -13,11 +13,19 @@ const modalSlice = createSlice({
     open(state, action: PayloadAction<TModalState>) {
       const modalConfig = action.payload;
       const { type } = modalConfig;
-      !state.opened.find(mt => mt.type === type) &&
+      !state.opened.find(modal => modal.type === type) &&
         state.opened.push(modalConfig);
     },
-    close(state, action: PayloadAction<number>) {
-      // state.count += action.payload;
+    close(state, action: PayloadAction<{ type: string }>) {
+      const { type } = action.payload;
+      if (type === "*") {
+        state.opened = [];
+      } else {
+        const target = state.opened.find(modal => modal.type === type);
+        state.opened = target
+          ? state.opened.filter(modal => modal.type !== target.type)
+          : state.opened;
+      }
     }
   },
 

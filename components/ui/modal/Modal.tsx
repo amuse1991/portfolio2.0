@@ -7,9 +7,16 @@ import { RootState } from "@store/store";
 import lodash from "lodash";
 import palette from "@styles/palette";
 import Image from "next/image";
+import useModal from "@hooks/store/modal/useModal";
 
 const Container = styled.div``;
-const Header = styled.div``;
+const Header = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  inset: 0;
+  width: 100%;
+  background: ${palette.black_denim};
+`;
 const CloseButton = styled.div``;
 const modalStyle = {
   content: {
@@ -24,6 +31,7 @@ const modalStyle = {
 
 export default function ModalManager() {
   const openedModals = useSelector((state: RootState) => state.modal.opened);
+  const { closeModal } = useModal();
 
   useEffect(() => {
     Modal.setAppElement("#__next");
@@ -40,9 +48,7 @@ export default function ModalManager() {
         }
         const ModalComponent = preConfig.component;
 
-        const { props, options } = modal;
-
-        console.log(props);
+        const { props, options, type } = modal;
 
         return (
           <Modal
@@ -52,12 +58,16 @@ export default function ModalManager() {
             {...(options && lodash.omitBy(options, !lodash.isUndefined))}
           >
             <Header>
-              <CloseButton>
+              <CloseButton
+                onClick={() => {
+                  closeModal(type);
+                }}
+              >
                 <Image
                   src={"/image/icons/close_black_48dp.svg"}
                   alt="close button"
-                  width="15px"
-                  height="15px"
+                  width="20px"
+                  height="20px"
                 />
               </CloseButton>
             </Header>
