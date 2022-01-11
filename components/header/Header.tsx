@@ -49,9 +49,6 @@ function Header() {
   };
   return (
     <Container role={"heading"}>
-      {/* <Logo role={"img"} aria-label="logo">
-        <MainLogoIcon width="100" height="100" className="header-logo" />
-      </Logo> */}
       <ToggleButton onClick={toggleMenu} />
       <ButtonGroup role={"menu"} aria-label="header-menu" show={isButtonShown}>
         <Button>HOME</Button>

@@ -1,5 +1,4 @@
 import ImageCard from "@components/ui/card/ImageCard";
-import Gallery from "@components/ui/gallery/Gallery";
 import Slick from "@components/ui/slider/Slick";
 import palette from "@styles/palette";
 import { PageTitle } from "@styles/textStyle";

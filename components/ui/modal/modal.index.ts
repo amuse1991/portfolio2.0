@@ -9,6 +9,9 @@ const modalIndex: TModalState[] = [
   {
     type: "blog/Category",
     component: loadable(() => import("@components/blog/CategoryList"))
+  },
+  {
+    type: "contact/MessageSend"
   }
 ];
 
