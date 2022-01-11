@@ -1,4 +1,4 @@
-import viewports from "const/viewports";
+import viewports from "../../lib/viewports";
 import React, { useState } from "react";
 import styled, { StyledProps } from "styled-components";
 import DoubleArrowDownIcon from "../../public/image/icons/double_arrow_down.svg";

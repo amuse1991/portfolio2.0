@@ -4,13 +4,15 @@ import { createWrapper } from "next-redux-wrapper";
 import counterSlice from "./modules/counter/counter.slice";
 import createSagaMiddleware from "redux-saga";
 import { rootSaga } from "./saga";
+import modalSlice from "./modules/modal/modal.slice";
 
 const sagaMiddleWare = createSagaMiddleware();
 
 const makeStore = () => {
   const store = configureStore({
     reducer: {
-      [counterSlice.name]: counterSlice.reducer
+      [counterSlice.name]: counterSlice.reducer,
+      [modalSlice.name]: modalSlice.reducer
     },
     middleware: [sagaMiddleWare],
     devTools: true

@@ -1,6 +1,6 @@
 import { fadeIn } from "@styles/keyframes";
 import palette from "@styles/palette";
-import viewports from "const/viewports";
+import viewports from "../../lib/viewports";
 import React, { useState } from "react";
 import styled, { css, keyframes } from "styled-components";
 

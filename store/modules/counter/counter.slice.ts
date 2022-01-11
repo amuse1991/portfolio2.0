@@ -1,6 +1,6 @@
 import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
-import TCounterState from "./counter.model";
+import TCounterState from "./counter.types";
 
 const counterSlice = createSlice({
   name: "counter",

@@ -20,7 +20,8 @@ module.exports = {
     "^@pages/(.*)$": "<rootDir>/pages/$1",
     "^@components/(.*)$": "<rootDir>/components/$1",
     "^@styles/(.*)$": "<rootDir>/styles/$1",
-    "^const/(.*)$": "<rootDir>/const/$1"
+    "^@hooks/(.*)$": "<rootDir>/hooks/$1",
+    "^@store/(.*)$": "<rootDir>/store/$1"
   },
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
   testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/"],

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { palette } from "../../styles/palette";
 import LogoBig from "../../public/image/logo/logo_big.svg";
 import ListItem from "../ui/list/ListItem";
+import Image from "next/image";
 
 const Container = styled.div`
   background: ${palette.black_denim};
@@ -34,7 +35,13 @@ const SListGroup = styled.ul`
 function Intro() {
   return (
     <Container>
-      <LogoBig />
+      <Image
+        src={"/image/logo/logo_big.svg"}
+        alt="title logo"
+        width={665}
+        height={590}
+      />
+      {/* <LogoBig />  */}
       <SListGroup>
         <ListItem>포트폴리오 보기</ListItem>
         <ListItem>블로그 보기</ListItem>

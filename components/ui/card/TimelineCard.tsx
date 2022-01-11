@@ -28,6 +28,10 @@ const STagList = styled(TagList)`
   }
 `;
 
+const Description = styled.span`
+  color: ${palette.white_snow};
+`;
+
 const TimelineCard = () => {
   const dummy = ["react", "redux", "react", "redux", "react", "redux"];
   return (
@@ -35,6 +39,12 @@ const TimelineCard = () => {
       <SDate>2011.01 ~ 2012.03</SDate>
       <Title>테스트 타이틀</Title>
       <STagList values={dummy} />
+      <Description>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, beatae
+        maiores tempora corrupti, dolore autem praesentium adipisci laudantium
+        porro, ab quae voluptate reiciendis similique reprehenderit ea officiis.
+        Suscipit, cum accusantium.
+      </Description>
     </Container>
   );
 };

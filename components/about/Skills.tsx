@@ -6,6 +6,7 @@ import {
 import { RootState } from "@store/store";
 import palette from "@styles/palette";
 import React, { useState } from "react";
+import { useInView } from "react-intersection-observer";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -21,6 +22,9 @@ const SSpan = styled.span`
 const Skills = () => {
   const content = useSelector((state: RootState) => state.counter.value);
   const dispatch = useDispatch();
+  const { ref, inView } = useInView({
+    threshold: 0
+  });
   const dummy = [
     { key: "js", value: 100 },
     { key: "react", value: 80 },
@@ -30,8 +34,8 @@ const Skills = () => {
   ];
 
   return (
-    <Container>
-      <BarChart dataset={dummy} />
+    <Container ref={ref}>
+      {inView && <BarChart dataset={dummy} />}
       <SSpan>마우스를 올리면 상세한 정보를 볼 수 있어요!</SSpan>
     </Container>
   );

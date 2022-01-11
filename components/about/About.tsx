@@ -1,11 +1,14 @@
 import palette from "@styles/palette";
 import { PageTitle } from "@styles/textStyle";
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
+import styled, { css } from "styled-components";
 import Introduce from "./Introduce";
 import Attitude from "./Attitude";
 import Resume from "./Resume";
 import Skills from "./Skills";
+
+import viewports from "../../lib/viewports";
+import useModal from "@hooks/store/modal/useModal";
 
 const Container = styled.div`
   display: flex;
@@ -19,18 +22,30 @@ const Section = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media only screen and (max-width: ${viewports.tablet.width}) {
+    &.sub {
+      display: none;
+    }
+    width: 100%;
+  }
 `;
 
 const About = () => {
+  const { openModal } = useModal();
+  const toggleChangeSection = () => {
+    openModal({ type: "about/Career", options: { withHeader: true } });
+  };
+
   return (
     <Container>
       <PageTitle>ABOUT</PageTitle>
       <Section>
-        <Introduce />
+        <Introduce onClickToggleSection={toggleChangeSection} />
         <Attitude />
         <Skills />
       </Section>
-      <Section>
+      <Section className="sub">
         <Resume />
       </Section>
     </Container>
