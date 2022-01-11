@@ -7,8 +7,8 @@ const modalIndex: TModalState[] = [
     component: loadable(() => import("@components/about/Career"))
   },
   {
-    type: "SampleModal",
-    component: loadable(() => import("./SampleModal"))
+    type: "blog/Category",
+    component: loadable(() => import("@components/blog/CategoryList"))
   }
 ];
 

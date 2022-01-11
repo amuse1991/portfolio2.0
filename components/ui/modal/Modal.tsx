@@ -52,13 +52,17 @@ export default function ModalManager() {
               }
         };
 
-        console.log("op", modalStyle);
-
         return (
           <Modal
             key={idx}
             isOpen={true}
             style={modalStyle}
+            shouldCloseOnOverlayClick={true}
+            preventScroll={true}
+            onRequestClose={() => {
+              // shouldClosOnOverlayClick is depends on onRequestClose
+              closeModal(type);
+            }}
             {...(options && lodash.omitBy(options, !lodash.isUndefined))}
           >
             {options?.withHeader && (

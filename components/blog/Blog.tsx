@@ -1,10 +1,13 @@
 import DoubleArrowIcon from "@components/ui/icons/DoubleArrowIcon";
 import ListGroup from "@components/ui/list/ListGroup";
+import useModal from "@hooks/store/modal/useModal";
 import palette from "@styles/palette";
 import { PageTitle } from "@styles/textStyle";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import BlogListItem from "./BlogListItem";
+import CategoryButton from "./CategoryButton";
+import CategoryList from "./CategoryList";
 
 type TBlogProps = {};
 
@@ -24,31 +27,31 @@ const ArticleList = styled.ul`
   }
 `;
 
-const CategoryButton = styled.button`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: none;
-  border: none;
-  color: ${palette.white_snow};
-  cursor: pointer;
-  margin-right: 2rem;
-  min-width: 5rem;
-  & > span {
-    margin-top: 0.3rem;
-  }
-`;
-
 const Blog: React.FC<TBlogProps> = () => {
   const [isCategoryOpened, setIsCategoryOpened] = useState<boolean>(false);
+  const { openModal, closeModal } = useModal();
+  const categoryListModalStyle = {
+    background: "none",
+    left: 0,
+    paddingLeft: 0,
+    border: "none",
+    minHeight: "100vh",
+    maxWidth: "35vw"
+  };
+
   return (
     <Container>
       <PageTitle>BLOG</PageTitle>
       <Content>
-        <CategoryButton>
-          <DoubleArrowIcon fill={palette.white_snow} />
-          <span>카테고리</span>
-        </CategoryButton>
+        <CategoryButton
+          onClick={() => {
+            setIsCategoryOpened(prev => !prev);
+            openModal({
+              type: "blog/Category",
+              options: { modalStyle: categoryListModalStyle }
+            });
+          }}
+        />
         <ArticleList>
           {Array.from({ length: 10 }).map((_, idx) => (
             <BlogListItem key={idx} title="hello" description="hello" />

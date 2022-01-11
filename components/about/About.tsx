@@ -34,8 +34,7 @@ const Section = styled.div`
 const About = () => {
   const { openModal } = useModal();
   const toggleChangeSection = () => {
-    openModal({ type: "about/Career" });
-    // openModal({ type: "SampleModal" });
+    openModal({ type: "about/Career", options: { withHeader: true } });
   };
 
   return (
