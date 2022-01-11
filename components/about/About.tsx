@@ -9,6 +9,7 @@ import Skills from "./Skills";
 
 import viewports from "../../lib/viewports";
 import useModal from "@hooks/store/modal/useModal";
+import { TSkill } from "types/api/skills";
 
 const Container = styled.div`
   display: flex;
@@ -31,7 +32,11 @@ const Section = styled.div`
   }
 `;
 
-const About = () => {
+interface TAboutProps {
+  skills: TSkill[];
+}
+
+const About: React.FC<TAboutProps> = ({ skills }) => {
   const { openModal } = useModal();
   const toggleChangeSection = () => {
     openModal({ type: "about/Career", options: { withHeader: true } });
