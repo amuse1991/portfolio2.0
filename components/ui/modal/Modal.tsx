@@ -18,16 +18,6 @@ const Header = styled.div`
   background: ${palette.black_denim};
 `;
 const CloseButton = styled.div``;
-const modalStyle = {
-  content: {
-    width: "90%",
-    height: "90%",
-    background: palette.black_denim,
-    top: "52%",
-    left: "50%",
-    transform: "translate(-50%, -50%)"
-  }
-};
 
 export default function ModalManager() {
   const openedModals = useSelector((state: RootState) => state.modal.opened);
@@ -49,6 +39,20 @@ export default function ModalManager() {
         const ModalComponent = preConfig.component;
 
         const { props, options, type } = modal;
+        const modalStyle = {
+          content: options?.modalStyle
+            ? options?.modalStyle
+            : {
+                width: "90%",
+                height: "90%",
+                background: palette.black_denim,
+                top: "52%",
+                left: "50%",
+                transform: "translate(-50%, -50%)"
+              }
+        };
+
+        console.log("op", modalStyle);
 
         return (
           <Modal
@@ -57,20 +61,22 @@ export default function ModalManager() {
             style={modalStyle}
             {...(options && lodash.omitBy(options, !lodash.isUndefined))}
           >
-            <Header>
-              <CloseButton
-                onClick={() => {
-                  closeModal(type);
-                }}
-              >
-                <Image
-                  src={"/image/icons/close_black_48dp.svg"}
-                  alt="close button"
-                  width="20px"
-                  height="20px"
-                />
-              </CloseButton>
-            </Header>
+            {options?.withHeader && (
+              <Header>
+                <CloseButton
+                  onClick={() => {
+                    closeModal(type);
+                  }}
+                >
+                  <Image
+                    src={"/image/icons/close_black_48dp.svg"}
+                    alt="close button"
+                    width="20px"
+                    height="20px"
+                  />
+                </CloseButton>
+              </Header>
+            )}
             <ModalComponent {...props} />
           </Modal>
         );

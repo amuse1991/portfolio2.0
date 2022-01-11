@@ -16,11 +16,13 @@ export type TModalState = {
  * http://reactcommunity.org/react-modal/
  */
 export type TModalConfigOptions = {
-  isOpen: boolean;
+  isOpen?: boolean;
   shouldFocusAfterRender?: boolean;
   shouldCloseOnOverlayClick?: boolean;
   shouldCloseOnEsc?: boolean;
   role?: string;
   preventScroll?: boolean;
   testId?: string;
+  modalStyle?: React.CSSProperties;
+  withHeader?: boolean;
 };
