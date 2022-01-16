@@ -1,7 +1,9 @@
-import { all, call, spawn } from "redux-saga/effects";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { all, call, delay, put, spawn } from "redux-saga/effects";
+import skillsSaga from "./modules/skills/skills.saga";
 
-export function* rootSaga() {
-  const sagas = [] as any[];
+export default function* rootSaga() {
+  const sagas = [skillsSaga] as any[];
 
   yield all(
     sagas.map(saga =>

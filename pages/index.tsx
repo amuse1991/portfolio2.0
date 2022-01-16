@@ -1,7 +1,7 @@
 import Header from "@components/header/Header";
 import Intro from "@components/intro/Intro";
 import About from "@components/about/About";
-import type { GetServerSideProps, NextPage } from "next";
+import type { GetServerSideProps, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styled from "styled-components";
@@ -11,8 +11,12 @@ import { useEffect } from "react";
 import Blog from "@components/blog/Blog";
 import palette from "@styles/palette";
 import Axios from "axios";
-import { TSkill } from "types/api/skills";
-import { getSkills } from "@lib/api/skills";
+import { TSkill } from "@store/modules/skills/skills.types";
+import { useDispatch } from "react-redux";
+import useSkills from "@hooks/store/modal/useSkills";
+import skillsSlice from "@store/modules/skills/skills.slice";
+import { SagaStore, wrapper } from "@store/store";
+import { END } from "redux-saga";
 
 const Container = styled.div`
   background: ${palette.black_denim};
@@ -35,15 +39,15 @@ const Home: NextPage<TIndexProps> = ({ skills }) => {
   );
 };
 
-export default Home;
+export const getServerSideProps = wrapper.getServerSideProps(
+  store =>
+    async ({ req, res, ...etc }) => {
+      console.log("----start------");
+      store.dispatch(skillsSlice.actions.fetchSkills);
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  try {
-    const { data } = await getSkills();
-    console.log(data);
-    return { props: {} };
-  } catch (err) {
-    console.log(err);
-    return { props: {} };
-  }
-};
+      store.dispatch(END);
+      return await (store as SagaStore).sagaTask.toPromise();
+    }
+);
+
+export default Home;

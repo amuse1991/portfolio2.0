@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { TSkill } from "types/api/skills";
+import { TSkill } from "@store/modules/skills/skills.types";
 import fs from "fs";
 
 const skillsApi = async (req: NextApiRequest, res: NextApiResponse) => {

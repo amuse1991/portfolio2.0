@@ -1,19 +1,43 @@
 import "../styles/globals.css";
-import type { AppProps } from "next/app";
+import type { AppInitialProps, AppProps } from "next/app";
 import GlobalStyle from "@styles/GlobalStyle";
-import { wrapper } from "@store/store";
+import { SagaStore, wrapper } from "@store/store";
 import { Provider } from "react-redux";
 import ModalManager from "@components/ui/modal/Modal";
+import App from "next/app";
+import { END } from "redux-saga";
+import React from "react";
 
-function MyApp({ Component, ...pageProps }: AppProps) {
-  const { store, props } = wrapper.useWrappedStore(pageProps);
-  return (
-    <Provider store={store}>
-      <GlobalStyle />
-      <Component {...props.pageProps} />
-      <ModalManager />
-    </Provider>
+class WrappedApp extends App<AppInitialProps> {
+  public static getInitialProps = wrapper.getInitialAppProps(
+    store => async context => {
+      // 1. Wait for all page actions to dispatch
+      const pageProps = {
+        // https://nextjs.org/docs/advanced-features/custom-app#caveats
+        ...(await App.getInitialProps(context)).pageProps
+      };
+
+      // 2. Stop the saga if on server
+      if (context.ctx.req) {
+        store.dispatch(END);
+        await (store as SagaStore).sagaTask?.toPromise();
+      }
+
+      // 3. Return props
+      return { pageProps };
+    }
   );
+
+  public render() {
+    const { Component, pageProps } = this.props;
+    return (
+      <>
+        <GlobalStyle />
+        <Component {...pageProps} />
+        <ModalManager />
+      </>
+    );
+  }
 }
 
-export default wrapper.withRedux(MyApp);
+export default wrapper.withRedux(WrappedApp);
