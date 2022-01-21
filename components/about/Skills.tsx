@@ -3,7 +3,7 @@ import {
   increment,
   incrementByAmount
 } from "@store/modules/counter/counter.slice";
-import { RootState } from "@store/store";
+import { AppState, wrapper } from "@store/store";
 import palette from "@styles/palette";
 import React, { useState } from "react";
 import { useInView } from "react-intersection-observer";
@@ -20,7 +20,7 @@ const SSpan = styled.span`
 `;
 
 const Skills = () => {
-  const content = useSelector((state: RootState) => state.counter.value);
+  const content = useSelector((state: AppState) => state.counter.value);
   const dispatch = useDispatch();
   const { ref, inView } = useInView({
     threshold: 0

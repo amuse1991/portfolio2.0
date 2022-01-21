@@ -9,7 +9,7 @@ import Skills from "./Skills";
 
 import viewports from "../../lib/viewports";
 import useModal from "@hooks/store/modal/useModal";
-import { TSkill } from "types/api/skills";
+import { TSkill } from "@store/modules/skills/skills.types";
 
 const Container = styled.div`
   display: flex;

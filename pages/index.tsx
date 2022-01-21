@@ -14,9 +14,10 @@ import Axios from "axios";
 import { TSkill } from "@store/modules/skills/skills.types";
 import { useDispatch } from "react-redux";
 import useSkills from "@hooks/store/modal/useSkills";
-import skillsSlice from "@store/modules/skills/skills.slice";
-import { SagaStore, wrapper } from "@store/store";
+import { wrapper } from "@store/store";
 import { END } from "redux-saga";
+import { skillsActions } from "@store/modules/skills/skills.slice";
+import { apiClient } from "@lib/api/apiClient";
 
 const Container = styled.div`
   background: ${palette.black_denim};
@@ -39,15 +40,25 @@ const Home: NextPage<TIndexProps> = ({ skills }) => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(
-  store =>
-    async ({ req, res, ...etc }) => {
-      console.log("----start------");
-      store.dispatch(skillsSlice.actions.fetchSkills);
-
-      store.dispatch(END);
-      return await (store as SagaStore).sagaTask.toPromise();
+export const getServerSideProps = wrapper.getServerSideProps<TIndexProps>(
+  store => async () => {
+    try {
+      const { data } = await apiClient.get("api/skills");
+      console.log(data);
+      store.dispatch(skillsActions.setSkills(data));
+      return {
+        props: {
+          skills: data
+        }
+      };
+    } catch (err) {
+      return {
+        props: {
+          skills: []
+        }
+      };
     }
+  }
 );
 
 export default Home;

@@ -1,6 +1,6 @@
 export type TSkill = {
   title: string;
   level: number;
-  description: string;
-  iconPath: string;
+  description?: string;
+  iconPath?: string;
 };
