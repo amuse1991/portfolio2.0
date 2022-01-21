@@ -1,20 +1,22 @@
 import { configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { Action, AnyAction, Store } from "redux";
 import { createWrapper } from "next-redux-wrapper";
-import counterSlice from "./modules/counter/counter.slice";
 import modalSlice from "./modules/modal/modal.slice";
-import skillsSlice from "./modules/skills/skills.slice";
+import { skillsQuery } from "./modules/skills/skills.query";
+import { setupListeners } from "@reduxjs/toolkit/dist/query";
 
 const makeStore = () => {
   const store = configureStore({
     reducer: {
-      [counterSlice.name]: counterSlice.reducer,
       [modalSlice.name]: modalSlice.reducer,
-      [skillsSlice.name]: skillsSlice.reducer
+      [skillsQuery.reducerPath]: skillsQuery.reducer
     },
+    middleware: getDefaultMiddleware =>
+      getDefaultMiddleware().concat(skillsQuery.middleware),
+
     devTools: true
   });
-
+  setupListeners(store.dispatch);
   return store;
 };
 

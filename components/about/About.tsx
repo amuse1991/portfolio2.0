@@ -6,10 +6,12 @@ import Introduce from "./Introduce";
 import Attitude from "./Attitude";
 import Resume from "./Resume";
 import Skills from "./Skills";
+import { skipToken } from "@reduxjs/toolkit/query";
 
 import viewports from "../../lib/viewports";
 import useModal from "@hooks/store/modal/useModal";
-import { TSkill } from "@store/modules/skills/skills.types";
+import { useGetSkillsQuery } from "@store/modules/skills/skills.query";
+import { useRouter } from "next/router";
 
 const Container = styled.div`
   display: flex;

@@ -3,7 +3,7 @@ import palette from "@styles/palette";
 import React, { useState } from "react";
 import styled from "styled-components";
 
-type TChartData = {
+export type TChartData = {
   key: string;
   value: number;
 };
