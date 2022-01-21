@@ -32,11 +32,9 @@ const Section = styled.div`
   }
 `;
 
-interface TAboutProps {
-  skills: TSkill[];
-}
+interface TAboutProps {}
 
-const About: React.FC<TAboutProps> = ({ skills }) => {
+const About: React.FC<TAboutProps> = () => {
   const { openModal } = useModal();
   const toggleChangeSection = () => {
     openModal({ type: "about/Career", options: { withHeader: true } });

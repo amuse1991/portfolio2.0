@@ -12,7 +12,6 @@ const makeStore = () => {
       [modalSlice.name]: modalSlice.reducer,
       [skillsSlice.name]: skillsSlice.reducer
     },
-    middleware: [],
     devTools: true
   });
 
@@ -28,6 +27,6 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   Action
 >;
 
-export const wrapper = createWrapper<Store<AppState>>(makeStore, {
+export const wrapper = createWrapper<AppStore>(makeStore, {
   debug: true
 });

@@ -18,22 +18,21 @@ import { wrapper } from "@store/store";
 import { END } from "redux-saga";
 import { skillsActions } from "@store/modules/skills/skills.slice";
 import { apiClient } from "@lib/api/apiClient";
+import { AnyAction } from "@reduxjs/toolkit";
 
 const Container = styled.div`
   background: ${palette.black_denim};
   color: ${palette.white_snow};
 `;
 
-interface TIndexProps {
-  skills: TSkill[];
-}
+interface TIndexProps {}
 
-const Home: NextPage<TIndexProps> = ({ skills }) => {
+const Home: NextPage<TIndexProps> = () => {
   return (
     <Container>
       <Header />
       <Intro />
-      <About skills={skills} />
+      <About />
       <PortfolioSlick />
       <Blog />
     </Container>
@@ -41,24 +40,21 @@ const Home: NextPage<TIndexProps> = ({ skills }) => {
 };
 
 export const getServerSideProps = wrapper.getServerSideProps<TIndexProps>(
-  store => async () => {
-    try {
-      const { data } = await apiClient.get("api/skills");
-      console.log(data);
-      store.dispatch(skillsActions.setSkills(data));
-      return {
-        props: {
-          skills: data
-        }
-      };
-    } catch (err) {
-      return {
-        props: {
-          skills: []
-        }
-      };
+  store =>
+    async ({ req, res, ...etc }) => {
+      try {
+        await store.dispatch(skillsActions.fetchSkillsThunk());
+        console.log("State on server", store.getState());
+
+        return {
+          props: {}
+        };
+      } catch (err) {
+        return {
+          props: {}
+        };
+      }
     }
-  }
 );
 
 export default Home;
