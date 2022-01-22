@@ -4,15 +4,19 @@ import { createWrapper } from "next-redux-wrapper";
 import modalSlice from "./modules/modal/modal.slice";
 import { skillsQuery } from "./modules/skills/skills.query";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
+import { projectQuery } from "./modules/project/project.query";
 
 const makeStore = () => {
   const store = configureStore({
     reducer: {
       [modalSlice.name]: modalSlice.reducer,
-      [skillsQuery.reducerPath]: skillsQuery.reducer
+      [skillsQuery.reducerPath]: skillsQuery.reducer,
+      [projectQuery.reducerPath]: projectQuery.reducer
     },
     middleware: getDefaultMiddleware =>
-      getDefaultMiddleware().concat(skillsQuery.middleware),
+      getDefaultMiddleware()
+        .concat(skillsQuery.middleware)
+        .concat(projectQuery.middleware),
 
     devTools: true
   });

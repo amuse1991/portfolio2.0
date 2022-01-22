@@ -1,32 +1,31 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { HYDRATE } from "next-redux-wrapper";
-import { TSkill } from "./skills.types";
+import { TProject } from "./project.types";
 
 // 반드시 store에 등록 후 사용
-export const skillsQuery = createApi({
-  reducerPath: "skillsAPI",
+export const projectQuery = createApi({
+  reducerPath: "projectAPI",
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_URL
   }),
   extractRehydrationInfo(action, { reducerPath }) {
-    console.log();
     if (action.type === HYDRATE) {
       return action.payload[reducerPath];
     }
   },
-  tagTypes: ["skills"],
+  tagTypes: ["project"],
   endpoints: builder => ({
-    getSkills: builder.query<TSkill[], void>({
-      query: () => `api/skills`
+    getProjects: builder.query<TProject[], void>({
+      query: () => `api/projects`
     })
   })
 });
 
 // Export hooks for usage in functional components
 export const {
-  useGetSkillsQuery,
+  useGetProjectsQuery,
   util: { getRunningOperationPromises }
-} = skillsQuery;
+} = projectQuery;
 
 // export endpoints for use in SSR
-export const { getSkills } = skillsQuery.endpoints;
+export const { getProjects } = projectQuery.endpoints;

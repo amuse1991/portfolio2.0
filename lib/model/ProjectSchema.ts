@@ -29,6 +29,9 @@ const ProjectSchema = new mongoose.Schema({
   },
   roles: {
     type: [String]
+  },
+  thumbnailPath: {
+    type: String
   }
 });
 

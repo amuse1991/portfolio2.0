@@ -12,12 +12,12 @@ const projectsApi = async (req: NextApiRequest, res: NextApiResponse) => {
   switch (method) {
     case "GET":
       try {
-        const projects = await ProjectModel.find(
+        const data = await ProjectModel.find(
           {}
         ); /* find all the data in our database */
-        res.status(200).json({ success: true, data: projects });
+        res.status(200).send(data);
       } catch (error) {
-        res.status(400).json({ success: false });
+        res.status(400).send(error);
       }
       break;
     case "POST":
@@ -29,7 +29,7 @@ const projectsApi = async (req: NextApiRequest, res: NextApiResponse) => {
         const data = await ProjectModel.create(
           projectDocument
         ); /* create a new model in the database */
-        res.status(201).json({ success: true, data });
+        res.status(201).send({ success: true, data });
       } catch (error) {
         console.error(error);
         res

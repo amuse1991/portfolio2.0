@@ -12,6 +12,7 @@ import {
   getSkills
 } from "@store/modules/skills/skills.query";
 import { getObjectList } from "./api/files/download";
+import { getProjects } from "@store/modules/project/project.query";
 
 const Container = styled.div`
   background: ${palette.black_denim};
@@ -37,11 +38,13 @@ export const getServerSideProps = wrapper.getServerSideProps<TIndexProps>(
     async ({ req, res, ...etc }) => {
       try {
         store.dispatch(getSkills.initiate());
+        store.dispatch(getProjects.initiate());
         await Promise.all(getRunningOperationPromises());
         return {
           props: {}
         };
       } catch (err) {
+        console.error(err);
         return {
           props: {}
         };

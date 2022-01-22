@@ -27,10 +27,17 @@ const CareerSchema = new mongoose.Schema({
     type: String
   },
   position: {
-    type: [String]
+    type: String
   },
   techTags: {
     type: [String]
+  },
+  description: {
+    type: String
+  },
+  projects: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Project"
   }
 });
 

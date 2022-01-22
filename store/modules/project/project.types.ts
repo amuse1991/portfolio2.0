@@ -1,7 +1,6 @@
 import { TTechTags } from "../career/career.types";
 export interface TProject {
-  id: string;
-  title: string;
+  name: string;
   startDate: string;
   endDate: string;
   urls?: string[];
@@ -9,4 +8,6 @@ export interface TProject {
   summary?: string;
   techTags?: TTechTags;
   role?: string;
+  thumbnailPath?: string;
+  _id: string;
 }

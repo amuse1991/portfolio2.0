@@ -1,3 +1,4 @@
+import { TProject } from "@store/modules/project/project.types";
 import palette from "@styles/palette";
 import React, { useState } from "react";
 import styled from "styled-components";
