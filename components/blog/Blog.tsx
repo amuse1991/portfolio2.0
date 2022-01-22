@@ -1,6 +1,7 @@
 import DoubleArrowIcon from "@components/ui/icons/DoubleArrowIcon";
 import ListGroup from "@components/ui/list/ListGroup";
 import useModal from "@hooks/store/modal/useModal";
+import { nanoid } from "@reduxjs/toolkit";
 import palette from "@styles/palette";
 import { PageTitle } from "@styles/textStyle";
 import React, { useEffect, useState } from "react";
@@ -54,7 +55,7 @@ const Blog: React.FC<TBlogProps> = () => {
         />
         <ArticleList>
           {Array.from({ length: 10 }).map((_, idx) => (
-            <BlogListItem key={idx} title="hello" description="hello" />
+            <BlogListItem key={nanoid()} title="hello" description="hello" />
           ))}
         </ArticleList>
       </Content>

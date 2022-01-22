@@ -3,11 +3,11 @@ import styled from "styled-components";
 import modalIndex from "./modal.index";
 import Modal from "react-modal";
 import { useSelector } from "react-redux";
-import { RootState } from "@store/store";
 import lodash from "lodash";
 import palette from "@styles/palette";
 import Image from "next/image";
 import useModal from "@hooks/store/modal/useModal";
+import { nanoid } from "@reduxjs/toolkit";
 
 const Container = styled.div``;
 const Header = styled.div`
@@ -54,7 +54,7 @@ export default function ModalManager() {
 
         return (
           <Modal
-            key={idx}
+            key={nanoid()}
             isOpen={true}
             style={modalStyle}
             shouldCloseOnOverlayClick={true}

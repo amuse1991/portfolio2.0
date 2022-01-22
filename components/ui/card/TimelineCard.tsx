@@ -33,19 +33,22 @@ const Description = styled.span`
   color: ${palette.white_snow};
 `;
 
-const TimelineCard = () => {
-  const dummy = ["react", "redux", "react", "redux", "react", "redux"];
+type TTimeLineCard = {
+  startDate: Date;
+  endDate: Date;
+  title: string;
+  skillTags: string[];
+  description: string;
+};
+
+const TimelineCard = params => {
+  const { startDate, endDate, title, skillTags, description } = params;
   return (
     <Container>
-      <SDate>2011.01 ~ 2012.03</SDate>
-      <Title>테스트 타이틀</Title>
-      <STagList values={dummy} />
-      <Description>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, beatae
-        maiores tempora corrupti, dolore autem praesentium adipisci laudantium
-        porro, ab quae voluptate reiciendis similique reprehenderit ea officiis.
-        Suscipit, cum accusantium.
-      </Description>
+      <SDate>{`${startDate} - ${endDate}`}</SDate>
+      <Title>{title}</Title>
+      <STagList values={skillTags} />
+      <Description>{description}</Description>
     </Container>
   );
 };

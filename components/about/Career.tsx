@@ -3,6 +3,8 @@ import palette from "@styles/palette";
 import viewports from "../../lib/viewports";
 import React, { ReactPropTypes, useState } from "react";
 import styled from "styled-components";
+import { useGetCareersQuery } from "@store/modules/career/career.query";
+import { nanoid } from "@reduxjs/toolkit";
 
 const Container = styled.div`
   width: 80%;
@@ -18,21 +20,10 @@ const Container = styled.div`
 `;
 
 const Career = (props: any) => {
+  const { isLoading, error, data } = useGetCareersQuery();
   return (
     <Container {...props}>
-      <TimelineCard />
-      <TimelineCard />
-      <TimelineCard />
-      <TimelineCard />
-      <TimelineCard />
-      <TimelineCard />
-      <TimelineCard />
-      <TimelineCard />
-      <TimelineCard />
-      <TimelineCard />
-      <TimelineCard />
-      <TimelineCard />
-      <TimelineCard />
+      {data && data.map(career => <TimelineCard key={nanoid()} {...career} />)}
     </Container>
   );
 };

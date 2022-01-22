@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { Settings } from "react-slick";
 import Link from "next/link";
 import { useGetProjectsQuery } from "@store/modules/project/project.query";
+import { nanoid } from "@reduxjs/toolkit";
 
 const Container = styled.div`
   display: flex;
@@ -30,7 +31,7 @@ const Portfolio = () => {
       <Slick settings={slickSettings}>
         {data &&
           data.map((project, idx) => (
-            <Link href={`/projects/${project._id}`} key={idx}>
+            <Link href={`/projects/${project._id}`} key={nanoid()}>
               <a>
                 <ImageCard
                   title={project.name}

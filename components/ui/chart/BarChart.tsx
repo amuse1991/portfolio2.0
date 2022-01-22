@@ -1,3 +1,4 @@
+import { nanoid } from "@reduxjs/toolkit";
 import { slideIn } from "@styles/keyframes";
 import palette from "@styles/palette";
 import React, { useState } from "react";
@@ -39,7 +40,7 @@ function BarChart({ dataset, ...props }: TBarCharProps) {
     <SContainer>
       {dataset.map((data, idx) => {
         return (
-          <SBarContainer key={data.key}>
+          <SBarContainer key={nanoid()}>
             <STag>{data.key}</STag>
             <SBar length={data.value} idx={idx} />
           </SBarContainer>

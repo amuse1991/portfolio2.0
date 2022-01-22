@@ -1,5 +1,6 @@
 import DoubleArrowIcon from "@components/ui/icons/DoubleArrowIcon";
 import useModal from "@hooks/store/modal/useModal";
+import { nanoid } from "@reduxjs/toolkit";
 import palette from "@styles/palette";
 import React from "react";
 import styled from "styled-components";
@@ -30,8 +31,8 @@ const CategoryList: React.FC<TCategoryList> = () => {
   return (
     <Container>
       <Inner>
-        {Array.from({ length: 5 }).map((_, idx) => (
-          <Item key={idx}>idx</Item>
+        {Array.from({ length: 5 }).map(_ => (
+          <Item key={nanoid()}>idx</Item>
         ))}
       </Inner>
       <SDoubleArrowIcon onClick={() => closeModal("blog/Category")} />
