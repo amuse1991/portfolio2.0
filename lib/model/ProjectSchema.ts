@@ -1,9 +1,6 @@
 import mongoose from "mongoose";
 import TechTags from "./customTypes";
 
-// Don't forget to add `Int8` to the type registry
-// Object.assign()mongoose.Schema.Types.TechTags = TechTags;
-
 const ProjectSchema = new mongoose.Schema({
   name: {
     type: String,
