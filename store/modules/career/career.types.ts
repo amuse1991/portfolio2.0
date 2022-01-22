@@ -1,14 +1,14 @@
 export type TCareer = {
+  id: string;
   companyName: string;
-  companyURL: string;
   position: string;
   department: string;
-  imgPath: string;
   startDate: string;
-  endDate: string;
-  techTags: TTechTags;
-  description: string;
-  projectIDs: number;
+  imgPath?: string;
+  companyURL?: string;
+  endDate?: string;
+  techTags?: TTechTags;
+  description?: string;
 };
 
 export type TTechTags = "node" | "react" | "js";

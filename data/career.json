@@ -1,0 +1,26 @@
+[
+  {
+    "companyName": "ST유니타스",
+    "companyURL": "",
+    "position": "프론트엔드 개발자",
+    "department": "라이브TFT",
+    "imgPath": "",
+    "startDate": "2021.01.01",
+    "endDate": "2021.09.01",
+    "techTags": ["react"],
+    "description": "라이브TFT소속 개발자로서 react를 이용한 라이브 강의 플랫폼의 프론트엔드 개발을 담당했습니다.",
+    "projectIDs": []
+  },
+  {
+    "companyName": "ST유니타스",
+    "companyURL": "",
+    "position": "프론트엔드 개발자",
+    "department": "라이브TFT",
+    "imgPath": "",
+    "startDate": "2021.01.01",
+    "endDate": "2021.09.01",
+    "techTags": ["react"],
+    "description": "라이브TFT소속 개발자로서 react를 이용한 라이브 강의 플랫폼의 프론트엔드 개발을 담당했습니다.",
+    "projectIDs": []
+  }
+]

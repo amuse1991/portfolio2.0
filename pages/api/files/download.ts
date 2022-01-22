@@ -50,6 +50,3 @@ export async function getObject(objectKey: string) {
     return console.error("there was an error to find s3 objects", err);
   }
 }
-
-// To retrieve you need to use `await getObject()` or `getObject().then()`
-// getObject('my-bucket', 'path/to/the/object.txt').then(...);
