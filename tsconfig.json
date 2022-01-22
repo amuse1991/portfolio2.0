@@ -18,6 +18,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "noImplicitAny": false,
+    "noImplicitThis": false,
     "baseUrl": ".",
     "paths": {
       "@components/*": [

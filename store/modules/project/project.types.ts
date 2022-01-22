@@ -1,5 +1,4 @@
 import { TTechTags } from "../career/career.types";
-
 export interface TProject {
   id: string;
   title: string;
