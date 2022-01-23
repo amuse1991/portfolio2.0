@@ -33,24 +33,16 @@ const Description = styled.span`
   color: ${palette.white_snow};
 `;
 
-type TTimeLineCard = {
-  startDate: Date;
-  endDate: Date;
-  title: string;
-  skillTags: string[];
-  description: string;
-};
-
-const TimelineCard = params => {
-  const { startDate, endDate, title, skillTags, description } = params;
+function TimelineCard(params) {
+  const { startDate, endDate, companyName, techTags, description } = params;
   return (
     <Container>
       <SDate>{`${startDate} - ${endDate}`}</SDate>
-      <Title>{title}</Title>
-      <STagList values={skillTags} />
+      <Title>{companyName}</Title>
+      <STagList values={techTags} />
       <Description>{description}</Description>
     </Container>
   );
-};
+}
 
 export default TimelineCard;

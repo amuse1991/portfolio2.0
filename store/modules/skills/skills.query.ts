@@ -9,7 +9,6 @@ export const skillsQuery = createApi({
     baseUrl: process.env.NEXT_PUBLIC_API_URL
   }),
   extractRehydrationInfo(action, { reducerPath }) {
-    console.log();
     if (action.type === HYDRATE) {
       return action.payload[reducerPath];
     }
