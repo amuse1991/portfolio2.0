@@ -11,6 +11,8 @@ import BlogListItem from "./Post";
 import CategoryButton from "./CategoryButton";
 import CategoryList from "./CategoryList";
 import Post from "./Post";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 type TBlogProps = {};
 
@@ -42,6 +44,7 @@ const Blog: React.FC<TBlogProps> = () => {
     maxWidth: "35vw"
   };
   const { isLoading, error, data } = useGetPostsQuery();
+
   return (
     <Container>
       <PageTitle>BLOG</PageTitle>
@@ -56,7 +59,20 @@ const Blog: React.FC<TBlogProps> = () => {
           }}
         />
         <ArticleList>
-          {data && data.map(post => <Post key={nanoid()} {...post} />)}
+          {data &&
+            data.map(post => (
+              <Link
+                href={{
+                  pathname: `/posts/${encodeURIComponent(post._id)}`,
+                  query: { documentPath: post.documentPath }
+                }}
+                key={nanoid()}
+              >
+                <a>
+                  <Post key={nanoid()} {...post} />
+                </a>
+              </Link>
+            ))}
         </ArticleList>
       </Content>
     </Container>

@@ -1,3 +1,9 @@
+---
+title: hls.js를 사용한 웹 라이브 스트리밍 클라이언트
+slug: 201208052008 hls.js-live-stremaing
+category: javascript
+---
+
 # hls.js를 사용한 웹 라이브 스트리밍 클라이언트
 
 # 2021. 8. 5. 20:08

@@ -11,10 +11,11 @@ import {
   getRunningOperationPromises,
   getSkills
 } from "@store/modules/skills/skills.query";
-import { getObjectList } from "./api/files/download";
+import { getObjectListFromS3 } from "../lib/api/downloadS3";
 import { getProjects } from "@store/modules/project/project.query";
 import { getCareers } from "@store/modules/career/career.query";
 import { getPosts } from "@store/modules/post/post.query";
+import { getMDPost } from "@lib/markdown";
 
 const Container = styled.div`
   background: ${palette.black_denim};
@@ -39,10 +40,11 @@ export const getServerSideProps = wrapper.getServerSideProps<TIndexProps>(
   store =>
     async ({ req, res, ...etc }) => {
       try {
-        store.dispatch(getSkills.initiate());
-        store.dispatch(getProjects.initiate());
-        store.dispatch(getCareers.initiate());
-        store.dispatch(getPosts.initiate());
+        // store.dispatch(getSkills.initiate());
+        // store.dispatch(getProjects.initiate());
+        // store.dispatch(getCareers.initiate());
+        // store.dispatch(getPosts.initiate());
+        await getMDPost("post/javascript/testPost.md");
         await Promise.all(getRunningOperationPromises());
         return {
           props: {}

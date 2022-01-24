@@ -1,5 +1,6 @@
 import { TProject } from "../project/project.types";
 export type TPost = {
+  _id: string;
   title: string;
   postingDatetime: Date;
   documentPath: string;

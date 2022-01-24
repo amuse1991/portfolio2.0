@@ -6,13 +6,15 @@ const s3 = new AWS.S3({
   region: process.env.AWS_REGION
 });
 
-type TGetObjectListRequestPayload = {
+type TGetObjectListFromS3RequestPayload = {
   delimiter?: string;
   prefix?: string;
   maxKeys?: number;
 };
 
-export async function getObjectList(payload?: TGetObjectListRequestPayload) {
+export async function getObjectListFromS3(
+  payload?: TGetObjectListFromS3RequestPayload
+) {
   if (!process.env.S3_BUCKET_NAME) {
     return console.error("invalid bucket name");
   }
@@ -32,11 +34,11 @@ export async function getObjectList(payload?: TGetObjectListRequestPayload) {
   }
 }
 
-export async function getObject(objectKey: string) {
+export async function getObjectFromS3(objectKey: string) {
   if (!process.env.S3_BUCKET_NAME) {
     return console.error("invalid bucket name");
   }
-
+  console.log("====================================", objectKey);
   try {
     const params: AWS.S3.GetObjectRequest = {
       Bucket: process.env.S3_BUCKET_NAME,

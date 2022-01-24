@@ -26,7 +26,6 @@ const makeStore = () => {
 
     devTools: true
   });
-  setupListeners(store.dispatch);
   return store;
 };
 
