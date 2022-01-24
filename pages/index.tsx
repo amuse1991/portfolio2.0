@@ -14,6 +14,7 @@ import {
 import { getObjectList } from "./api/files/download";
 import { getProjects } from "@store/modules/project/project.query";
 import { getCareers } from "@store/modules/career/career.query";
+import { getPosts } from "@store/modules/post/post.query";
 
 const Container = styled.div`
   background: ${palette.black_denim};
@@ -41,6 +42,7 @@ export const getServerSideProps = wrapper.getServerSideProps<TIndexProps>(
         store.dispatch(getSkills.initiate());
         store.dispatch(getProjects.initiate());
         store.dispatch(getCareers.initiate());
+        store.dispatch(getPosts.initiate());
         await Promise.all(getRunningOperationPromises());
         return {
           props: {}

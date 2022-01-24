@@ -2,13 +2,15 @@ import DoubleArrowIcon from "@components/ui/icons/DoubleArrowIcon";
 import ListGroup from "@components/ui/list/ListGroup";
 import useModal from "@hooks/store/modal/useModal";
 import { nanoid } from "@reduxjs/toolkit";
+import { useGetPostsQuery } from "@store/modules/post/post.query";
 import palette from "@styles/palette";
 import { PageTitle } from "@styles/textStyle";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import BlogListItem from "./BlogListItem";
+import BlogListItem from "./Post";
 import CategoryButton from "./CategoryButton";
 import CategoryList from "./CategoryList";
+import Post from "./Post";
 
 type TBlogProps = {};
 
@@ -39,7 +41,7 @@ const Blog: React.FC<TBlogProps> = () => {
     minHeight: "100vh",
     maxWidth: "35vw"
   };
-
+  const { isLoading, error, data } = useGetPostsQuery();
   return (
     <Container>
       <PageTitle>BLOG</PageTitle>
@@ -54,9 +56,7 @@ const Blog: React.FC<TBlogProps> = () => {
           }}
         />
         <ArticleList>
-          {Array.from({ length: 10 }).map((_, idx) => (
-            <BlogListItem key={nanoid()} title="hello" description="hello" />
-          ))}
+          {data && data.map(post => <Post key={nanoid()} {...post} />)}
         </ArticleList>
       </Content>
     </Container>

@@ -6,6 +6,7 @@ import { skillsQuery } from "./modules/skills/skills.query";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import { projectQuery } from "./modules/project/project.query";
 import { careerQuery } from "./modules/career/career.query";
+import { postQuery } from "./modules/post/post.query";
 
 const makeStore = () => {
   const store = configureStore({
@@ -13,13 +14,15 @@ const makeStore = () => {
       [modalSlice.name]: modalSlice.reducer,
       [skillsQuery.reducerPath]: skillsQuery.reducer,
       [projectQuery.reducerPath]: projectQuery.reducer,
-      [careerQuery.reducerPath]: careerQuery.reducer
+      [careerQuery.reducerPath]: careerQuery.reducer,
+      [postQuery.reducerPath]: postQuery.reducer
     },
     middleware: getDefaultMiddleware =>
       getDefaultMiddleware()
         .concat(skillsQuery.middleware)
         .concat(projectQuery.middleware)
-        .concat(careerQuery.middleware),
+        .concat(careerQuery.middleware)
+        .concat(postQuery.middleware),
 
     devTools: true
   });

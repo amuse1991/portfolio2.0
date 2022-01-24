@@ -3,6 +3,11 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["portfolio-sigma-fawn-77.vercel.app", "loaclhost:3000"]
+    domains: [
+      "portfolio-sigma-fawn-77.vercel.app",
+      "loaclhost:3000",
+      "i.imgur.com",
+      "imgur.com"
+    ]
   }
 };
