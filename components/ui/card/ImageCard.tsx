@@ -3,7 +3,11 @@ import styled from "styled-components";
 import Image from "next/image";
 import palette from "@styles/palette";
 
-type TImageCard = {};
+type TImageCard = {
+  title: string;
+  summary: string;
+  imagePath?: string;
+};
 
 const Container = styled.div`
   color: ${palette.white_snow};
@@ -20,22 +24,18 @@ const Description = styled.span`
   display: block;
 `;
 
-const ImageCard = (props: TImageCard) => {
+const ImageCard = ({ imagePath, title, summary }: TImageCard) => {
   return (
     <Container>
       <Image
-        src={"/image/me.jpeg"}
-        alt="sample"
+        src={imagePath || "/image/me.jpeg"}
+        alt="project thumbnail"
         width={200}
         height={200}
         layout="responsive"
       />
-      <Title>Hello</Title>
-      <Description>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Saepe unde
-        officiis vel nulla neque porro ullam voluptatem sed fuga nemo culpa
-        dolore doloribus, veritatis impedit. Cum dolor minus placeat amet!
-      </Description>
+      <Title>{title}</Title>
+      <Description>{summary}</Description>
     </Container>
   );
 };

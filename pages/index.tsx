@@ -1,21 +1,30 @@
 import Header from "@components/header/Header";
 import Intro from "@components/intro/Intro";
 import About from "@components/about/About";
-import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
+import type { GetServerSideProps, GetStaticProps, NextPage } from "next";
 import styled from "styled-components";
-import styles from "../styles/Home.module.css";
 import PortfolioSlick from "@components/portfolio/PortfolioSlick";
-import { useEffect } from "react";
 import Blog from "@components/blog/Blog";
 import palette from "@styles/palette";
+import { wrapper } from "@store/store";
+import {
+  getRunningOperationPromises,
+  getSkills
+} from "@store/modules/skills/skills.query";
+import { getObjectListFromS3 } from "../lib/api/downloadS3";
+import { getProjects } from "@store/modules/project/project.query";
+import { getCareers } from "@store/modules/career/career.query";
+import { getPosts } from "@store/modules/post/post.query";
+import { getMDPost } from "@lib/markdown";
 
 const Container = styled.div`
   background: ${palette.black_denim};
   color: ${palette.white_snow};
 `;
-const Home: NextPage = () => {
+
+interface TIndexProps {}
+
+const Home: NextPage<TIndexProps> = () => {
   return (
     <Container>
       <Header />
@@ -26,5 +35,27 @@ const Home: NextPage = () => {
     </Container>
   );
 };
+
+export const getServerSideProps = wrapper.getServerSideProps<TIndexProps>(
+  store =>
+    async ({ req, res, ...etc }) => {
+      try {
+        // store.dispatch(getSkills.initiate());
+        // store.dispatch(getProjects.initiate());
+        // store.dispatch(getCareers.initiate());
+        // store.dispatch(getPosts.initiate());
+        await getMDPost("post/javascript/testPost.md");
+        await Promise.all(getRunningOperationPromises());
+        return {
+          props: {}
+        };
+      } catch (err) {
+        console.error(err);
+        return {
+          props: {}
+        };
+      }
+    }
+);
 
 export default Home;

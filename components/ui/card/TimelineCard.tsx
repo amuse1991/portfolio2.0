@@ -1,3 +1,4 @@
+import { TProject } from "@store/modules/project/project.types";
 import palette from "@styles/palette";
 import React, { useState } from "react";
 import styled from "styled-components";
@@ -32,21 +33,16 @@ const Description = styled.span`
   color: ${palette.white_snow};
 `;
 
-const TimelineCard = () => {
-  const dummy = ["react", "redux", "react", "redux", "react", "redux"];
+function TimelineCard(params) {
+  const { startDate, endDate, companyName, techTags, description } = params;
   return (
     <Container>
-      <SDate>2011.01 ~ 2012.03</SDate>
-      <Title>테스트 타이틀</Title>
-      <STagList values={dummy} />
-      <Description>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, beatae
-        maiores tempora corrupti, dolore autem praesentium adipisci laudantium
-        porro, ab quae voluptate reiciendis similique reprehenderit ea officiis.
-        Suscipit, cum accusantium.
-      </Description>
+      <SDate>{`${startDate} - ${endDate}`}</SDate>
+      <Title>{companyName}</Title>
+      <STagList values={techTags} />
+      <Description>{description}</Description>
     </Container>
   );
-};
+}
 
 export default TimelineCard;

@@ -3,11 +3,12 @@ import styled from "styled-components";
 import modalIndex from "./modal.index";
 import Modal from "react-modal";
 import { useSelector } from "react-redux";
-import { RootState } from "@store/store";
 import lodash from "lodash";
 import palette from "@styles/palette";
 import Image from "next/image";
 import useModal from "@hooks/store/modal/useModal";
+import { nanoid } from "@reduxjs/toolkit";
+import { AppState } from "@store/store";
 
 const Container = styled.div``;
 const Header = styled.div`
@@ -20,7 +21,7 @@ const Header = styled.div`
 const CloseButton = styled.div``;
 
 export default function ModalManager() {
-  const openedModals = useSelector((state: RootState) => state.modal.opened);
+  const openedModals = useSelector((state: AppState) => state.modal.opened);
   const { closeModal } = useModal();
 
   useEffect(() => {
@@ -54,7 +55,7 @@ export default function ModalManager() {
 
         return (
           <Modal
-            key={idx}
+            key={nanoid()}
             isOpen={true}
             style={modalStyle}
             shouldCloseOnOverlayClick={true}

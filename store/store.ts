@@ -1,36 +1,43 @@
 import { configureStore, ThunkAction } from "@reduxjs/toolkit";
 import { Action, AnyAction, Store } from "redux";
 import { createWrapper } from "next-redux-wrapper";
-import counterSlice from "./modules/counter/counter.slice";
-import createSagaMiddleware from "redux-saga";
-import { rootSaga } from "./saga";
 import modalSlice from "./modules/modal/modal.slice";
-
-const sagaMiddleWare = createSagaMiddleware();
+import { skillsQuery } from "./modules/skills/skills.query";
+import { setupListeners } from "@reduxjs/toolkit/dist/query";
+import { projectQuery } from "./modules/project/project.query";
+import { careerQuery } from "./modules/career/career.query";
+import { postQuery } from "./modules/post/post.query";
 
 const makeStore = () => {
   const store = configureStore({
     reducer: {
-      [counterSlice.name]: counterSlice.reducer,
-      [modalSlice.name]: modalSlice.reducer
+      [modalSlice.name]: modalSlice.reducer,
+      [skillsQuery.reducerPath]: skillsQuery.reducer,
+      [projectQuery.reducerPath]: projectQuery.reducer,
+      [careerQuery.reducerPath]: careerQuery.reducer,
+      [postQuery.reducerPath]: postQuery.reducer
     },
-    middleware: [sagaMiddleWare],
+    middleware: getDefaultMiddleware =>
+      getDefaultMiddleware()
+        .concat(skillsQuery.middleware)
+        .concat(projectQuery.middleware)
+        .concat(careerQuery.middleware)
+        .concat(postQuery.middleware),
+
     devTools: true
   });
-
-  sagaMiddleWare.run(rootSaga);
-
   return store;
 };
 
-export type RootStore = ReturnType<typeof makeStore>;
-export type RootState = ReturnType<RootStore["getState"]>;
+export type AppStore = ReturnType<typeof makeStore>;
+export type AppState = ReturnType<AppStore["getState"]>;
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
-  RootState,
+  AppState,
   unknown,
   Action
 >;
-export const wrapper = createWrapper<Store<RootState>>(makeStore, {
+
+export const wrapper = createWrapper<AppStore>(makeStore, {
   debug: true
 });

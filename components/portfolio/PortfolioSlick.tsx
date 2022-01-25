@@ -6,6 +6,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Settings } from "react-slick";
 import Link from "next/link";
+import { useGetProjectsQuery } from "@store/modules/project/project.query";
+import { nanoid } from "@reduxjs/toolkit";
 
 const Container = styled.div`
   display: flex;
@@ -22,18 +24,22 @@ const Portfolio = () => {
     rows: 2,
     dots: false
   };
-
+  const { isLoading, error, data } = useGetProjectsQuery();
   return (
     <Container>
       <PageTitle>PORTFOLIO</PageTitle>
       <Slick settings={slickSettings}>
-        {Array.from({ length: 10 }).map((_, idx) => (
-          <Link href={"/projects/name"} key={idx}>
-            <a>
-              <ImageCard />
-            </a>
-          </Link>
-        ))}
+        {data &&
+          data.map((project, idx) => (
+            <Link href={`/projects/${project._id}`} key={nanoid()}>
+              <a>
+                <ImageCard
+                  title={project.name}
+                  summary={project.summary || ""}
+                />
+              </a>
+            </Link>
+          ))}
       </Slick>
     </Container>
   );

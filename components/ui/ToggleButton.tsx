@@ -22,7 +22,6 @@ const Container = styled.button<{ open: boolean }>`
   margin-left: auto;
   margin-right: 1rem;
   ${props => {
-    console.log(props.open);
     return props.open ? null : `transform: rotate(90deg);`;
   }}
   @media only screen and (max-width: ${viewports.tablet.width}) {

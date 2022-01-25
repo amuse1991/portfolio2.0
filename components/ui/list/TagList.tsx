@@ -1,3 +1,4 @@
+import { nanoid } from "@reduxjs/toolkit";
 import React, { useState } from "react";
 import styled from "styled-components";
 
@@ -16,9 +17,7 @@ const TagItem = styled.li`
 const TagList = ({ values, ...props }: TTagList) => {
   return (
     <Container {...props}>
-      {values.map((val, idx) => (
-        <TagItem key={idx}>{val}</TagItem>
-      ))}
+      {values && values.map(val => <TagItem key={nanoid()}>{val}</TagItem>)}
     </Container>
   );
 };

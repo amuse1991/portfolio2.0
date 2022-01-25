@@ -6,9 +6,12 @@ import Introduce from "./Introduce";
 import Attitude from "./Attitude";
 import Resume from "./Resume";
 import Skills from "./Skills";
+import { skipToken } from "@reduxjs/toolkit/query";
 
 import viewports from "../../lib/viewports";
 import useModal from "@hooks/store/modal/useModal";
+import { useGetSkillsQuery } from "@store/modules/skills/skills.query";
+import { useRouter } from "next/router";
 
 const Container = styled.div`
   display: flex;
@@ -31,7 +34,9 @@ const Section = styled.div`
   }
 `;
 
-const About = () => {
+interface TAboutProps {}
+
+const About: React.FC<TAboutProps> = () => {
   const { openModal } = useModal();
   const toggleChangeSection = () => {
     openModal({ type: "about/Career", options: { withHeader: true } });
