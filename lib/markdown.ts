@@ -7,6 +7,13 @@ import matter from "gray-matter";
 import { getObjectFromS3, getObjectListFromS3 } from "./api/downloadS3";
 import { delimiter } from "path/posix";
 
+export type TFrontmatter = {
+  title: string;
+  category: string;
+  date: string;
+  slug: string;
+};
+
 export async function getMDPost(path: string) {
   try {
     const mdContent = await getObjectFromS3(path);

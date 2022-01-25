@@ -1,9 +1,11 @@
-import Post from "@components/blog/Post";
+import PostBody from "@components/blog/PostBody";
+import PostHeader from "@components/blog/PostHeader";
 import ProjectPost from "@components/project/ProjectPost";
-import { getMDPost, markdownToHtml } from "@lib/markdown";
+import { getMDPost, markdownToHtml, TFrontmatter } from "@lib/markdown";
 import { TPost } from "@store/modules/post/post.types";
 import { wrapper } from "@store/store";
 import palette from "@styles/palette";
+import matter from "gray-matter";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
@@ -12,6 +14,7 @@ import styled from "styled-components";
 const Container = styled.div`
   background: ${palette.black_denim};
   color: ${palette.white_snow};
+  padding: 2rem;
 `;
 
 const dummyData = {
@@ -20,16 +23,19 @@ const dummyData = {
 
 type TPostPageProps = {
   content: string;
+  frontMatter?: TFrontmatter;
 };
 
-const PostPage: React.FC<TPostPageProps> = ({ content }) => {
+const PostPage: React.FC<TPostPageProps> = ({ content, frontMatter }) => {
+  console.log("frontMatter", frontMatter);
   return (
     <Container>
+      <Head>
+        {frontMatter && frontMatter.title && <title>{frontMatter.title}</title>}
+      </Head>
       <article>
-        <Head>
-          <title>{dummyData.title}</title>
-        </Head>
-        <div dangerouslySetInnerHTML={{ __html: content }} />
+        <PostHeader title={frontMatter?.title} dateString={frontMatter?.date} />
+        <PostBody content={content} />
       </article>
     </Container>
   );
@@ -47,15 +53,17 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
         const mdPost = await getMDPost(realPath);
         const content = await markdownToHtml(mdPost?.content || "");
+        const frontMatter = mdPost?.data;
         return {
           props: {
-            content
+            content,
+            frontMatter
           }
         };
       } catch (err) {
         console.error(err);
         return {
-          props: { content: "" }
+          props: { content: "", frontMatter: {} }
         };
       }
     }

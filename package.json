@@ -20,6 +20,7 @@
     "formidable": "^2.0.1",
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21",
+    "moment": "^2.29.1",
     "mongoose": "^6.1.7",
     "next": "12.0.7",
     "next-redux-wrapper": "^8.0.0-rc.1",

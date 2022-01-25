@@ -7,12 +7,12 @@ import palette from "@styles/palette";
 import { PageTitle } from "@styles/textStyle";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import BlogListItem from "./Post";
 import CategoryButton from "./CategoryButton";
 import CategoryList from "./CategoryList";
-import Post from "./Post";
+
 import Link from "next/link";
 import { useRouter } from "next/router";
+import PostPreview from "./PostPreview";
 
 type TBlogProps = {};
 
@@ -69,7 +69,7 @@ const Blog: React.FC<TBlogProps> = () => {
                 key={nanoid()}
               >
                 <a>
-                  <Post key={nanoid()} {...post} />
+                  <PostPreview key={nanoid()} {...post} />
                 </a>
               </Link>
             ))}
