@@ -1,5 +1,6 @@
 import { TProject } from "@store/modules/project/project.types";
 import palette from "@styles/palette";
+import moment from "moment";
 import React, { useState } from "react";
 import styled from "styled-components";
 import TagList from "../list/TagList";
@@ -26,18 +27,24 @@ const STagList = styled(TagList)`
     background: ${palette.blue_azure};
     padding: 0.2rem;
     border-radius: 0.25rem;
+    margin-right: 0.5rem;
+    margin-bottom: 1rem;
   }
 `;
 
 const Description = styled.span`
   color: ${palette.white_snow};
+  line-height: 1.5;
 `;
 
 function TimelineCard(params) {
   const { startDate, endDate, companyName, techTags, description } = params;
+  const dateFormat = "YYYY.MM";
   return (
     <Container>
-      <SDate>{`${startDate} - ${endDate}`}</SDate>
+      <SDate>{`${moment(startDate).format(dateFormat)} ~ ${moment(
+        endDate
+      ).format(dateFormat)}`}</SDate>
       <Title>{companyName}</Title>
       <STagList values={techTags} />
       <Description>{description}</Description>

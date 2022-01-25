@@ -5,6 +5,7 @@ import React, { ReactPropTypes, useState } from "react";
 import styled from "styled-components";
 import { useGetCareersQuery } from "@store/modules/career/career.query";
 import { nanoid } from "@reduxjs/toolkit";
+import moment from "moment";
 
 const Container = styled.div`
   width: 80%;
@@ -21,9 +22,18 @@ const Container = styled.div`
 
 const Career = (props: any) => {
   const { isLoading, error, data } = useGetCareersQuery();
+  if (!data) {
+    return <div></div>;
+  }
+
+  const sortedData = [...data].sort((a, b) =>
+    moment(a.startDate).isBefore(b.startDate) ? 1 : -1
+  );
   return (
     <Container {...props}>
-      {data && data.map(career => <TimelineCard key={nanoid()} {...career} />)}
+      {sortedData.map(career => (
+        <TimelineCard key={nanoid()} {...career} />
+      ))}
     </Container>
   );
 };
