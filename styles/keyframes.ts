@@ -9,6 +9,15 @@ export const fadeIn = keyframes`
   }
 `;
 
+export const fadeOut = keyframes`
+  from {
+    opacity:1
+  }
+  to{
+    opacity:0
+  }
+`;
+
 export const slideIn = keyframes`
   from { transform: scaleX(0) }
   to   { transform: scaleX(1) }

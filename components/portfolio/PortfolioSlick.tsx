@@ -27,18 +27,16 @@ const Portfolio = () => {
   const { isLoading, error, data } = useGetProjectsQuery();
   return (
     <Container>
-      <PageTitle>PORTFOLIO</PageTitle>
+      <PageTitle>PROJECTS</PageTitle>
       <Slick settings={slickSettings}>
         {data &&
-          data.map((project, idx) => (
-            <Link href={`/projects/${project._id}`} key={nanoid()}>
-              <a>
-                <ImageCard
-                  title={project.name}
-                  summary={project.summary || ""}
-                />
-              </a>
-            </Link>
+          data.map(project => (
+            <ImageCard
+              key={nanoid()}
+              title={project.name}
+              summary={project.summary || ""}
+              thumbnailPath={project.thumbnailPath}
+            />
           ))}
       </Slick>
     </Container>

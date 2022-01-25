@@ -53,7 +53,7 @@ function Header() {
       <ButtonGroup role={"menu"} aria-label="header-menu" show={isButtonShown}>
         <Button>HOME</Button>
         <Button>ABOUT</Button>
-        <Button>PORTFOLIO</Button>
+        <Button>PROJECTS</Button>
         <Button>BLOG</Button>
         <Button>CONTACT</Button>
       </ButtonGroup>
