@@ -1,4 +1,5 @@
 import TimelineCard from "@components/ui/card/TimelineCard";
+import { nanoid } from "@reduxjs/toolkit";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -28,7 +29,7 @@ const Education: React.FC = () => {
     )
   };
 
-  return <TimelineCard mainTitle="학력" dataset={data} />;
+  return <TimelineCard key={nanoid()} mainTitle="학력" dataset={data} />;
 };
 
 export default Education;

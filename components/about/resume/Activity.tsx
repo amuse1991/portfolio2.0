@@ -73,6 +73,7 @@ const Activity: React.FC = () => {
 
   return (
     <TimelineCard
+      key={nanoid()}
       mainTitle="자격증/활동"
       dataset={data}
       options={{ dateFirst: true }}

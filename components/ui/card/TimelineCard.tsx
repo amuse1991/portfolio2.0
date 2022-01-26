@@ -124,7 +124,7 @@ const TimelineCard: React.FC<TimelineCardProps> = ({
           : null;
         const dateString = `${mStartDate}${mEndDate ? " ~ " + mEndDate : ""}`;
         return options?.dateFirst ? (
-          <SectionDateFirst>
+          <SectionDateFirst key={nanoid()}>
             <Left>
               <SDate>{dateString}</SDate>
             </Left>
