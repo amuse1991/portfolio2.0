@@ -8,22 +8,10 @@ import styled from "styled-components";
 import { useGetCareersQuery } from "@store/modules/career/career.query";
 import { nanoid } from "@reduxjs/toolkit";
 import moment from "moment";
-import viewports from "@lib/viewports";
+
 import ContributionList from "./ContributionList";
 
-const Container = styled.div`
-  width: 80%;
-  max-height: 80%;
-  overflow: scroll;
-  color: ${palette.white_snow};
-  & > * {
-    margin-bottom: 2rem;
-  }
-  @media only screen and (max-width: ${viewports.tablet.width}) {
-    width: 100%;
-    overflow: visible;
-  }
-`;
+const Container = styled.div``;
 
 const Contribution = styled.div``;
 

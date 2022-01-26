@@ -64,6 +64,18 @@ const Section = styled.section`
   }
 `;
 
+const SectionDateFirst = styled(Section)`
+  flex-direction: row;
+  align-items: center;
+`;
+
+const Left = styled.div`
+  width: 20%;
+`;
+const Right = styled.div`
+  width: 80%;
+`;
+
 const MainTitle = styled.h1`
   font-weight: 500;
   font-size: 1.125rem;
@@ -72,7 +84,7 @@ const MainTitle = styled.h1`
 
 export type TimelineCardData = {
   startDate: Date | moment.Moment | string;
-  endDate: Date | moment.Moment | string;
+  endDate?: Date | moment.Moment | string | null;
   title: string;
   tags?: string[];
   children: React.ReactNode;
@@ -81,14 +93,21 @@ export type TimelineCardData = {
 type TimelineCardProps = {
   mainTitle: string;
   dataset: TimelineCardData | TimelineCardData[];
-  timeSortFn: <T>(a: T, b: T) => number;
+  timeSortFn?: (a, b) => number;
+  options?: {
+    dateFirst: boolean;
+  };
 };
 
 const TimelineCard: React.FC<TimelineCardProps> = ({
   mainTitle,
   dataset,
-  timeSortFn
+  timeSortFn,
+  options
 }) => {
+  timeSortFn = timeSortFn
+    ? timeSortFn
+    : (a, b) => (moment(a.startDate).isBefore(b.startDate) ? 1 : -1);
   const sortedData = Array.isArray(dataset)
     ? [...dataset].sort(timeSortFn)
     : [dataset];
@@ -99,15 +118,28 @@ const TimelineCard: React.FC<TimelineCardProps> = ({
       <MainTitle>{mainTitle}</MainTitle>
       {sortedData.map(item => {
         const { startDate, endDate, title, tags, children } = item;
-        return (
+        const mStartDate = moment(startDate).format(dateFormat);
+        const mEndDate = moment(endDate).isValid()
+          ? moment(endDate).format(dateFormat)
+          : null;
+        const dateString = `${mStartDate}${mEndDate ? " ~ " + mEndDate : ""}`;
+        return options?.dateFirst ? (
+          <SectionDateFirst>
+            <Left>
+              <SDate>{dateString}</SDate>
+            </Left>
+            <Right>
+              <Title>{title}</Title>
+              {tags && <STagList values={tags} />}
+              <Description>{children}</Description>
+            </Right>
+          </SectionDateFirst>
+        ) : (
           <Section key={nanoid()}>
             <Header>
               <Title>{title}</Title>
-              <SDate>{`${moment(startDate).format(dateFormat)} ~ ${moment(
-                endDate
-              ).format(dateFormat)}`}</SDate>
+              <SDate>{dateString}</SDate>
             </Header>
-
             {tags && <STagList values={tags} />}
             <Description>{children}</Description>
           </Section>
