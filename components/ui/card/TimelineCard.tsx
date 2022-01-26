@@ -1,3 +1,4 @@
+import { nanoid } from "@reduxjs/toolkit";
 import { TProject } from "@store/modules/project/project.types";
 import palette from "@styles/palette";
 import moment from "moment";
@@ -15,11 +16,25 @@ const Container = styled.div`
   padding: 1rem;
 `;
 
-const SDate = styled.span``;
+const Header = styled.header`
+  display: flex;
+  align-items: center;
+`;
+
+const SDate = styled.span`
+  color: ${palette.blue_cornflower};
+  display: flex;
+  flex-direction: column;
+`;
 
 const Title = styled.span`
-  font-size: 2rem;
-  margin: 0.5rem 0;
+  color: ${palette.blue_cornflower};
+  display:block;
+  font-size: 1.5rem;
+  line-height: 1.625rem;
+  font-weight: bold;
+  margin-right: 1rem;
+}
 `;
 
 const STagList = styled(TagList)`
@@ -33,23 +48,73 @@ const STagList = styled(TagList)`
 `;
 
 const Description = styled.span`
+  display: block;
   color: ${palette.white_snow};
   line-height: 1.5;
+  margin: 0.5rem 0;
 `;
 
-function TimelineCard(params) {
-  const { startDate, endDate, companyName, techTags, description } = params;
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid ${palette.white_snow};
+  padding-top: 0.75rem;
+  &:last-child {
+    border: none;
+  }
+`;
+
+const MainTitle = styled.h1`
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+`;
+
+export type TimelineCardData = {
+  startDate: Date | moment.Moment | string;
+  endDate: Date | moment.Moment | string;
+  title: string;
+  tags?: string[];
+  children: React.ReactNode;
+};
+
+type TimelineCardProps = {
+  mainTitle: string;
+  dataset: TimelineCardData | TimelineCardData[];
+  timeSortFn: <T>(a: T, b: T) => number;
+};
+
+const TimelineCard: React.FC<TimelineCardProps> = ({
+  mainTitle,
+  dataset,
+  timeSortFn
+}) => {
+  const sortedData = Array.isArray(dataset)
+    ? [...dataset].sort(timeSortFn)
+    : [dataset];
+
   const dateFormat = "YYYY.MM";
   return (
     <Container>
-      <SDate>{`${moment(startDate).format(dateFormat)} ~ ${moment(
-        endDate
-      ).format(dateFormat)}`}</SDate>
-      <Title>{companyName}</Title>
-      <STagList values={techTags} />
-      <Description>{description}</Description>
+      <MainTitle>{mainTitle}</MainTitle>
+      {sortedData.map(item => {
+        const { startDate, endDate, title, tags, children } = item;
+        return (
+          <Section key={nanoid()}>
+            <Header>
+              <Title>{title}</Title>
+              <SDate>{`${moment(startDate).format(dateFormat)} ~ ${moment(
+                endDate
+              ).format(dateFormat)}`}</SDate>
+            </Header>
+
+            {tags && <STagList values={tags} />}
+            <Description>{children}</Description>
+          </Section>
+        );
+      })}
     </Container>
   );
-}
+};
 
 export default TimelineCard;
