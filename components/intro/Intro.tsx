@@ -43,10 +43,10 @@ function Intro() {
       />
       {/* <LogoBig />  */}
       <SListGroup>
-        <ListItem>포트폴리오 보기</ListItem>
-        <ListItem>블로그 보기</ListItem>
-        <ListItem>설정하기</ListItem>
-        <ListItem>종료</ListItem>
+        <ListItem>ABOUT</ListItem>
+        <ListItem>PROJECTS</ListItem>
+        <ListItem>BLOG</ListItem>
+        <ListItem>CONTACT</ListItem>
       </SListGroup>
     </Container>
   );
