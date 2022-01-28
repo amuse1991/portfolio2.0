@@ -16,7 +16,7 @@ const Container = styled.div`
   color: ${palette.white_snow};
 `;
 
-const Portfolio = () => {
+const ProjectSlick = () => {
   const slickSettings: Settings = {
     accessibility: true,
     slidesToShow: 3,
@@ -43,4 +43,4 @@ const Portfolio = () => {
   );
 };
 
-export default Portfolio;
+export default ProjectSlick;
