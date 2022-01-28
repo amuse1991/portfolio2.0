@@ -34,10 +34,11 @@ const Section = styled.div`
   }
 `;
 
-interface TAboutProps {}
+type TAboutProps = {};
 
 const About: React.FC<TAboutProps> = () => {
   const { openModal } = useModal();
+  // TODO: modal 제거 https://github.com/amuse1991/portfolio2.0/issues/13#issue-1116914369
   const toggleChangeSection = () => {
     openModal({ type: "about/Career", options: { withHeader: true } });
   };
