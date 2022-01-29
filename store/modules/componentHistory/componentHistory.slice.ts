@@ -16,6 +16,9 @@ const cpHistorySlice = createSlice({
   reducers: {
     set(state, action: PayloadAction<TComponentHistory>) {
       const current = action.payload;
+      if (current.path === state.prev?.path) {
+        return state;
+      }
       const newHistory = {
         current,
         prev: state.current

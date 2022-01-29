@@ -1,6 +1,6 @@
 export type TComponentHistory = {
   path: string;
-  prev: string;
+  prev?: string;
   options?: {
     useShallowRoute?: boolean;
     Component?: React.ReactNode;
