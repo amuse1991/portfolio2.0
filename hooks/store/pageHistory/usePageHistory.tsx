@@ -1,21 +1,22 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import {
-  get,
-  set
-} from "@store/modules/componentHistory/componentHistory.slice";
+import { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { TComponentHistory } from "@store/modules/componentHistory/componentHistory.types";
+import { TPageHistory } from "@store/modules/pageHistory/pageHistory.types";
+import { set } from "@store/modules/pageHistory/pageHistory.slice";
+import { AppState } from "@store/store";
 
 // TODO: shallow route 옵션 구현(Component 직접 받도록)
 /**
  * @description
  *  현재 dynamic route를 위한 기능만 지원.
  */
-const useComponentHistory = () => {
+const usePageHistory = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [isInit, setIsInit] = useState<boolean>(false);
+  const historyState = useSelector<AppState, TPageHistory>(
+    state => state.pageHistory
+  );
 
   const initFailMsg = `component history state is not initiated. 
   please call initCpHistory function first in your root app component.`;
@@ -28,24 +29,23 @@ const useComponentHistory = () => {
     if (isInit) {
       return console.error("component history state is already initiated.");
     }
-    const newHistory: TComponentHistory = {
-      path: router.asPath,
-      prev: undefined
-    };
     console.log("----INIT----");
-    dispatch(set(newHistory));
+    dispatch(
+      set({
+        path: router.asPath
+      })
+    );
     setIsInit(true);
   };
-  const setCpHistory = (payload: TComponentHistory) => {
+  const setPageHistory = (payload: TPageHistory) => {
     if (!isInit) return console.error(initFailMsg);
     dispatch(set(payload));
   };
-  const getCpHistory = () => {
-    if (!isInit) return console.error(initFailMsg);
-    const history = dispatch(get());
-    return history;
-  };
-  return { initCpHistory, setCpHistory, getCpHistory, isInit };
+
+  const getPageHistory = useCallback(() => {
+    return historyState;
+  }, [historyState]);
+  return { initCpHistory, setPageHistory, getPageHistory, isInit };
 };
 
-export default useComponentHistory;
+export default usePageHistory;

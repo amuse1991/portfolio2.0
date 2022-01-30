@@ -8,12 +8,13 @@ const initialState: TPageHistory = {
 };
 
 const cpHistorySlice = createSlice({
-  name: "PageHistory",
+  name: "pageHistory",
   initialState,
   reducers: {
     set(state, action: PayloadAction<TPageHistory>) {
       const current = action.payload;
-      if (current.path === state.prev) {
+
+      if (current.path === state.path) {
         return state;
       }
       const newHistory = {
