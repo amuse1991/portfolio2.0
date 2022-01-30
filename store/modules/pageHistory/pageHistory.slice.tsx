@@ -1,32 +1,26 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
-import {
-  TComponentHistory,
-  TComponentHistoryState
-} from "./componentHistory.types";
+import { TPageHistory } from "./pageHistory.types";
 
-const initialState: TComponentHistoryState = {
-  current: null,
-  prev: null
+const initialState: TPageHistory = {
+  path: "NOT_INITIATED",
+  prev: "NOT_INITIATED"
 };
 
 const cpHistorySlice = createSlice({
-  name: "componentHistory",
+  name: "PageHistory",
   initialState,
   reducers: {
-    set(state, action: PayloadAction<TComponentHistory>) {
+    set(state, action: PayloadAction<TPageHistory>) {
       const current = action.payload;
-      if (current.path === state.prev?.path) {
+      if (current.path === state.prev) {
         return state;
       }
       const newHistory = {
-        current,
-        prev: state.current
+        path: current.path,
+        prev: state.path
       };
       return newHistory;
-    },
-    get(state) {
-      return state;
     }
   },
 
@@ -40,5 +34,5 @@ const cpHistorySlice = createSlice({
   }
 });
 
-export const { set, get } = cpHistorySlice.actions;
+export const { set } = cpHistorySlice.actions;
 export default cpHistorySlice;

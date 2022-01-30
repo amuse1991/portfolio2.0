@@ -8,14 +8,14 @@ import { projectQuery } from "./modules/project/project.query";
 import { careerQuery } from "./modules/career/career.query";
 import { postQuery } from "./modules/post/post.query";
 import resumeSlice from "./modules/resume/resume.slice";
-import cpHistorySlice from "./modules/componentHistory/componentHistory.slice";
+import pageHistorySlice from "./modules/pageHistory/pageHistory.slice";
 
 const makeStore = () => {
   const store = configureStore({
     reducer: {
       [modalSlice.name]: modalSlice.reducer,
       [resumeSlice.name]: resumeSlice.reducer,
-      [cpHistorySlice.name]: cpHistorySlice.reducer,
+      [pageHistorySlice.name]: pageHistorySlice.reducer,
       [skillsQuery.reducerPath]: skillsQuery.reducer,
       [projectQuery.reducerPath]: projectQuery.reducer,
       [careerQuery.reducerPath]: careerQuery.reducer,
