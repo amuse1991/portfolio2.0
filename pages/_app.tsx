@@ -14,12 +14,7 @@ function MyApp({ Component, ...pageProps }: AppProps) {
       <GlobalStyle />
       <PageTransition>
         {({ children, pageProps }) => {
-          return children ? (
-            <Component {...pageProps} />
-          ) : (
-            <Component {...pageProps} />
-            // <SsrComponent {...ssrPageProps} />
-          );
+          return <Component {...pageProps} />;
         }}
       </PageTransition>
       {/* <Component {...pageProps} /> */}

@@ -35,11 +35,11 @@ const Transition = ({ children, ...props }) => {
           (item && item.components && item.components[item.pathname]) || {};
 
         return (
-          <Page key={key} style={style}>
+          <AnimatedPage key={key} style={style}>
             {children(
               item ? { Component, pageProps: props && props.pageProps } : {}
             )}
-          </Page>
+          </AnimatedPage>
         );
       })}
     </>
@@ -56,12 +56,11 @@ function PageTransition({ children, ...props }) {
 
 export default PageTransition;
 
-const Page = styled(animated.main)`
-  min-height: 100%;
-  height: 100vh;
-  min-width: 100vw;
+const AnimatedPage = styled(animated.main)`
+  /* height: 100vh;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; */
 `;
