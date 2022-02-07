@@ -1,91 +1,67 @@
-import React, { useRef, useState, useEffect } from "react";
-import { CSSTransition } from "react-transition-group";
-import { useRouter } from "next/router";
-import { TPageHistory } from "@store/modules/pageHistory/pageHistory.types";
-import loadable from "@loadable/component";
-import {} from "@pages/index";
+import React, { useContext } from "react";
+import styled from "styled-components";
+import { useTransition, animated } from "react-spring";
 
-type PageTransitionProps = {
-  history?: TPageHistory;
-  children: React.ReactNode;
+import { withRouter } from "next/router";
+
+const Context = React.createContext<any>(null);
+
+const Provider = ({ router, children }) => (
+  <Context.Provider value={router}>{children}</Context.Provider>
+);
+
+const useRouter = () => useContext(Context);
+const RouterContextProvider = withRouter(Provider);
+
+const Transition = ({ children, ...props }) => {
+  const router = useRouter();
+  console.log(router);
+  const transitions = useTransition(router, router => router.pathname, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: {
+      position: "absolute",
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+      opacity: 0
+    }
+  });
+  return (
+    <>
+      {transitions.map(({ item, props: style, key }) => {
+        const { Component, props } =
+          (item && item.components && item.components[item.pathname]) || {};
+
+        return (
+          <Page key={key} style={style}>
+            {children(
+              item ? { Component, pageProps: props && props.pageProps } : {}
+            )}
+          </Page>
+        );
+      })}
+    </>
+  );
 };
 
-async function getPageByHistory(history: TPageHistory) {
-  const rootPathMatcher = path => path === "/" && "/index.tsx";
-  const path = rootPathMatcher(history.path);
-
-  const page = await loadable(() => import(`@pages${path}`)).load();
-  const lastPage = await loadable(() => import(`@pages${history.prev}`)).load();
-  return { page, lastPage };
+function PageTransition({ children, ...props }) {
+  return (
+    <RouterContextProvider>
+      <Transition {...props}>{children}</Transition>
+    </RouterContextProvider>
+  );
 }
 
-export default function PageTransition({
-  history,
-  children
-}: PageTransitionProps) {
-  const [transitioning, setTransitioning] = useState(true);
-  const [PageComponent, setPageComponent] = useState<any>();
-  const [LastPageComponent, setLastPageComponent] = useState<any>();
-  const router = useRouter();
-  useEffect(() => {
-    console.log(history);
-  }, [history, router]);
+export default PageTransition;
 
-  return <>{children}</>;
-
-  // useEffect(() => {
-  //   if (!history) return;
-  //   getPageByHistory(history).then(({ page, lastPage }) => {
-  //     setPageComponent(page);
-  //     setLastPageComponent(lastPage);
-  //   });
-  // }, [history]);
-
-  // if (!history) {
-  //   return <>{children}</>;
-  // }
-
-  // function onFinishTransition() {
-  //   console.log("FINISHED");
-  //   setTransitioning(false);
-  // }
-
-  // function fixScroll() {
-  //   // Scroll left to 0 every frame. if not, firefox will not do this itself.
-  //   const concerningElem = document.querySelector(".concerning");
-  //   if (concerningElem !== null) {
-  //     concerningElem.scrollLeft = 0;
-  //   }
-  // }
-
-  // return (
-  //   <div className="concerning">
-  //     <CSSTransition
-  //       in={!transitioning}
-  //       appear={true}
-  //       timeout={600}
-  //       classNames="page-transition"
-  //       exit={false}
-  //       onExited={onFinishTransition}
-  //       onEnter={() => {
-  //         console.log("ENTER");
-  //       }}
-  //     >
-  //       <div>{PageComponent}</div>
-  //     </CSSTransition>
-  //     <CSSTransition
-  //       in={transitioning}
-  //       timeout={600}
-  //       classNames="page-transition"
-  //       enter={false}
-  //       onExiting={fixScroll}
-  //       onExited={onFinishTransition}
-  //       onEnter={() => {
-  //         console.log("ENTER");
-  //       }}
-  //     >
-  //       <div className="outgoing">{LastPageComponent}</div>
-  //     </CSSTransition>
-  //   </div>
-  // );
-}
+const Page = styled(animated.main)`
+  min-height: 100%;
+  height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;

@@ -44,7 +44,7 @@ interface TIndexProps {}
 const Home: NextPage<TIndexProps> = () => {
   return (
     <Layout>
-      <Container>
+      <Container role={"home"}>
         <Image
           src={"/image/logo/logo_big.svg"}
           alt="title logo"

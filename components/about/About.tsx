@@ -44,7 +44,7 @@ const About: React.FC<TAboutProps> = () => {
   };
 
   return (
-    <Container>
+    <Container role={"about"}>
       <PageTitle>ABOUT</PageTitle>
       <Section>
         <Introduce onClickToggleSection={toggleChangeSection} />

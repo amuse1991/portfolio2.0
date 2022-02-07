@@ -38,7 +38,6 @@ export default function ModalManager() {
           return null;
         }
         const ModalComponent = preConfig.component;
-
         const { props, options, type } = modal;
         const modalStyle = {
           content: options?.modalStyle
