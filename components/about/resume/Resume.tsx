@@ -11,8 +11,8 @@ const Container = styled.div`
   position: relative;
   color: ${palette.white_snow};
   width: 90%;
-  max-height: 100vh;
-  overflow: scroll;
+  /* max-height: 100vh; */
+  /* overflow: scroll; */
   display: flex;
   flex-direction: column;
   align-items: center;
