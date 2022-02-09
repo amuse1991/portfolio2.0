@@ -8,23 +8,37 @@ import PageTransition from "@components/ui/PageTransition";
 import { useSpringRef } from "react-spring";
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { NextPageContext } from "next/types";
+import usePageHistory from "@hooks/store/pageHistory/usePageHistory";
 
 function App({ Component, ...pageProps }: AppProps) {
   const { store, props } = wrapper.useWrappedStore(pageProps);
-  // const { Component: SsrComponent, pageProps: ssrPageProps } = props;
-  const router = useRouter();
+
+  const transition = false;
+
   return (
     <Provider store={store}>
       <GlobalStyle />
-      <PageTransition>
-        {({ children, pageProps }) => {
-          return <Component {...pageProps} />;
-        }}
-      </PageTransition>
-      {/* <Component {...pageProps} /> */}
+      {transition ? (
+        <PageTransition>
+          {/* <Component {...props} /> */}
+          {() => {
+            return <Component {...props.pageProps} />;
+          }}
+        </PageTransition>
+      ) : (
+        <Component {...props.pageProps} />
+      )}
+
       <ModalManager />
     </Provider>
   );
 }
+
+// App.getInitialProps = async (context: NextPageContext) => {
+//   context.
+
+//   return { pageProps };
+// };
 
 export default wrapper.withRedux(App);

@@ -75,3 +75,9 @@ export const rotateDrop = keyframes`{
 export const scaleUp = keyframes`
 	from { opacity: 0; -webkit-transform: scale(.8); transform: scale(.8); }
 `;
+
+export const rotateCubeBottomOut = keyframes` 
+	0% { }
+	50% { -webkit-animation-timing-function: ease-out; animation-timing-function: ease-out; -webkit-transform: translateY(50%) translateZ(-200px) rotateX(-45deg); transform: translateY(50%) translateZ(-200px) rotateX(-45deg); }
+	100% { opacity: .3; -webkit-transform: translateY(100%) rotateX(-90deg); transform: translateY(100%) rotateX(-90deg); }
+`;
