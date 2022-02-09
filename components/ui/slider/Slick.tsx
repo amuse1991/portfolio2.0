@@ -12,6 +12,7 @@ interface TSlickProps {
 
 const Container = styled.div`
   width: 90%;
+  min-height: 250px;
   margin: 0 auto;
 `;
 

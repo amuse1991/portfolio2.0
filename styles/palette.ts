@@ -6,7 +6,8 @@ export const palette = {
   gray: "#45474A",
   blue_azure: "#0080FE",
   blue_cornflower: "#6693F5",
-  charcoal: "#484848"
+  charcoal: "#484848",
+  react: "#45D8FF"
 };
 
 export default palette;

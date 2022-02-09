@@ -1,4 +1,4 @@
-import ImageCard from "@components/ui/card/ImageCard";
+import FlipCard from "@components/ui/card/FlipCard";
 import Slick from "@components/ui/slider/Slick";
 import palette from "@styles/palette";
 import { PageTitle } from "@styles/textStyle";
@@ -18,11 +18,37 @@ const Container = styled.div`
 
 const ProjectSlick = () => {
   const slickSettings: Settings = {
-    accessibility: true,
+    dots: false,
+    infinite: false,
+    speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
-    rows: 2,
-    dots: false
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
   const { isLoading, error, data } = useGetProjectsQuery();
   return (
@@ -31,7 +57,7 @@ const ProjectSlick = () => {
       <Slick settings={slickSettings}>
         {data &&
           data.map(project => (
-            <ImageCard
+            <FlipCard
               key={nanoid()}
               title={project.name}
               summary={project.summary || ""}
