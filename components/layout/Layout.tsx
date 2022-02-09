@@ -1,4 +1,3 @@
-import Header from "@components/layout/Header";
 import palette from "@styles/palette";
 import styled from "styled-components";
 import Footer from "./Footer";
@@ -17,7 +16,6 @@ const Main = styled.main`
 const Layout: React.FC<TLayoutProps> = ({ children }) => {
   return (
     <>
-      <Header />
       <Main>{children}</Main>
       <Footer />
     </>

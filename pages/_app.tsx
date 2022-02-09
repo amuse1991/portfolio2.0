@@ -5,12 +5,14 @@ import { AppState, wrapper } from "@store/store";
 import { Provider, useSelector, useStore } from "react-redux";
 import ModalManager from "@components/ui/modal/Modal";
 import { PageTransition } from "next-page-transitions";
+import GNB from "@components/layout/GNB";
 
 function App({ Component, ...pageProps }: AppProps) {
   const { store, props } = wrapper.useWrappedStore(pageProps);
   return (
     <Provider store={store}>
       <GlobalStyle />
+      <GNB />
       <PageTransition
         skipInitialTransition
         timeout={300}
@@ -18,7 +20,6 @@ function App({ Component, ...pageProps }: AppProps) {
       >
         <Component {...props.pageProps} />
       </PageTransition>
-
       <ModalManager />
     </Provider>
   );
