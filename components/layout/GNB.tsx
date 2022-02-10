@@ -6,6 +6,7 @@ import { palette } from "../../styles/palette";
 import viewports from "../../lib/viewports";
 import ToggleButton, { TToggleButtonType } from "../ui/ToggleButton";
 import ButtonGroup from "../ui/ButtonGroup";
+import Link from "next/link";
 
 const Container = styled.header`
   position: sticky;
@@ -51,11 +52,31 @@ function Header() {
     <Container role={"heading"}>
       <ToggleButton onClick={toggleMenu} />
       <ButtonGroup role={"menu"} aria-label="header-menu" show={isButtonShown}>
-        <Button>HOME</Button>
-        <Button>ABOUT</Button>
-        <Button>PORTFOLIO</Button>
-        <Button>BLOG</Button>
-        <Button>CONTACT</Button>
+        <Link href="/">
+          <a>
+            <Button>HOME</Button>
+          </a>
+        </Link>
+        <Link href="/about">
+          <a>
+            <Button>ABOUT</Button>
+          </a>
+        </Link>
+        <Link href="/projects">
+          <a>
+            <Button>PROJECTS</Button>
+          </a>
+        </Link>
+        <Link href="/posts">
+          <a>
+            <Button>BLOG</Button>
+          </a>
+        </Link>
+        <Link href="/contact">
+          <a>
+            <Button>CONTACT</Button>
+          </a>
+        </Link>
       </ButtonGroup>
     </Container>
   );

@@ -7,11 +7,15 @@ import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import { projectQuery } from "./modules/project/project.query";
 import { careerQuery } from "./modules/career/career.query";
 import { postQuery } from "./modules/post/post.query";
+import resumeSlice from "./modules/resume/resume.slice";
+import pageHistorySlice from "./modules/pageHistory/pageHistory.slice";
 
 const makeStore = () => {
   const store = configureStore({
     reducer: {
       [modalSlice.name]: modalSlice.reducer,
+      [resumeSlice.name]: resumeSlice.reducer,
+      [pageHistorySlice.name]: pageHistorySlice.reducer,
       [skillsQuery.reducerPath]: skillsQuery.reducer,
       [projectQuery.reducerPath]: projectQuery.reducer,
       [careerQuery.reducerPath]: careerQuery.reducer,
@@ -23,7 +27,6 @@ const makeStore = () => {
         .concat(projectQuery.middleware)
         .concat(careerQuery.middleware)
         .concat(postQuery.middleware),
-
     devTools: true
   });
   return store;
@@ -39,5 +42,5 @@ export type AppThunk<ReturnType = void> = ThunkAction<
 >;
 
 export const wrapper = createWrapper<AppStore>(makeStore, {
-  debug: true
+  debug: false
 });

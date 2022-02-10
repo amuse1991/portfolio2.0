@@ -38,7 +38,6 @@ export async function getObjectFromS3(objectKey: string) {
   if (!process.env.S3_BUCKET_NAME) {
     return console.error("invalid bucket name");
   }
-  console.log("====================================", objectKey);
   try {
     const params: AWS.S3.GetObjectRequest = {
       Bucket: process.env.S3_BUCKET_NAME,

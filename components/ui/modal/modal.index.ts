@@ -1,14 +1,14 @@
 import { TModalState } from "@store/modules/modal/modal.types";
-import loadable from "@loadable/component";
+import dynamic from "next/dynamic";
 
 const modalIndex: TModalState[] = [
   {
     type: "about/Career",
-    component: loadable(() => import("@components/about/Career"))
+    component: dynamic(() => import("@components/about/resume/Resume"))
   },
   {
     type: "blog/Category",
-    component: loadable(() => import("@components/blog/CategoryList"))
+    component: dynamic(() => import("@components/blog/CategoryList"))
   },
   {
     type: "contact/MessageSend"
