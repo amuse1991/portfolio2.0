@@ -4,11 +4,12 @@ import Image from "next/image";
 import palette from "@styles/palette";
 import Button from "../Button";
 import { animated, useSpring } from "react-spring";
+import Link from "next/link";
+import { TProjectPreview } from "@store/modules/project/project.types";
 
 type TFlipCard = {
   title: string;
-  summary: string;
-  thumbnailPath?: string;
+  options?: TProjectPreview;
 };
 
 const imageFadeout = keyframes`
@@ -83,7 +84,7 @@ const BgImage = styled(Image)`
   z-index: -1;
 `;
 
-const FlipCard = ({ thumbnailPath, title, summary }: TFlipCard) => {
+const FlipCard = ({ title, options }: TFlipCard) => {
   const [flipped, setFlipped] = useState(false);
   const { transform, opacity } = useSpring({
     opacity: flipped ? 1 : 0,
@@ -111,7 +112,15 @@ const FlipCard = ({ thumbnailPath, title, summary }: TFlipCard) => {
           rotateY: "180deg"
         }}
       >
-        <Description>{summary}</Description>
+        <Description>{options?.description || ""}</Description>
+        <Link
+          href={{
+            pathname: `/posts/${encodeURIComponent(1)}`,
+            query: { documentPath: 1 }
+          }}
+        >
+          <a>view more</a>
+        </Link>
       </Back>
     </Container>
   );

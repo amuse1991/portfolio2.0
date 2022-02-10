@@ -59,9 +59,8 @@ const ProjectSlick = () => {
           data.map(project => (
             <FlipCard
               key={nanoid()}
-              title={project.name}
-              summary={project.summary || ""}
-              thumbnailPath={project.thumbnailPath}
+              title={project.title}
+              options={project.preview}
             />
           ))}
       </Slick>
