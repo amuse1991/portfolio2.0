@@ -1,5 +1,6 @@
 import { nanoid } from "@reduxjs/toolkit";
-import { TProject } from "@store/modules/project/project.types";
+// import { TProject } from "@store/modules/project/project.types";
+import { Project } from "@src/types/project";
 import palette from "@styles/palette";
 import moment from "moment";
 import React, { useState } from "react";
