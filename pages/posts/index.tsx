@@ -4,7 +4,7 @@ import { NextPage } from "next";
 
 const PostsPage: NextPage = () => {
   return (
-    <Layout>
+    <Layout pageTitle="blog">
       <Blog />
     </Layout>
   );

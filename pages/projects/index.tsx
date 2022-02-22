@@ -4,7 +4,7 @@ import { NextPage } from "next";
 
 const ProjectsPage: NextPage = () => {
   return (
-    <Layout>
+    <Layout pageTitle="projects">
       <ProjectSlick />
     </Layout>
   );

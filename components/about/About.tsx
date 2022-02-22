@@ -1,17 +1,12 @@
 import palette from "@styles/palette";
-import { PageTitle } from "@styles/textStyle";
 import React, { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import Introduce from "./Introduce";
 import Attitude from "./Attitude";
 import Resume from "./resume/Resume";
 import Skills from "./Skills";
-import { skipToken } from "@reduxjs/toolkit/query";
-
 import viewports from "../../lib/viewports";
 import useModal from "@hooks/store/modal/useModal";
-import { useGetSkillsQuery } from "@store/modules/skills/skills.query";
-import { useRouter } from "next/router";
 
 const Container = styled.div`
   display: flex;
@@ -45,7 +40,6 @@ const About: React.FC<TAboutProps> = () => {
 
   return (
     <Container role={"about"}>
-      <PageTitle>ABOUT</PageTitle>
       <Section>
         <Introduce onClickToggleSection={toggleChangeSection} />
         <Attitude />

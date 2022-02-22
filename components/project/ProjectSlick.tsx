@@ -1,11 +1,9 @@
 import FlipCard from "@components/ui/card/FlipCard";
 import Slick from "@components/ui/slider/Slick";
 import palette from "@styles/palette";
-import { PageTitle } from "@styles/textStyle";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Settings } from "react-slick";
-import Link from "next/link";
 import { useGetProjectsQuery } from "@store/modules/project/project.query";
 import { nanoid } from "@reduxjs/toolkit";
 
@@ -53,7 +51,6 @@ const ProjectSlick = () => {
   const { isLoading, error, data } = useGetProjectsQuery();
   return (
     <Container>
-      <PageTitle>PROJECTS</PageTitle>
       <Slick settings={slickSettings}>
         {data &&
           data.map(project => <FlipCard key={nanoid()} data={project} />)}
