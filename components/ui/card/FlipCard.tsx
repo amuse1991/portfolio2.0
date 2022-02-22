@@ -5,43 +5,12 @@ import palette from "@styles/palette";
 import Button from "../Button";
 import { animated, useSpring } from "react-spring";
 import Link from "next/link";
-import { TProjectPreview } from "@store/modules/project/project.types";
+// import { TProject } from "@store/modules/project/project.types";
+import { TProject } from "@src/types/project";
 
 type TFlipCard = {
-  title: string;
-  options?: TProjectPreview;
+  data: TProject.ProjectType;
 };
-
-const imageFadeout = keyframes`
-  from {
-    opacity:1;
-  }
-  to{
-    opacity:0
-  }
-`;
-
-const titleSlideIn = keyframes`
-  from {
-    top:0;
-  }
-  to{
-    top: 100px;
-    display: block;
-    
-  }
-`;
-
-const buttonSlideUp = keyframes`
-  from {
-    bottom:0;
-  }
-  to{
-    bottom: 100px;
-    display: block;
-  }
-  
-`;
 
 const Container = styled.div`
   position: relative;
@@ -84,7 +53,8 @@ const BgImage = styled(Image)`
   z-index: -1;
 `;
 
-const FlipCard = ({ title, options }: TFlipCard) => {
+// TODO: Generic 하게 변경할 것
+function FlipCard({ data: project }: TFlipCard) {
   const [flipped, setFlipped] = useState(false);
   const { transform, opacity } = useSpring({
     opacity: flipped ? 1 : 0,
@@ -95,7 +65,7 @@ const FlipCard = ({ title, options }: TFlipCard) => {
   return (
     <Container onClick={() => setFlipped(state => !state)}>
       <Front style={{ opacity: opacity.to(o => 1 - o), transform }}>
-        <Title>{title}</Title>
+        <Title>{project.title}</Title>
         <BgImage
           className="animated-img"
           src={"/image/card-react.png"}
@@ -112,18 +82,19 @@ const FlipCard = ({ title, options }: TFlipCard) => {
           rotateY: "180deg"
         }}
       >
-        <Description>{options?.description || ""}</Description>
+        <Description>{project?.preview?.description || ""}</Description>
         <Link
           href={{
-            pathname: `/posts/${encodeURIComponent(1)}`,
-            query: { documentPath: 1 }
+            pathname: `/projects/${encodeURIComponent(project._id)}`
           }}
         >
-          <a>view more</a>
+          <a>
+            <button>view more</button>
+          </a>
         </Link>
       </Back>
     </Container>
   );
-};
+}
 
 export default FlipCard;

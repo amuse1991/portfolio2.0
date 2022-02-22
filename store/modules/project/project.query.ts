@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { HYDRATE } from "next-redux-wrapper";
 // import { TProject } from "./project.types";
-import { Project } from "@src/types/project";
+import { TProject } from "@src/types/project";
 
 // 반드시 store에 등록 후 사용
 export const projectQuery = createApi({
@@ -16,7 +16,7 @@ export const projectQuery = createApi({
   },
   tagTypes: ["project"],
   endpoints: builder => ({
-    getProjects: builder.query<Project.ProjectType[], void>({
+    getProjects: builder.query<TProject.ProjectType[], void>({
       query: () => `api/projects`
     })
   })

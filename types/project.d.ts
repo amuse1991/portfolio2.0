@@ -1,4 +1,4 @@
-export namespace Project {
+export namespace TProject {
   export interface Preview {
     card: {
       type: string;

@@ -56,13 +56,7 @@ const ProjectSlick = () => {
       <PageTitle>PROJECTS</PageTitle>
       <Slick settings={slickSettings}>
         {data &&
-          data.map(project => (
-            <FlipCard
-              key={nanoid()}
-              title={project.title}
-              options={project.preview}
-            />
-          ))}
+          data.map(project => <FlipCard key={nanoid()} data={project} />)}
       </Slick>
     </Container>
   );

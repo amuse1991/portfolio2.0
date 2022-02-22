@@ -5,6 +5,7 @@ import { TProject } from "@src/types/project";
 import palette from "@styles/palette";
 import { nanoid } from "@reduxjs/toolkit";
 import * as R from "ramda";
+import ProjectDetail from "./ProjectDetail";
 
 type TProejctBodyProps = {
   project: TProject.ProjectType;
@@ -12,6 +13,7 @@ type TProejctBodyProps = {
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
 `;
 
@@ -42,7 +44,7 @@ const CoverImgContainer = styled.div`
 // array 이면 묶에서 li return
 
 const ProjectBody: React.FC<TProejctBodyProps> = ({ project }) => {
-  const { devStack } = project;
+  const { devStack, details } = project;
 
   const getTechStack = (data: TProject.DevStack) => {
     const joinIfArr = item => (Array.isArray(item) ? item.join(", ") : item);
@@ -68,6 +70,8 @@ const ProjectBody: React.FC<TProejctBodyProps> = ({ project }) => {
           <Image src={"/image/me.jpeg"} alt="cover image" layout="fill" />
         </CoverImgContainer>
       </TopSection>
+      {!R.isNil(details) &&
+        details.map(data => <ProjectDetail key={nanoid()} data={data} />)}
     </Container>
   );
 };
