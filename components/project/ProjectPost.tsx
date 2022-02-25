@@ -1,6 +1,8 @@
 // import { TProject } from "@store/modules/project/project.types";
 import { TProject } from "@src/types/project";
 import palette from "@styles/palette";
+import space from "@styles/space";
+import typo from "@styles/typo";
 import moment from "moment";
 import React from "react";
 import styled from "styled-components";
@@ -22,9 +24,13 @@ const Container = styled.div`
 const Title = styled.h1`
   display: block;
   color: ${palette.blue_azure};
+  ${typo.headline2}
 `;
 
-const SubTitle = styled.h2``;
+const SubTitle = styled.h2`
+  ${typo.headline5}
+  padding: ${space.normal} 0;
+`;
 
 const ProjectPost: React.FC<TProjectPostProps> = ({ project }) => {
   const { title, company } = project;

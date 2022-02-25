@@ -6,6 +6,8 @@ import palette from "@styles/palette";
 import { nanoid } from "@reduxjs/toolkit";
 import * as R from "ramda";
 import ProjectDetail from "./ProjectDetail";
+import typo, { fontWeight } from "@styles/typo";
+import space, { dpToRem } from "@styles/space";
 
 type TProejctBodyProps = {
   project: TProject.ProjectType;
@@ -20,28 +22,34 @@ const Container = styled.div`
 const TopSection = styled.section`
   display: flex;
   width: 100%;
+  padding: ${space.xLarge} 0;
 `;
 
 const TechStack = styled.div`
   flex: 1;
+  & > ul {
+    padding-top: ${space.large};
+  }
+  & > ul > * {
+    padding-top: ${space.small};
+  }
   & > ul > em {
     color: ${palette.blue_cornflower};
     text-transform: capitalize;
+    ${typo.haedline6};
   }
 
   & > ul > li {
     padding-left: 2rem;
+    ${typo.haedline6}
   }
 `;
 
 const CoverImgContainer = styled.div`
   position: relative;
   flex: 2;
-  height: 400px;
+  min-height: ${dpToRem(360)};
 `;
-
-// string 이면 그냥 li return
-// array 이면 묶에서 li return
 
 const ProjectBody: React.FC<TProejctBodyProps> = ({ project }) => {
   const { devStack, details } = project;

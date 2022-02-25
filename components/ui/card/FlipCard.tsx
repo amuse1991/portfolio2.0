@@ -15,10 +15,7 @@ type TFlipCard = {
 const Container = styled.div`
   position: relative;
   margin: 1rem;
-  display: flex;
-  align-items: center;
   height: 100%;
-  justify-content: center;
   cursor: pointer;
 `;
 
@@ -37,11 +34,14 @@ const Front = styled(animated.div)`
   border-radius: 18px;
   width: 400px;
   height: 500px;
-  /* background: ${palette.blue_cornflower}; */
   position: absolute;
 `;
 
 const Back = styled(animated.div)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-radius: 18px;
   width: 400px;
   height: 500px;
@@ -51,6 +51,20 @@ const Back = styled(animated.div)`
 const BgImage = styled(Image)`
   border-radius: 18px;
   z-index: -1;
+`;
+
+const SButton = styled.a`
+  border: 1px solid ${palette.white_snow};
+  padding: 10px;
+  border-radius: 5px;
+  &:hover {
+    color: ${palette.blue_azure};
+    border-color: ${palette.blue_azure};
+  }
+`;
+
+const Thumbnail = styled(Image)`
+  z-index: 2;
 `;
 
 // TODO: Generic 하게 변경할 것
@@ -82,15 +96,20 @@ function FlipCard({ data: project }: TFlipCard) {
           rotateY: "180deg"
         }}
       >
+        <Thumbnail
+          src={"/image/card-js.png"}
+          alt="project thumbnail"
+          width={250}
+          height={250}
+        />
         <Description>{project?.preview?.description || ""}</Description>
+        {/* eslint-disable-next-line */}
         <Link
           href={{
             pathname: `/projects/${encodeURIComponent(project._id)}`
           }}
         >
-          <a>
-            <button>view more</button>
-          </a>
+          <SButton>VIEW MORE</SButton>
         </Link>
       </Back>
     </Container>
