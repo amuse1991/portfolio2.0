@@ -12,12 +12,16 @@ import AboutPage from "./about";
 import PostsPage from "./posts";
 import ContectPage from "./contact";
 import Home from "./home";
+import GNB from "@components/layout/GNB";
+import useScroll from "@hooks/useScroll";
 
 interface TIndexProps {}
 
 const Index: NextPage<TIndexProps> = () => {
+  useScroll();
   return (
     <>
+      <GNB />
       <Home />
       <AboutPage />
       <ProjectsPage />
