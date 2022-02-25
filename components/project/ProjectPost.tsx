@@ -1,4 +1,9 @@
+// import { TProject } from "@store/modules/project/project.types";
+import { TProject } from "@src/types/project";
 import palette from "@styles/palette";
+import space from "@styles/space";
+import typo from "@styles/typo";
+import moment from "moment";
 import React from "react";
 import styled from "styled-components";
 import ProjectBody from "./ProjectBody";
@@ -6,8 +11,7 @@ import ProjectFooter from "./ProjectFooter";
 import ProjectHeader from "./ProjectHeader";
 
 type TProjectPostProps = {
-  title: string;
-  children: React.ReactNode;
+  project: TProject.ProjectType;
 };
 
 const Container = styled.div`
@@ -17,19 +21,31 @@ const Container = styled.div`
   padding: 2rem;
 `;
 
-const Title = styled.span`
+const Title = styled.h1`
   display: block;
-  font-size: 4rem;
-  margin-bottom: 2rem;
+  color: ${palette.blue_azure};
+  ${typo.headline2}
 `;
 
-const ProjectPost: React.FC<TProjectPostProps> = ({ title, children }) => {
+const SubTitle = styled.h2`
+  ${typo.headline5}
+  padding: ${space.normal} 0;
+`;
+
+const ProjectPost: React.FC<TProjectPostProps> = ({ project }) => {
+  const { title, company } = project;
+  const { name, position, startDate, endDate } = company;
+  const dateFormat = "YYYY년 MM월";
+  const sDate = moment(startDate).format(dateFormat);
+  const eDate = moment(endDate).format(dateFormat);
+  const period = moment(endDate).diff(startDate, "months") + 1;
   return (
     <Container>
       <ProjectHeader>
         <Title>{title}</Title>
+        <SubTitle>{`${name}, ${position}, ${sDate} - ${eDate} (${period}개월)`}</SubTitle>
       </ProjectHeader>
-      <ProjectBody coverImagePath={"/image/me.jpeg"}>{children}</ProjectBody>
+      <ProjectBody project={project} />
       <ProjectFooter />
     </Container>
   );

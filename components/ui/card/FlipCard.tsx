@@ -5,51 +5,18 @@ import palette from "@styles/palette";
 import Button from "../Button";
 import { animated, useSpring } from "react-spring";
 import Link from "next/link";
-import { TProjectPreview } from "@store/modules/project/project.types";
+// import { TProject } from "@store/modules/project/project.types";
+import { TProject } from "@src/types/project";
+import space, { dpToRem } from "@styles/space";
 
 type TFlipCard = {
-  title: string;
-  options?: TProjectPreview;
+  data: TProject.ProjectType;
 };
-
-const imageFadeout = keyframes`
-  from {
-    opacity:1;
-  }
-  to{
-    opacity:0
-  }
-`;
-
-const titleSlideIn = keyframes`
-  from {
-    top:0;
-  }
-  to{
-    top: 100px;
-    display: block;
-    
-  }
-`;
-
-const buttonSlideUp = keyframes`
-  from {
-    bottom:0;
-  }
-  to{
-    bottom: 100px;
-    display: block;
-  }
-  
-`;
 
 const Container = styled.div`
   position: relative;
   margin: 1rem;
-  display: flex;
-  align-items: center;
   height: 100%;
-  justify-content: center;
   cursor: pointer;
 `;
 
@@ -60,19 +27,27 @@ const Title = styled.h1`
   z-index: 1;
   width: 100%;
   text-align: center;
+  padding: ${space.large};
 `;
 
-const Description = styled.p``;
+const Description = styled.p`
+  height: ${dpToRem(100)};
+  line-height: 1.25;
+  padding: ${space.xLarge};
+`;
 
 const Front = styled(animated.div)`
   border-radius: 18px;
   width: 400px;
   height: 500px;
-  /* background: ${palette.blue_cornflower}; */
   position: absolute;
 `;
 
 const Back = styled(animated.div)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-radius: 18px;
   width: 400px;
   height: 500px;
@@ -84,7 +59,23 @@ const BgImage = styled(Image)`
   z-index: -1;
 `;
 
-const FlipCard = ({ title, options }: TFlipCard) => {
+const SButton = styled.a`
+  border: 1px solid ${palette.white_snow};
+  margin-top: ${space.large};
+  padding: 10px;
+  border-radius: 5px;
+  &:hover {
+    color: ${palette.blue_azure};
+    border-color: ${palette.blue_azure};
+  }
+`;
+
+const Thumbnail = styled(Image)`
+  z-index: 2;
+`;
+
+// TODO: Generic 하게 변경할 것
+function FlipCard({ data: project }: TFlipCard) {
   const [flipped, setFlipped] = useState(false);
   const { transform, opacity } = useSpring({
     opacity: flipped ? 1 : 0,
@@ -95,7 +86,7 @@ const FlipCard = ({ title, options }: TFlipCard) => {
   return (
     <Container onClick={() => setFlipped(state => !state)}>
       <Front style={{ opacity: opacity.to(o => 1 - o), transform }}>
-        <Title>{title}</Title>
+        <Title>{project.title}</Title>
         <BgImage
           className="animated-img"
           src={"/image/card-react.png"}
@@ -112,18 +103,24 @@ const FlipCard = ({ title, options }: TFlipCard) => {
           rotateY: "180deg"
         }}
       >
-        <Description>{options?.description || ""}</Description>
+        <Thumbnail
+          src={"/image/card-js.png"}
+          alt="project thumbnail"
+          width={250}
+          height={250}
+        />
+        <Description>{project?.preview?.description || ""}</Description>
+        {/* eslint-disable-next-line */}
         <Link
           href={{
-            pathname: `/posts/${encodeURIComponent(1)}`,
-            query: { documentPath: 1 }
+            pathname: `/projects/${encodeURIComponent(project._id)}`
           }}
         >
-          <a>view more</a>
+          <SButton>VIEW MORE</SButton>
         </Link>
       </Back>
     </Container>
   );
-};
+}
 
 export default FlipCard;

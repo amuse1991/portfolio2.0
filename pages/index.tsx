@@ -7,74 +7,27 @@ import {
   getSkills
 } from "@store/modules/skills/skills.query";
 import { getMDPost } from "@lib/markdown";
-import Layout from "@components/layout/Layout";
-import Image from "next/image";
-import Link from "next/link";
-import ListItem from "@components/ui/list/ListItem";
-
-const Container = styled.div`
-  background: ${palette.black_denim};
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  .header-logo {
-    margin: 0 auto;
-  }
-`;
-
-const SListGroup = styled.ul`
-  color: ${palette.white_snow};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  li {
-    margin-bottom: 1rem;
-    cursor: pointer;
-  }
-
-  li:hover {
-    color: ${palette.blue_azure};
-  }
-`;
+import ProjectsPage from "./projects";
+import AboutPage from "./about";
+import PostsPage from "./posts";
+import ContectPage from "./contact";
+import Home from "./home";
+import GNB from "@components/layout/GNB";
+import useScroll from "@hooks/useScroll";
 
 interface TIndexProps {}
 
-const Home: NextPage<TIndexProps> = () => {
+const Index: NextPage<TIndexProps> = () => {
+  useScroll();
   return (
-    <Layout>
-      <Container role={"home"}>
-        <Image
-          src={"/image/logo/logo_big.svg"}
-          alt="title logo"
-          width={665}
-          height={590}
-        />
-        <SListGroup>
-          <Link href="/about">
-            <a>
-              <ListItem>ABOUT</ListItem>
-            </a>
-          </Link>
-          <Link href="/projects">
-            <a>
-              <ListItem>PROJECTS</ListItem>
-            </a>
-          </Link>
-          <Link href="/posts">
-            <a>
-              <ListItem>BLOG</ListItem>
-            </a>
-          </Link>
-          <Link href="/contact">
-            <a>
-              <ListItem>CONTACT</ListItem>
-            </a>
-          </Link>
-        </SListGroup>
-      </Container>
-    </Layout>
+    <>
+      <GNB />
+      <Home />
+      <AboutPage />
+      <ProjectsPage />
+      <PostsPage />
+      <ContectPage />
+    </>
   );
 };
 
@@ -100,4 +53,4 @@ export const getServerSideProps = wrapper.getServerSideProps<TIndexProps>(
     }
 );
 
-export default Home;
+export default Index;

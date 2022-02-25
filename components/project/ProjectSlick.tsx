@@ -1,11 +1,9 @@
 import FlipCard from "@components/ui/card/FlipCard";
 import Slick from "@components/ui/slider/Slick";
 import palette from "@styles/palette";
-import { PageTitle } from "@styles/textStyle";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Settings } from "react-slick";
-import Link from "next/link";
 import { useGetProjectsQuery } from "@store/modules/project/project.query";
 import { nanoid } from "@reduxjs/toolkit";
 
@@ -21,48 +19,36 @@ const ProjectSlick = () => {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToShow: 4,
+    slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1680,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          infinite: true
+          slidesToShow: 3
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 1300,
         settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          initialSlide: 2
+          slidesToShow: 2
         }
       },
       {
-        breakpoint: 480,
+        breakpoint: 900,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToShow: 1
         }
       }
     ]
   };
   const { isLoading, error, data } = useGetProjectsQuery();
   return (
-    <Container>
-      <PageTitle>PROJECTS</PageTitle>
+    <Container role={"projects"}>
       <Slick settings={slickSettings}>
         {data &&
-          data.map(project => (
-            <FlipCard
-              key={nanoid()}
-              title={project.title}
-              options={project.preview}
-            />
-          ))}
+          data.map(project => <FlipCard key={nanoid()} data={project} />)}
       </Slick>
     </Container>
   );

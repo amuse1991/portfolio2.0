@@ -1,4 +1,4 @@
-import { TProject } from "../project/project.types";
+import { TProject } from "@src/types/project";
 export type TPost = {
   _id: string;
   title: string;
@@ -8,5 +8,5 @@ export type TPost = {
   thumbnailUrl?: string;
   haderImageUrl?: string;
   category?: string;
-  projects?: TProject[];
+  projects?: TProject.ProjectType[];
 };
