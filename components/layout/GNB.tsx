@@ -6,7 +6,8 @@ import { palette } from "../../styles/palette";
 import viewports from "../../lib/viewports";
 import ToggleButton, { TToggleButtonType } from "../ui/ToggleButton";
 import ButtonGroup from "../ui/ButtonGroup";
-import Link from "next/link";
+// import Link from "next/link";
+import { Link } from "react-scroll";
 
 const Container = styled.header`
   position: sticky;
@@ -52,30 +53,20 @@ function Header() {
     <Container role={"heading"}>
       <ToggleButton onClick={toggleMenu} />
       <ButtonGroup role={"menu"} aria-label="header-menu" show={isButtonShown}>
-        <Link href="/">
-          <a>
-            <Button>HOME</Button>
-          </a>
+        <Link to="home" spy={true} smooth={true}>
+          <Button>HOME</Button>
         </Link>
-        <Link href="/about">
-          <a>
-            <Button>ABOUT</Button>
-          </a>
+        <Link to="about" spy={true} smooth={true}>
+          <Button>ABOUT</Button>
         </Link>
-        <Link href="/projects">
-          <a>
-            <Button>PROJECTS</Button>
-          </a>
+        <Link to="projects" spy={true} smooth={true}>
+          <Button>PROJECTS</Button>
         </Link>
-        <Link href="/posts">
-          <a>
-            <Button>BLOG</Button>
-          </a>
+        <Link to="blog" spy={true} smooth={true}>
+          <Button>BLOG</Button>
         </Link>
-        <Link href="/contact">
-          <a>
-            <Button>CONTACT</Button>
-          </a>
+        <Link to="contact" spy={true} smooth={true}>
+          <Button>CONTACT</Button>
         </Link>
       </ButtonGroup>
     </Container>

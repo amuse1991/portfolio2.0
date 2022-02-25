@@ -45,7 +45,7 @@ const ProjectSlick = () => {
   };
   const { isLoading, error, data } = useGetProjectsQuery();
   return (
-    <Container>
+    <Container role={"projects"}>
       <Slick settings={slickSettings}>
         {data &&
           data.map(project => <FlipCard key={nanoid()} data={project} />)}

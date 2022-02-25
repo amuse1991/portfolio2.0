@@ -3,8 +3,8 @@ import palette from "@styles/palette";
 import { NextPage } from "next";
 import styled from "styled-components";
 import Image from "next/image";
-import Link from "next/link";
 import ListItem from "@components/ui/list/ListItem";
+import { Link } from "react-scroll";
 
 const Container = styled.div`
   background: ${palette.black_denim};
@@ -34,7 +34,7 @@ const SListGroup = styled.ul`
 `;
 const Home: NextPage = () => {
   return (
-    <Layout>
+    <Layout className="home">
       <Container role={"home"}>
         <Image
           src={"/image/logo/logo_big.svg"}
@@ -43,25 +43,20 @@ const Home: NextPage = () => {
           height={590}
         />
         <SListGroup>
-          <Link href="/about">
-            <a>
-              <ListItem>ABOUT</ListItem>
-            </a>
+          <Link to="home" spy={true} smooth={true}>
+            <ListItem>HOME</ListItem>
           </Link>
-          <Link href="/projects">
-            <a>
-              <ListItem>PROJECTS</ListItem>
-            </a>
+          <Link to="about" spy={true} smooth={true}>
+            <ListItem>ABOUT</ListItem>
           </Link>
-          <Link href="/posts">
-            <a>
-              <ListItem>BLOG</ListItem>
-            </a>
+          <Link to="projects" spy={true} smooth={true}>
+            <ListItem>PROJECTS</ListItem>
           </Link>
-          <Link href="/contact">
-            <a>
-              <ListItem>CONTACT</ListItem>
-            </a>
+          <Link to="blog" spy={true} smooth={true}>
+            <ListItem>BLOG</ListItem>
+          </Link>
+          <Link to="contact" spy={true} smooth={true}>
+            <ListItem>CONTACT</ListItem>
           </Link>
         </SListGroup>
       </Container>

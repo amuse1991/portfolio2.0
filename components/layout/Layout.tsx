@@ -4,6 +4,7 @@ import Footer from "./Footer";
 
 type TLayoutProps = {
   children: React.ReactNode;
+  className?: string;
   pageTitle?: string;
 };
 
@@ -25,13 +26,13 @@ const PageTitle = styled.h1`
   text-transform: uppercase;
 `;
 
-const Layout: React.FC<TLayoutProps> = ({ children, pageTitle }) => {
+const Layout: React.FC<TLayoutProps> = ({ children, pageTitle, className }) => {
   return (
-    <>
+    <div className={className || ""}>
       {pageTitle && <PageTitle>{pageTitle}</PageTitle>}
       <Main>{children}</Main>
       <Footer />
-    </>
+    </div>
   );
 };
 
