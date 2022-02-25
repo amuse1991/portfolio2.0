@@ -7,6 +7,7 @@ import { animated, useSpring } from "react-spring";
 import Link from "next/link";
 // import { TProject } from "@store/modules/project/project.types";
 import { TProject } from "@src/types/project";
+import space, { dpToRem } from "@styles/space";
 
 type TFlipCard = {
   data: TProject.ProjectType;
@@ -26,9 +27,14 @@ const Title = styled.h1`
   z-index: 1;
   width: 100%;
   text-align: center;
+  padding: ${space.large};
 `;
 
-const Description = styled.p``;
+const Description = styled.p`
+  height: ${dpToRem(100)};
+  line-height: 1.25;
+  padding: ${space.xLarge};
+`;
 
 const Front = styled(animated.div)`
   border-radius: 18px;
@@ -55,6 +61,7 @@ const BgImage = styled(Image)`
 
 const SButton = styled.a`
   border: 1px solid ${palette.white_snow};
+  margin-top: ${space.large};
   padding: 10px;
   border-radius: 5px;
   &:hover {
