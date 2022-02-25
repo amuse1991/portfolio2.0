@@ -6,6 +6,11 @@ import styled from "styled-components";
 import { Settings } from "react-slick";
 import { useGetProjectsQuery } from "@store/modules/project/project.query";
 import { nanoid } from "@reduxjs/toolkit";
+import { TProject } from "@src/types/project";
+
+type TProjectSlick = {
+  data: TProject.ProjectType[];
+};
 
 const Container = styled.div`
   display: flex;
@@ -14,7 +19,7 @@ const Container = styled.div`
   color: ${palette.white_snow};
 `;
 
-const ProjectSlick = () => {
+const ProjectSlick: React.FC<TProjectSlick> = ({ data }) => {
   const slickSettings: Settings = {
     dots: false,
     infinite: false,
@@ -43,7 +48,6 @@ const ProjectSlick = () => {
       }
     ]
   };
-  const { isLoading, error, data } = useGetProjectsQuery();
   return (
     <Container role={"projects"}>
       <Slick settings={slickSettings}>

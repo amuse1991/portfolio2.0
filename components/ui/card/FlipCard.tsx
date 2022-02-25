@@ -36,14 +36,17 @@ const Description = styled.p`
   padding: ${space.xLarge};
 `;
 
-const Front = styled(animated.div)`
+const Front = styled(animated.div)<{ type: string }>`
   border-radius: 18px;
   width: 400px;
   height: 500px;
   position: absolute;
+  & > h1 {
+    color: ${props => props.type === "dotnet" && palette.react};
+  }
 `;
 
-const Back = styled(animated.div)`
+const Back = styled(animated.div)<{ type: string }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -51,7 +54,6 @@ const Back = styled(animated.div)`
   border-radius: 18px;
   width: 400px;
   height: 500px;
-  background: ${palette.react};
 `;
 
 const BgImage = styled(Image)`
@@ -82,17 +84,19 @@ function FlipCard({ data: project }: TFlipCard) {
     transform: `perspective(600px) rotateY(${flipped ? 180 : 0}deg)`,
     config: { mass: 5, tension: 500, friction: 80 }
   });
-
+  const cardType = project.preview.card.type || "default";
+  const bgImgSrc = `/image/card-${cardType}.png`;
   return (
     <Container onClick={() => setFlipped(state => !state)}>
-      <Front style={{ opacity: opacity.to(o => 1 - o), transform }}>
+      <Front
+        style={{ opacity: opacity.to(o => 1 - o), transform }}
+        type={cardType}
+      >
         <Title>{project.title}</Title>
         <BgImage
           className="animated-img"
-          src={"/image/card-react.png"}
+          src={bgImgSrc}
           alt="project thumbnail"
-          width={200}
-          height={200}
           layout="fill"
         />
       </Front>
@@ -102,6 +106,7 @@ function FlipCard({ data: project }: TFlipCard) {
           transform,
           rotateY: "180deg"
         }}
+        type={cardType}
       >
         <Thumbnail
           src={"/image/card-js.png"}
@@ -113,7 +118,7 @@ function FlipCard({ data: project }: TFlipCard) {
         {/* eslint-disable-next-line */}
         <Link
           href={{
-            pathname: `/projects/${encodeURIComponent(project._id)}`
+            pathname: `/projects/${encodeURIComponent(project._id.$oid)}`
           }}
         >
           <SButton>VIEW MORE</SButton>

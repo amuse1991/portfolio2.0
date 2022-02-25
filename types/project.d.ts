@@ -31,7 +31,9 @@ export namespace TProject {
     paths: string[];
   }
   export interface ProjectType {
-    _id: number;
+    _id: {
+      $oid: string;
+    };
     title: string;
     preview: Preview;
     company: Company;

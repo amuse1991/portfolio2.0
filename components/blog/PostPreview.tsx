@@ -34,7 +34,7 @@ const Post: React.FC<TPost> = ({
     <Container>
       <Thumbnail>
         <Image
-          src={thumbnailUrl || DEFAULT_IMAGE_SRC}
+          src={DEFAULT_IMAGE_SRC}
           alt={`post ${title} thumbnail`}
           layout="responsive"
           width={200}
