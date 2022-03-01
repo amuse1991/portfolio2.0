@@ -9,13 +9,7 @@ import Image from "next/image";
 import useModal from "@hooks/store/modal/useModal";
 import { nanoid } from "@reduxjs/toolkit";
 import { AppState } from "@store/store";
-import {
-  animated,
-  config,
-  useSpring,
-  useSpringRef,
-  useTransition
-} from "react-spring";
+
 import * as R from "ramda";
 import { TModalState } from "@store/modules/modal/modal.types";
 
@@ -27,30 +21,24 @@ const Header = styled.div`
   width: 100%;
   background: ${palette.black_denim};
 `;
-const CloseButton = styled.div``;
-const AnimatedDiv = styled(animated.div)``;
-const AnimatedModal = animated(ReactModal);
+const CloseButton = styled.div`
+  cursor: pointer;
+`;
 
 export default function ModalManager() {
   const modalState = useSelector((state: AppState) => state.modal);
   const { visible, modal } = modalState;
   const { closeModal } = useModal();
   const contentDOMRef = useRef<HTMLDivElement>();
-  const styles = useSpring({
-    to: {
-      width: "20%",
-      height: "20%"
-    }
-  });
-
-  console.log(styles);
+  const overlayDOMRef = useRef<HTMLDivElement>();
 
   useEffect(() => {
     ReactModal.setAppElement("#__next");
   }, []);
 
   const onClose = () => {
-    contentDOMRef.current?.classList.add("modal-before-close");
+    contentDOMRef.current?.classList.add("modal-content-before-close");
+    overlayDOMRef.current?.classList.add("modal-overlay-before-close");
     closeModal(500);
   };
 
@@ -63,20 +51,22 @@ export default function ModalManager() {
   }
   const ModalComponent = preConfig.component;
 
-  const modalStyle = {
-    content: options?.modalStyle
-      ? options?.modalStyle
-      : {
+  const modalStyle = options?.modalStyle
+    ? options.modalStyle
+    : {
+        content: {
           background: palette.black_denim,
           top: "52%",
           left: "50%",
-          transform: "translate(-50%, -50%)"
+          transform: "translate(-50%, -50%)",
+          border: "none",
+          borderRadius: "10px"
         }
-  };
+      };
 
   return (
     <ReactModal
-      closeTimeoutMS={2000}
+      closeTimeoutMS={500}
       key={nanoid()}
       isOpen={visible}
       style={modalStyle}
@@ -85,6 +75,7 @@ export default function ModalManager() {
       onRequestClose={onClose}
       {...(options && lodash.omitBy(options, !lodash.isUndefined))}
       contentRef={node => (contentDOMRef.current = node)}
+      overlayRef={node => (overlayDOMRef.current = node)}
     >
       {options?.withHeader && (
         <Header>

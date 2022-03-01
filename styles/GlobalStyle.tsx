@@ -51,21 +51,42 @@ const pageTransition = css`
 `;
 
 const modalTransition = css`
+  .ReactModal__Body--open,
+  .ReactModal__Html--open {
+    overflow: hidden;
+  }
+
   .ReactModal__Content {
-    width: 30%;
-    height: 30%;
-    -webkit-transition: width 500ms, height 500ms;
-    transition: width 500ms, height 500ms;
+    margin-top: -40px;
+    opacity: 0;
+    width: 80%;
+    height: 80%;
+    -webkit-transition: opacity 500ms, margin 500ms;
+    transition: opacity 500ms, margin 500ms;
   }
 
   .ReactModal__Content--after-open {
-    width: 80%;
-    height: 90%;
+    margin-top: 0px;
+    opacity: 1;
   }
 
-  .modal-before-close {
-    width: 30%;
-    height: 30%;
+  .modal-content-before-close {
+    margin-top: -40px;
+    opacity: 0;
+  }
+
+  .ReactModal__Overlay {
+    opacity: 0;
+    -webkit-transition: opacity 500ms, margin 500ms;
+    transition: opacity 500ms;
+  }
+
+  .ReactModal__Overlay--after-open {
+    opacity: 1;
+  }
+
+  .modal-overlay-before-close {
+    opacity: 0;
   }
 `;
 

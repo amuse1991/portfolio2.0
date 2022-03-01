@@ -28,12 +28,14 @@ const Blog: React.FC<TBlogProps> = () => {
   const [isCategoryOpened, setIsCategoryOpened] = useState<boolean>(false);
   const { openModal } = useModal();
   const categoryListModalStyle = {
-    background: "none",
-    left: 0,
-    paddingLeft: 0,
-    border: "none",
-    minHeight: "100vh",
-    maxWidth: "35vw"
+    content: {
+      background: "none",
+      left: 0,
+      paddingLeft: 0,
+      border: "none",
+      minHeight: "100vh",
+      maxWidth: "35vw"
+    }
   };
   const { isLoading, error, data } = useGetPostsQuery();
 
