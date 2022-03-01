@@ -26,7 +26,7 @@ const ArticleList = styled.ul`
 
 const Blog: React.FC<TBlogProps> = () => {
   const [isCategoryOpened, setIsCategoryOpened] = useState<boolean>(false);
-  const { openModal, closeModal } = useModal();
+  const { openModal } = useModal();
   const categoryListModalStyle = {
     background: "none",
     left: 0,

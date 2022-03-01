@@ -17,7 +17,7 @@ type TProjectPostProps = {
 const Container = styled.div`
   background: ${palette.black_denim};
   color: ${palette.white_snow};
-  min-height: 100vh;
+  /* min-height: 100vh; */
   padding: 2rem;
 `;
 

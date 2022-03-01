@@ -8,6 +8,7 @@ import Link from "next/link";
 // import { TProject } from "@store/modules/project/project.types";
 import { TProject } from "@src/types/project";
 import space, { dpToRem } from "@styles/space";
+import useModal from "@hooks/store/modal/useModal";
 
 type TFlipCard = {
   data: TProject.ProjectType;
@@ -79,6 +80,7 @@ const Thumbnail = styled(Image)`
 // TODO: Generic 하게 변경할 것
 function FlipCard({ data: project }: TFlipCard) {
   const [flipped, setFlipped] = useState(false);
+  const { openModal } = useModal();
   const { transform, opacity } = useSpring({
     opacity: flipped ? 1 : 0,
     transform: `perspective(600px) rotateY(${flipped ? 180 : 0}deg)`,
@@ -116,13 +118,24 @@ function FlipCard({ data: project }: TFlipCard) {
         />
         <Description>{project?.preview?.description || ""}</Description>
         {/* eslint-disable-next-line */}
-        <Link
+        {/* <Link
           href={{
             pathname: `/projects/${encodeURIComponent(project._id.$oid)}`
           }}
         >
           <SButton>VIEW MORE</SButton>
-        </Link>
+        </Link> */}
+        <SButton
+          onClick={() =>
+            openModal({
+              type: "project",
+              options: { withHeader: true },
+              props: { project }
+            })
+          }
+        >
+          VIEW MORE
+        </SButton>
       </Back>
     </Container>
   );

@@ -11,7 +11,8 @@ const modalIndex: TModalState[] = [
     component: dynamic(() => import("@components/blog/CategoryList"))
   },
   {
-    type: "contact/MessageSend"
+    type: "project",
+    component: dynamic(() => import("@components/project/ProjectPost"))
   }
 ];
 

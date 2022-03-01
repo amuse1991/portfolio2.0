@@ -50,9 +50,29 @@ const pageTransition = css`
   }
 `;
 
+const modalTransition = css`
+  .ReactModal__Content {
+    width: 30%;
+    height: 30%;
+    -webkit-transition: width 500ms, height 500ms;
+    transition: width 500ms, height 500ms;
+  }
+
+  .ReactModal__Content--after-open {
+    width: 80%;
+    height: 90%;
+  }
+
+  .modal-before-close {
+    width: 30%;
+    height: 30%;
+  }
+`;
+
 const GlobalStyle = createGlobalStyle`
   ${globalStyle};
   ${pageTransition};
+  ${modalTransition}
 `;
 
 export default GlobalStyle;

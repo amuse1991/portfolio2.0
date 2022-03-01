@@ -35,7 +35,7 @@ const CategoryList: React.FC<TCategoryList> = () => {
           <Item key={nanoid()}>idx</Item>
         ))}
       </Inner>
-      <SDoubleArrowIcon onClick={() => closeModal("blog/Category")} />
+      <SDoubleArrowIcon onClick={() => closeModal()} />
     </Container>
   );
 };
