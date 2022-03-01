@@ -10,7 +10,7 @@ type TButtonProps = {
 };
 
 const BtnContainer = styled.button<TButtonProps>`
-  font-family: DungGeunMo;
+  /* font-family: "NanumGothic"; */
 `;
 
 export default function Button({

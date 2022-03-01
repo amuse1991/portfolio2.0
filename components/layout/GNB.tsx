@@ -36,14 +36,6 @@ const Container = styled.header`
   }
 `;
 
-const Logo = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 80px;
-  margin-left: 2vw;
-`;
-
 function Header() {
   const [isButtonShown, setIsButtonShown] = useState(false);
   const toggleMenu = () => {

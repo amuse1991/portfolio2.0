@@ -5,6 +5,9 @@ import { wrapper } from "@store/store";
 import { Provider } from "react-redux";
 import ModalManager from "@components/ui/modal/Modal";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+
+const IndexComponent = dynamic(() => import("@pages/index"), { ssr: false });
 
 function App({ Component, ...pageProps }: AppProps) {
   const { store, props } = wrapper.useWrappedStore(pageProps);
@@ -12,7 +15,11 @@ function App({ Component, ...pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <GlobalStyle />
-      <Component {...props.pageProps} />
+      {router.asPath === "/" ? (
+        <IndexComponent {...props.pageProps} />
+      ) : (
+        <Component {...props.pageProps} />
+      )}
       <ModalManager />
     </Provider>
   );

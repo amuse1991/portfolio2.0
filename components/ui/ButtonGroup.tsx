@@ -22,7 +22,6 @@ const Container = styled.div<{ show: boolean }>`
   justify-content: flex-end;
   margin: 1rem 2rem 1rem auto;
   button {
-    font-size: 1.2rem;
     background: none;
     border: none;
     cursor: pointer;

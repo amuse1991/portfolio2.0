@@ -1,9 +1,14 @@
+@import url("https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic.css");
+@import url("https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic-coding.css");
+@import url("https://hangeul.pstatic.net/hangeul_static/css/nanum-square.css");
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, DungGeunMo, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: NanumGothic, -apple-system, DungGeunMo, BlinkMacSystemFont,
+    Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
 }
 
 a {

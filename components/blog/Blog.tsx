@@ -7,10 +7,13 @@ import CategoryButton from "./CategoryButton";
 
 import Link from "next/link";
 import PostPreview from "./PostPreview";
+import CategoryList from "./CategoryList";
 
 type TBlogProps = {};
 
-const Container = styled.section``;
+const Container = styled.div`
+  display: flex;
+`;
 
 const Content = styled.article`
   display: flex;
@@ -41,16 +44,8 @@ const Blog: React.FC<TBlogProps> = () => {
 
   return (
     <Container>
+      <CategoryList />
       <Content>
-        <CategoryButton
-          onClick={() => {
-            setIsCategoryOpened(prev => !prev);
-            openModal({
-              type: "blog/Category",
-              options: { modalStyle: categoryListModalStyle }
-            });
-          }}
-        />
         <ArticleList>
           {data &&
             data.map(post => (
