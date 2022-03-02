@@ -1,3 +1,4 @@
+import ThemeLogoCard from "@components/ui/card/ThemeLogoCard";
 import BarChart, { TChartData } from "@components/ui/chart/BarChart";
 import { skipToken } from "@reduxjs/toolkit/dist/query";
 import { useGetSkillsQuery } from "@store/modules/skills/skills.query";
@@ -33,8 +34,9 @@ const Skills = () => {
 
   return (
     <Container ref={ref}>
-      {inView && chartData && <BarChart dataset={chartData} />}
-      <SSpan>마우스를 올리면 상세한 정보를 볼 수 있어요!</SSpan>
+      <ThemeLogoCard logoSrc="" themeColor={palette.react} />
+      {/* {inView && chartData && <BarChart dataset={chartData} />}
+      <SSpan>마우스를 올리면 상세한 정보를 볼 수 있어요!</SSpan> */}
     </Container>
   );
 };

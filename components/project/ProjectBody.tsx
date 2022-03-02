@@ -7,7 +7,7 @@ import { nanoid } from "@reduxjs/toolkit";
 import * as R from "ramda";
 import ProjectDetail from "./ProjectDetail";
 import typo, { fontWeight } from "@styles/typo";
-import space, { dpToRem } from "@styles/space";
+import space, { dpToRem } from "@styles/layout";
 
 type TProejctBodyProps = {
   project: TProject.ProjectType;

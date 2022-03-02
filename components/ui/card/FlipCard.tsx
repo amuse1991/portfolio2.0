@@ -7,7 +7,7 @@ import { animated, useSpring } from "react-spring";
 import Link from "next/link";
 // import { TProject } from "@store/modules/project/project.types";
 import { TProject } from "@src/types/project";
-import space, { dpToRem } from "@styles/space";
+import space, { dpToRem } from "@styles/layout";
 import useModal from "@hooks/store/modal/useModal";
 
 type TFlipCard = {

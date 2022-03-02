@@ -8,7 +8,7 @@ import { Link } from "react-scroll";
 import Trail from "@components/ui/Trail";
 import { useState } from "react";
 import typo from "@styles/typo";
-import space from "@styles/space";
+import space from "@styles/layout";
 
 // const Container = styled.div`
 //   background: ${palette.black_denim};

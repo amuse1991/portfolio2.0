@@ -3,7 +3,7 @@ import { TProject } from "@src/types/project";
 import palette from "@styles/palette";
 import { nanoid } from "@reduxjs/toolkit";
 import typo from "@styles/typo";
-import space from "@styles/space";
+import space from "@styles/layout";
 
 const Container = styled.div`
   padding-top: 1.5rem;

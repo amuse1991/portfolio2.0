@@ -21,14 +21,13 @@ import { useSpring, animated, to } from "@react-spring/web";
 
 const SpringContainer = styled(animated.div)`
   display: flex;
-  flex-direction: column;
   background: ${palette.black_denim};
 `;
 
 const SpringSection = styled(animated.div)`
   display: flex;
   flex-direction: column;
-  min-width: 100vw;
+  flex: 1 1 0%;
 
   @media only screen and (max-width: ${viewports.tablet.width}) {
     &.sub {
@@ -96,11 +95,9 @@ const About: React.FC<TAboutProps> = () => {
         <Introduce onClickToggleSection={toggleChangeSection} />
         <Attitude />
         <Skills />
-        <Divider ref={d1Ref} />
       </SpringSection>
-      <SpringSection ref={measureRef}>
+      <SpringSection ref={measureRef} className="sub">
         <Resume />
-        <Divider ref={d2Ref} />
       </SpringSection>
     </SpringContainer>
   );
