@@ -66,39 +66,16 @@ const About: React.FC<TAboutProps> = () => {
     d1InView && setIsScrollable(true);
   }, [d1InView, d2InView]);
 
-  // useGesture(
-  //   {
-  //     onWheel: ({ event, offset: [, offsetY], movement, down }) => {
-  //       console.log(down);
-  //       if (offsetY === width) {
-  //         setIsScrollable(false);
-  //       }
-  //       return wheelApi.start({
-  //         x: -offsetY
-  //       });
-  //     }
-  //   },
-  //   {
-  //     domTarget,
-  //     eventOptions: { passive: false },
-  //     wheel: {
-  //       bounds: { top: 0, bottom: width },
-  //       enabled: isScrollable,
-  //       axis: "y"
-  //     }
-  //   }
-  // );
-
   return (
     <SpringContainer role={"about"} ref={domTarget} style={{ x, y }}>
       <SpringSection>
         <Introduce onClickToggleSection={toggleChangeSection} />
         {/* <Attitude /> */}
-        <Skills />
+        {/* <Skills /> */}
       </SpringSection>
-      <SpringSection ref={measureRef} className="sub">
+      {/* <SpringSection ref={measureRef} className="sub">
         <Resume />
-      </SpringSection>
+      </SpringSection> */}
     </SpringContainer>
   );
 };

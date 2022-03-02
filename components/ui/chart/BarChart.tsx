@@ -10,7 +10,7 @@ export type TChartData = {
 };
 
 type TBarCharProps = {
-  dataset: TChartData[];
+  dataset?: TChartData[];
 };
 
 const SContainer = styled.ul``;
@@ -38,14 +38,15 @@ const SBar = styled.div<{ length: number; idx: number }>`
 function BarChart({ dataset, ...props }: TBarCharProps) {
   return (
     <SContainer>
-      {dataset.map((data, idx) => {
-        return (
-          <SBarContainer key={nanoid()}>
-            <STag>{data.key}</STag>
-            <SBar length={data.value} idx={idx} />
-          </SBarContainer>
-        );
-      })}
+      {dataset &&
+        dataset.map((data, idx) => {
+          return (
+            <SBarContainer key={nanoid()}>
+              <STag>{data.key}</STag>
+              <SBar length={data.value} idx={idx} />
+            </SBarContainer>
+          );
+        })}
     </SContainer>
   );
 }

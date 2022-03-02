@@ -5,7 +5,11 @@ import projects from "@src/data/projects";
 
 const ProjectsPage: NextPage = () => {
   return (
-    <Layout className="projects" pageTitle="projects">
+    <Layout
+      className="projects"
+      pageTitle="Projects"
+      overline="Things I’ve Built"
+    >
       <ProjectSlick data={projects} />
     </Layout>
   );

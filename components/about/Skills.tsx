@@ -30,11 +30,7 @@ const Skills = () => {
   });
 
   const router = useRouter();
-  const { isLoading, error, data } = useGetSkillsQuery();
-  const chartData = data?.map<TChartData>(val => ({
-    key: val.title,
-    value: val.level * 20
-  }));
+
   const FrontendIcon = (
     <ReactIcon fill={palette.react} width={48} height={48} />
   );

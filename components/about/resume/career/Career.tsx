@@ -10,39 +10,48 @@ import { nanoid } from "@reduxjs/toolkit";
 import moment from "moment";
 
 import ContributionList from "./ContributionList";
+import CareerCard from "@components/ui/card/CareerCard";
+import BarChart, { TChartData } from "@components/ui/chart/BarChart";
+import { useGetSkillsQuery } from "@store/modules/skills/skills.query";
+import skillsData from "@src/data/skills.json";
+import layout from "@styles/layout";
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  margin-bottom: ${layout.xLarge};
+  & > * {
+    flex: 1 1 0%;
+  }
+`;
 
-const Contribution = styled.div``;
+const CardList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & > * {
+    margin-bottom: ${layout.large};
+  }
+`;
 
 const Career: React.FC = props => {
   const { isLoading, error, data: careers } = useGetCareersQuery();
+  const { data } = useGetSkillsQuery();
+  const chartData = skillsData.map<TChartData>(val => ({
+    key: val.title,
+    value: val.level * 20
+  }));
   if (!careers) {
     return <div></div>;
   }
-  const sortFn = (a, b) => (moment(a.startDate).isBefore(b.startDate) ? 1 : -1);
-  const careerDataset = careers.map<TimelineCardData>(career => {
-    const data: TimelineCardData = {
-      startDate: career.startDate,
-      endDate: career.endDate || "",
-      title: career.companyName,
-      children: (
-        <Contribution>
-          {career.description}
-          <ContributionList dataset={careers} />
-        </Contribution>
-      )
-    };
-    return data;
-  });
+
   return (
     <Container {...props}>
-      <TimelineCard
-        key={nanoid()}
-        dataset={careerDataset}
-        timeSortFn={sortFn}
-        mainTitle="업무 경험"
-      />
+      <CardList>
+        {careers.map(career => (
+          <CareerCard key={nanoid()} career={career} />
+        ))}
+      </CardList>
+      <BarChart dataset={chartData} />
     </Container>
   );
 };

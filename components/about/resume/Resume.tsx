@@ -33,8 +33,8 @@ const Resume = () => {
     <Container>
       {/* <SlideBarFilter /> */}
       <Career />
-      <Education />
-      <Activity />
+      {/* <Education />
+      <Activity /> */}
     </Container>
   );
 };
