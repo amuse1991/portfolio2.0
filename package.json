@@ -15,6 +15,7 @@
     "@reduxjs/toolkit": "^1.7.1",
     "@types/react-slick": "^0.23.8",
     "@use-gesture/react": "^10.2.7",
+    "aos": "^2.3.4",
     "aws-sdk": "^2.1048.0",
     "axios": "^0.24.0",
     "babel-plugin-inline-react-svg": "^2.0.1",

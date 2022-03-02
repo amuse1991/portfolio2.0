@@ -2,6 +2,7 @@ export const palette = {
   black: "#222222",
   black_denim: "#2b2b2b",
   white_snow: "#FFF8F6",
+  red: "#dc3545",
   pink: "#DF1B6B",
   gray: "#45474A",
   blue_azure: "#0080FE",
@@ -11,7 +12,8 @@ export const palette = {
   dark: "#343a40",
   gray_dark: "#343a40",
   cyan: "#17a2b8",
-  pure_blue: "#00aeff"
+  pure_blue: "#00aeff",
+  yellow: "#FDE240"
 };
 
 export default palette;

@@ -10,6 +10,9 @@ import { TProject } from "@src/types/project";
 import space, { dpToRem } from "@styles/layout";
 import useModal from "@hooks/store/modal/useModal";
 
+const CARD_WIDTH = "300px";
+const CARD_HEIGHT = "500px";
+
 type TFlipCard = {
   data: TProject.ProjectType;
 };
@@ -39,8 +42,8 @@ const Description = styled.p`
 
 const Front = styled(animated.div)<{ type: string }>`
   border-radius: 18px;
-  width: 400px;
-  height: 500px;
+  width: ${CARD_WIDTH};
+  height: ${CARD_HEIGHT};
   position: absolute;
   & > h1 {
     color: ${props => props.type === "dotnet" && palette.react};
@@ -53,8 +56,9 @@ const Back = styled(animated.div)<{ type: string }>`
   justify-content: center;
   align-items: center;
   border-radius: 18px;
-  width: 400px;
-  height: 500px;
+  width: ${CARD_WIDTH};
+  height: ${CARD_HEIGHT};
+  box-shadow: 0 1.6rem 2.4rem rgb(0 0 0 / 25%);
 `;
 
 const BgImage = styled(Image)`

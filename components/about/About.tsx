@@ -20,7 +20,7 @@ import useMeasure from "react-use-measure";
 import { useSpring, animated, to } from "@react-spring/web";
 
 const SpringContainer = styled(animated.div)`
-  display: flex;
+  /* display: flex; */
   background: ${palette.black_denim};
 `;
 
@@ -93,7 +93,7 @@ const About: React.FC<TAboutProps> = () => {
     <SpringContainer role={"about"} ref={domTarget} style={{ x, y }}>
       <SpringSection>
         <Introduce onClickToggleSection={toggleChangeSection} />
-        <Attitude />
+        {/* <Attitude /> */}
         <Skills />
       </SpringSection>
       <SpringSection ref={measureRef} className="sub">

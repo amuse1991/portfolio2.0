@@ -3,6 +3,7 @@ import styled from "styled-components";
 import layout from "@styles/layout";
 import { ReactIcon } from "../icons/ReactIcon";
 import { arrToLi } from "@lib/listHelper";
+import { hexToRgba } from "@lib/hexToRgba";
 
 type ThemeLogoCardProps = {
   themeColor: string;
@@ -24,7 +25,7 @@ const ThemeLogoCard: React.FC<ThemeLogoCardProps> = ({
   );
   return (
     <Container themeColor={themeColor}>
-      <Logo>{IconComponent}</Logo>
+      <Logo themeColor={themeColor}>{IconComponent}</Logo>
       <Title>{title}</Title>
       <Description>{DescElem}</Description>
     </Container>
@@ -69,7 +70,7 @@ const DescriptList = styled.ul`
     padding-bottom: ${layout.normal};
   }
 `;
-const Logo = styled.div`
+const Logo = styled.div<{ themeColor: string }>`
   width: 8rem;
   height: 8rem;
   display: flex;
@@ -77,7 +78,7 @@ const Logo = styled.div`
   align-items: center;
   margin-bottom: 2.7rem;
   border-radius: 50%;
-  background: rgba(0, 174, 255, 0.2);
+  background: ${props => `rgba${hexToRgba(props.themeColor, 0.2)}`};
 `;
 
 export default ThemeLogoCard;

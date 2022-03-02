@@ -9,24 +9,33 @@ type TIntroduceProps = {
   onClickToggleSection?: () => void;
 };
 
-const Container = styled.div`
+const IMAGE_WIDTH = "600px";
+const IMAGE_HEIGHT = "700px";
+
+const Container = styled.section`
   display: flex;
-  flex-flow: row wrap;
   justify-content: center;
 `;
 
 const ImageContainer = styled.div`
   position: relative;
-  width: 10rem;
-  height: 10rem;
-  display: flex;
-
-  & > span {
-    display: block;
-    border-radius: 70%;
-    min-width: 20%;
-    height: 80%;
+  width: 45.6rem;
+  height: 55.9rem;
+  & :after {
+    content: "";
+    position: absolute;
+    top: -1.2rem;
+    left: -1.2rem;
+    border-top: 9px solid ${palette.blue_azure};
+    border-left: 9px solid ${palette.blue_azure};
+    height: calc(${IMAGE_HEIGHT} - 1.8rem);
+    width: calc(${IMAGE_WIDTH} - 1.8rem);
   }
+`;
+
+const DescriptionContainer = styled.div`
+  max-width: 35.5rem;
+  overflow: hidden;
 `;
 
 const Description = styled.span`
@@ -63,57 +72,18 @@ const Introduce = ({ onClickToggleSection }: TIntroduceProps) => {
     <Container>
       <ImageContainer>
         <Image
-          src={"/image/me.jpeg"}
-          alt={"my photo"}
-          layout={"fill"}
-          objectFit={"cover"}
+          src={"/image/profile.JPEG"}
+          width={IMAGE_WIDTH}
+          height={IMAGE_HEIGHT}
+          alt={"yoonho shin photo"}
         />
       </ImageContainer>
-      <Description>
-        <span>안녕하세요! 신윤호 입니다!</span>
-        <br />
-        {
-          "풀스택 개발자가 되겠다는 목표를 가진 프론트엔드 개발자 입니다. 프로그래밍을 좋아하며 개발자들이 가진 공유와 소통 문화를 좋아합니다!😃"
-        }
-        <IconContainer>
-          <Image
-            src={"/image/logo/github_small.svg"}
-            alt={"github logo"}
-            width={"20"}
-            height={"20"}
-          />
-          <Image
-            src={"/image/logo/tistory.svg"}
-            alt={"github logo"}
-            width={"20"}
-            height={"20"}
-          />
-          <Image
-            src={"/image/icons/mail.svg"}
-            alt={"github logo"}
-            width={"20"}
-            height={"20"}
-          />
-          <IconText
-            iconSrc={"/image/icons/file_download.svg"}
-            iconWidth={"20"}
-            iconHeight={"20"}
-            alt={"download icon"}
-          >
-            이력서 다운로드
-          </IconText>
-        </IconContainer>
-
-        <SIconText
-          iconSrc={"/image/icons/double_arrow.svg"}
-          iconWidth={"20"}
-          iconHeight={"20"}
-          alt={"download icon"}
-          onClick={onClickToggleSection}
-        >
-          이력 자세히 보기
-        </SIconText>
-      </Description>
+      <DescriptionContainer>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos dicta
+        facere libero aliquid placeat quia non facilis ipsa! Distinctio repellat
+        quisquam quibusdam possimus nisi necessitatibus nihil iusto fugit a
+        doloremque!
+      </DescriptionContainer>
     </Container>
   );
 };
