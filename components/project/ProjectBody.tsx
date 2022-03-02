@@ -8,6 +8,7 @@ import * as R from "ramda";
 import ProjectDetail from "./ProjectDetail";
 import typo, { fontWeight } from "@styles/typo";
 import space, { dpToRem } from "@styles/layout";
+import { strToLi } from "@lib/listHelper";
 
 type TProejctBodyProps = {
   project: TProject.ProjectType;
@@ -56,7 +57,6 @@ const ProjectBody: React.FC<TProejctBodyProps> = ({ project }) => {
 
   const getTechStack = (data: TProject.DevStack) => {
     const joinIfArr = item => (Array.isArray(item) ? item.join(", ") : item);
-    const strToLi = (str: string) => <li key={nanoid()}>{str}</li>;
     const getUlWithTitle = R.curry((liGenFn, entries: [string, string[]]) => (
       <ul key={nanoid()}>
         <em>{entries[0]}</em>
