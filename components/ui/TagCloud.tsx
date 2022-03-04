@@ -2,21 +2,29 @@ import styled from "styled-components";
 import { Cloud, IOptions, renderSimpleIcon } from "react-icon-cloud";
 import {
   siAmazonaws,
+  siCsswizardry,
   siCypress,
   siDocker,
   siDotnet,
   siGithub,
   siGitlab,
+  siGoogle,
   siJavascript,
+  siLodash,
   siMicrosoftsqlserver,
   siMongodb,
   siNextdotjs,
   siNodedotjs,
+  siOculus,
   siReact,
   siSocketdotio,
-  siTypescript
+  siStyledcomponents,
+  siThreedotjs,
+  siTypescript,
+  siWebgl,
+  siRedux
 } from "simple-icons/icons";
-import Icon from "@icons-pack/react-simple-icons";
+import Icon, { Oculus } from "@icons-pack/react-simple-icons";
 import { boolean } from "fp-ts";
 import { Nullable } from "@src/types/util";
 
@@ -40,7 +48,15 @@ const TagCloud: React.FC<TTagCloudProps> = ({ options }) => {
     siDotnet,
     siCypress,
     siMicrosoftsqlserver,
-    siMongodb
+    siMongodb,
+    siThreedotjs,
+    siWebgl,
+    siCsswizardry,
+    siStyledcomponents,
+    siGoogle,
+    siLodash,
+    siOculus,
+    siRedux
   ];
   console.log(sIcons);
   const icons = sIcons.map(icon => {

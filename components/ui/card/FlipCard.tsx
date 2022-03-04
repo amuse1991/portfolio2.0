@@ -10,7 +10,7 @@ import { TProject } from "@src/types/project";
 import space, { dpToRem } from "@styles/layout";
 import useModal from "@hooks/store/modal/useModal";
 
-const CARD_WIDTH = "300px";
+const CARD_WIDTH = "400px";
 const CARD_HEIGHT = "500px";
 
 type TFlipCard = {
