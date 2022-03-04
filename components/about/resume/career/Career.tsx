@@ -27,6 +27,7 @@ const Container = styled.div`
 const CardList = styled.ul`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   & > * {
     margin-bottom: ${layout.large};
@@ -51,7 +52,6 @@ const Career: React.FC = props => {
           <CareerCard key={nanoid()} career={career} />
         ))}
       </CardList>
-      <BarChart dataset={chartData} />
     </Container>
   );
 };
