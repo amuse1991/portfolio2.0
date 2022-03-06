@@ -6,34 +6,10 @@ import styled from "styled-components";
 import Image from "next/image";
 import ThumbColudErp from "../images/ThumbCloudErp";
 import useModal from "@hooks/store/modal/useModal";
-import {
-  siAmazonaws,
-  siCsswizardry,
-  siCypress,
-  siDocker,
-  siDotnet,
-  siGithub,
-  siGitlab,
-  siGoogle,
-  siJavascript,
-  siLodash,
-  siMicrosoftsqlserver,
-  siMongodb,
-  siNextdotjs,
-  siNodedotjs,
-  siOculus,
-  siReact,
-  siSocketdotio,
-  siStyledcomponents,
-  siThreedotjs,
-  siTypescript,
-  siWebgl,
-  siRedux
-} from "simple-icons/icons";
 import { nanoid } from "@reduxjs/toolkit";
 
 import dynamic from "next/dynamic";
-import { getIconsByTag } from "@lib/tagIcons";
+import { getIconsByTag } from "@components/ui/icons/TagIcons";
 import moment from "moment";
 
 type TProjectCardProps = {
@@ -41,7 +17,7 @@ type TProjectCardProps = {
 };
 const ProjectCard: React.FC<TProjectCardProps> = ({ project }) => {
   const { title, preview, company } = project;
-  const { startDate, endDate, name } = company;
+  const { startDate, endDate, name, position } = company;
   const { description, tags } = preview;
   const { openModal } = useModal();
   const [circleStyle, circleApi] = useSpring(() => ({
@@ -85,7 +61,7 @@ const ProjectCard: React.FC<TProjectCardProps> = ({ project }) => {
     >
       <Inner>
         <Title>{title}</Title>
-        <SubTitle>{`${name}, ${mStartDate} - ${mEndDate}`}</SubTitle>
+        <SubTitle>{`${name}, ${position}, ${mStartDate} - ${mEndDate}`}</SubTitle>
         <TagList>
           {tags.map(tag => (
             <TagItem key={nanoid()}>{getIconsByTag(tag)}</TagItem>

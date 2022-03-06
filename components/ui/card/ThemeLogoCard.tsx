@@ -19,7 +19,7 @@ const ThemeLogoCard: React.FC<ThemeLogoCardProps> = ({
   themeColor = palette.react
 }) => {
   const DescElem = Array.isArray(description) ? (
-    <DescriptList>{arrToLi(description)}</DescriptList>
+    <DescriptList themeColor={themeColor}>{arrToLi(description)}</DescriptList>
   ) : (
     description
   );
@@ -64,10 +64,18 @@ const Title = styled.h5`
   line-height: 2.1rem;
 `;
 const Description = styled.span``;
-const DescriptList = styled.ul`
-  list-style-type: square;
+const DescriptList = styled.ul<{ themeColor: string }>`
+  position: relative;
   & > li {
     padding-bottom: ${layout.normal};
+    &:before {
+      content: "▹";
+      position: absolute;
+      left: -1.5rem;
+      color: ${props => props.themeColor};
+      /* font-size: 1rem; */
+      /* line-height: 12px; */
+    }
   }
 `;
 const Logo = styled.div<{ themeColor: string }>`

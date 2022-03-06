@@ -4,7 +4,7 @@ export const palette = {
   white_snow: "#FFF8F6",
   red: "#dc3545",
   pink: "#DF1B6B",
-  gray: "#45474A",
+  gray: "#ababab",
   blue_azure: "#0080FE",
   blue_cornflower: "#6693F5",
   charcoal: "#484848",

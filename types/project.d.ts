@@ -1,4 +1,4 @@
-import { TTag } from "@lib/tagIcons";
+import { TTag } from "@components/ui/icons/TagIcons";
 
 export namespace TProject {
   export interface Preview {
@@ -37,6 +37,8 @@ export namespace TProject {
       $oid: string;
     };
     title: string;
+    type: "main" | "sub";
+    subStacks?: string[];
     preview: Preview;
     company: Company;
     devStack: DevStack;

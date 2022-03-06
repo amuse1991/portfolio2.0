@@ -1,5 +1,5 @@
 import Layout from "@components/layout/Layout";
-import ProjectSlick from "@components/project/ProjectSlick";
+import Projects from "@components/project/Projects";
 import { NextPage } from "next";
 import projects from "@src/data/projects";
 
@@ -10,7 +10,7 @@ const ProjectsPage: NextPage = () => {
       pageTitle="Projects"
       overline="Things I’ve Built"
     >
-      <ProjectSlick data={projects} />
+      <Projects data={projects} />
     </Layout>
   );
 };

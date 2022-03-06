@@ -6,6 +6,7 @@ const projects: TProject.ProjectType[] = [
       $oid: "62043d46abedbe984675ad67"
     },
     title: "라이브 강의 플랫폼 개발",
+    type: "main",
     preview: {
       card: {
         type: "ReactJs",
@@ -74,13 +75,14 @@ const projects: TProject.ProjectType[] = [
       $oid: "62045156abedbe984675ad69"
     },
     title: "클라우드 ERP 개발",
+    type: "main",
     preview: {
       card: {
         type: "Nodedotjs",
         frontBackground: "#45D8FF",
         backBackground: "#45D8FF"
       },
-      tags: ["Javascript", "ReactJs", "Redux"],
+      tags: ["Javascript", "ReactJs", "Redux", "Amazonaws"],
       description:
         "Cloud solution 팀에서 ERP 솔루션 개발을 담당했습니다. 주로 ReactJs.js를 사용한 프론트엔드 개발 업무를 수행했으며 필요에 따라 Node.js를 활용했습니다."
     },
@@ -137,13 +139,14 @@ const projects: TProject.ProjectType[] = [
       $oid: "rpa"
     },
     title: "RPA 서비스 개발",
+    type: "main",
     preview: {
       card: {
         type: "Nodedotjs",
         frontBackground: "#45D8FF",
         backBackground: "#45D8FF"
       },
-      tags: ["Javascript", "ReactJs", "Redux"],
+      tags: ["Javascript", "Nodedotjs", "Amazonaws", "Docker"],
       description:
         "Cloud solution 팀에서 ERP 솔루션 개발을 담당했습니다. 주로 ReactJs.js를 사용한 프론트엔드 개발 업무를 수행했으며 필요에 따라 Node.js를 활용했습니다."
     },
@@ -188,6 +191,8 @@ const projects: TProject.ProjectType[] = [
       $oid: "62045489abedbe984675ad6a"
     },
     title: "위성 관제 모니터링 웹 서비스",
+    type: "sub",
+    subStacks: ["react", "express", "socket.io", "MS SQL Sever 2017"],
     preview: {
       card: {
         type: "ReactJs",
@@ -231,6 +236,7 @@ const projects: TProject.ProjectType[] = [
       $oid: "6204574dabedbe984675ad6b"
     },
     title: "업무 평가 관리 웹 서비스",
+    type: "sub",
     preview: {
       card: {
         type: "dotnet",

@@ -10,11 +10,15 @@ export const Tag = {
   socketio: "Socketdotio",
   sqlserver: "Microsoftsqlserver",
   cSharp: "Csharp",
-  dotNet: "Dotnet"
+  dotNet: "Dotnet",
+  puppeteer: "Puppeteer",
+  aws: "Amazonaws",
+  docker: "Docker"
 } as const;
 
 export type TTag = typeof Tag[keyof typeof Tag];
 
+// TODO: switch-case 제거하고 dynamic import 로 리팩토링
 export const getIconsByTag = (tag: TTag, props = {}) => {
   switch (tag) {
     case Tag.react:
@@ -37,5 +41,11 @@ export const getIconsByTag = (tag: TTag, props = {}) => {
       return <Icons.Csharp {...props} />;
     case Tag.dotNet:
       return <Icons.Dotnet {...props} />;
+    case Tag.puppeteer:
+      return <Icons.Puppeteer {...props} />;
+    case Tag.aws:
+      return <Icons.Amazonaws {...props} />;
+    case Tag.docker:
+      return <Icons.Docker {...props} />;
   }
 };
