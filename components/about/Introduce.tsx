@@ -75,7 +75,7 @@ const Introduce = ({ onClickToggleSection }: TIntroduceProps) => {
           src={"/image/IMG_3293 2.png"}
           width={IMAGE_WIDTH}
           height={IMAGE_HEIGHT}
-          alt={"yoonho shin photo"}
+          alt={"profile image"}
         />
       </ImageContainer>
       <DescriptionContainer>

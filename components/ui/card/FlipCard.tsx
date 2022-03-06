@@ -9,6 +9,7 @@ import Link from "next/link";
 import { TProject } from "@src/types/project";
 import space, { dpToRem } from "@styles/layout";
 import useModal from "@hooks/store/modal/useModal";
+import ThumbColudErp from "../images/ThumbCloudErp";
 
 const CARD_WIDTH = "400px";
 const CARD_HEIGHT = "500px";
@@ -45,6 +46,9 @@ const Front = styled(animated.div)<{ type: string }>`
   width: ${CARD_WIDTH};
   height: ${CARD_HEIGHT};
   position: absolute;
+  border-top: 2px solid #fd2155;
+  box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%),
+    0 1px 10px 0 rgb(0 0 0 / 12%);
   & > h1 {
     color: ${props => props.type === "dotnet" && palette.react};
   }
@@ -58,7 +62,9 @@ const Back = styled(animated.div)<{ type: string }>`
   border-radius: 18px;
   width: ${CARD_WIDTH};
   height: ${CARD_HEIGHT};
-  box-shadow: 0 1.6rem 2.4rem rgb(0 0 0 / 25%);
+  border-top: 2px solid #fd2155;
+  box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%),
+    0 1px 10px 0 rgb(0 0 0 / 12%);
 `;
 
 const BgImage = styled(Image)`
@@ -99,12 +105,7 @@ function FlipCard({ data: project }: TFlipCard) {
         type={cardType}
       >
         <Title>{project.title}</Title>
-        <BgImage
-          className="animated-img"
-          src={bgImgSrc}
-          alt="project thumbnail"
-          layout="fill"
-        />
+        <ThumbColudErp />
       </Front>
       <Back
         style={{
@@ -121,14 +122,6 @@ function FlipCard({ data: project }: TFlipCard) {
           height={250}
         />
         <Description>{project?.preview?.description || ""}</Description>
-        {/* eslint-disable-next-line */}
-        {/* <Link
-          href={{
-            pathname: `/projects/${encodeURIComponent(project._id.$oid)}`
-          }}
-        >
-          <SButton>VIEW MORE</SButton>
-        </Link> */}
         <SButton
           onClick={() =>
             openModal({

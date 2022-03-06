@@ -7,6 +7,7 @@ import { Settings } from "react-slick";
 import { useGetProjectsQuery } from "@store/modules/project/project.query";
 import { nanoid } from "@reduxjs/toolkit";
 import { TProject } from "@src/types/project";
+import ProjectCard from "@components/ui/card/ProjectCard";
 
 type TProjectSlick = {
   data: TProject.ProjectType[];
@@ -52,7 +53,7 @@ const ProjectSlick: React.FC<TProjectSlick> = ({ data }) => {
     <Container role={"projects"}>
       <Slick settings={slickSettings}>
         {data &&
-          data.map(project => <FlipCard key={nanoid()} data={project} />)}
+          data.map(project => <ProjectCard key={nanoid()} project={project} />)}
       </Slick>
     </Container>
   );

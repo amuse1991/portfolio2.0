@@ -8,13 +8,13 @@ const projects: TProject.ProjectType[] = [
     title: "라이브 강의 플랫폼 개발",
     preview: {
       card: {
-        type: "react",
+        type: "ReactJs",
         frontBackground: "#45D8FF",
         backBackground: "#45D8FF"
       },
-      tags: ["typescript", "react", "redux"],
+      tags: ["Typescript", "ReactJs", "Redux"],
       description:
-        "라이브TFT소속 개발자로서 react를 이용한 라이브 강의 플랫폼의 프론트엔드 개발을 담당했습니다."
+        "라이브TFT소속 개발자로서 ReactJs를 이용한 라이브 강의 플랫폼의 프론트엔드 개발을 담당했습니다."
     },
     company: {
       name: "ST유니타스",
@@ -23,9 +23,9 @@ const projects: TProject.ProjectType[] = [
       endDate: "2021.08.01"
     },
     devStack: {
-      language: ["typescript"],
-      frontend: ["react", ["redux", "saga", "thunk"], "hls.js"],
-      test: ["jest", "react testing library", "cypress"]
+      language: ["Typescript"],
+      frontend: ["ReactJs", ["Redux", "saga", "thunk"], "hls.js"],
+      test: ["jest", "ReactJs testing library", "cypress"]
     },
     thumbnail: {
       paths: []
@@ -76,13 +76,13 @@ const projects: TProject.ProjectType[] = [
     title: "클라우드 ERP 개발",
     preview: {
       card: {
-        type: "node",
+        type: "Nodedotjs",
         frontBackground: "#45D8FF",
         backBackground: "#45D8FF"
       },
-      tags: ["javascript", "react", "redux"],
+      tags: ["Javascript", "ReactJs", "Redux"],
       description:
-        "Cloud solution 팀에서 ERP 솔루션 개발을 담당했습니다. 주로 React.js를 사용한 프론트엔드 개발 업무를 수행했으며 필요에 따라 Node.js를 활용했습니다."
+        "Cloud solution 팀에서 ERP 솔루션 개발을 담당했습니다. 주로 ReactJs.js를 사용한 프론트엔드 개발 업무를 수행했으며 필요에 따라 Node.js를 활용했습니다."
     },
     company: {
       name: "BSG파트너스",
@@ -91,10 +91,14 @@ const projects: TProject.ProjectType[] = [
       endDate: "2020.07.01"
     },
     devStack: {
-      language: ["javascript"],
-      frontend: ["react", ["redux", "thunk"], "SAP UI5-webcomponents-react"],
+      language: ["Javascript"],
+      frontend: [
+        "ReactJs",
+        ["Redux", "thunk"],
+        "SAP UI5-webcomponents-ReactJs"
+      ],
       test: ["jest"],
-      backend: ["Node.js", ["AWS Lambda, S3, ECS"], "Puppeteer"]
+      backend: ["Nodedotjs", ["AWS Lambda, S3, ECS"], "Puppeteer"]
     },
     thumbnail: {
       paths: []
@@ -105,7 +109,7 @@ const projects: TProject.ProjectType[] = [
         startDate: "2019.07.01",
         endDate: "2020.07.01",
         description:
-          "AWS 및 SAP/HANA 인프라에 기반한 ERP 솔루션을 개발했습니다. react와 SAP에서 제공하는 ui5- webcomponents-react를 이용한 프론트엔드 기능 구현을 주로 담당했으며, SAP에서 지원하지 않는 기능의 경우 Lamda 를 이용해 서비스를 개발했습니다.",
+          "AWS 및 SAP/HANA 인프라에 기반한 ERP 솔루션을 개발했습니다. ReactJs와 SAP에서 제공하는 ui5- webcomponents-ReactJs를 이용한 프론트엔드 기능 구현을 주로 담당했으며, SAP에서 지원하지 않는 기능의 경우 Lamda 를 이용해 서비스를 개발했습니다.",
         tasks: [
           "생산, 공급망 관리 모듈 클라이언트 개발",
           "LOT 추적 서비스 개발",
@@ -117,7 +121,58 @@ const projects: TProject.ProjectType[] = [
         startDate: "2020.03.01",
         endDate: "2020.07.01",
         description:
-          "업무를 자동화하고, 개발팀을 보유하지 않은 기업도 커스터마이징된 서비스를 구현할 수 있도록 하는 기능의 PoC를 위한 프 로토타입을 개발했습니다. Json 파일을 파싱하여 puppeteer로 기능을 수행한 후, 그 결과를 반환하는 서비스였으며, Nodex.js 환경에서 개발했습니다. 또한 안정적인 서비스 제공을 위해 AWS ECS를 사용했습니다.",
+          "업무를 자동화하고, 개발팀을 보유하지 않은 기업도 커스터마이징된 서비스를 구현할 수 있도록 하는 기능의 PoC를 위한 프 로토타입을 개발했습니다. Json 파일을 파싱하여 puppeteer로 기능을 수행한 후, 그 결과를 반환하는 서비스였으며, Node.js 환경에서 개발했습니다. 또한 안정적인 서비스 제공을 위해 AWS ECS를 사용했습니다.",
+        tasks: [
+          "JSON 파일을 기반으로 작동하는 자동화 프로그램 개발",
+          "개발 지식이 없는 실무자가 동작을 정의할 수 있는 화면 개발(PoC단계이므로 단순 form형태로 개발)",
+          "Node.js 를 이용한 서버 개발 및 Docker세팅",
+          "CI/CD를 위한 ECS 구성",
+          "DynamoDB 세팅 및 연동"
+        ]
+      }
+    ]
+  },
+  {
+    _id: {
+      $oid: "rpa"
+    },
+    title: "RPA 서비스 개발",
+    preview: {
+      card: {
+        type: "Nodedotjs",
+        frontBackground: "#45D8FF",
+        backBackground: "#45D8FF"
+      },
+      tags: ["Javascript", "ReactJs", "Redux"],
+      description:
+        "Cloud solution 팀에서 ERP 솔루션 개발을 담당했습니다. 주로 ReactJs.js를 사용한 프론트엔드 개발 업무를 수행했으며 필요에 따라 Node.js를 활용했습니다."
+    },
+    company: {
+      name: "BSG파트너스",
+      position: "풀스택 개발자",
+      startDate: "2019.07.01",
+      endDate: "2020.07.01"
+    },
+    devStack: {
+      language: ["Javascript"],
+      frontend: [
+        "ReactJs",
+        ["Redux", "thunk"],
+        "SAP UI5-webcomponents-ReactJs"
+      ],
+      test: ["jest"],
+      backend: ["Nodedotjs", ["AWS Lambda, S3, ECS"], "Puppeteer"]
+    },
+    thumbnail: {
+      paths: []
+    },
+    details: [
+      {
+        title: "RPA 서비스 개발",
+        startDate: "2020.03.01",
+        endDate: "2020.07.01",
+        description:
+          "업무를 자동화하고, 개발팀을 보유하지 않은 기업도 커스터마이징된 서비스를 구현할 수 있도록 하는 기능의 PoC를 위한 프 로토타입을 개발했습니다. Json 파일을 파싱하여 puppeteer로 기능을 수행한 후, 그 결과를 반환하는 서비스였으며, Node.js 환경에서 개발했습니다. 또한 안정적인 서비스 제공을 위해 AWS ECS를 사용했습니다.",
         tasks: [
           "JSON 파일을 기반으로 작동하는 자동화 프로그램 개발",
           "개발 지식이 없는 실무자가 동작을 정의할 수 있는 화면 개발(PoC단계이므로 단순 form형태로 개발)",
@@ -135,11 +190,11 @@ const projects: TProject.ProjectType[] = [
     title: "위성 관제 모니터링 웹 서비스",
     preview: {
       card: {
-        type: "react",
+        type: "ReactJs",
         frontBackground: "#45D8FF",
         backBackground: "#45D8FF"
       },
-      tags: ["react", "express", "socket.io", "SQL Server 2017"],
+      tags: ["ReactJs", "Express", "Socketdotio", "Microsoftsqlserver"],
       description: ""
     },
     company: {
@@ -149,9 +204,9 @@ const projects: TProject.ProjectType[] = [
       endDate: "2018.12.01"
     },
     devStack: {
-      language: ["javascript"],
-      frontend: [["react", "mobx"], "chart.js", "socket.io-client"],
-      backend: [["node.js, express"], "socket.io", "SQL Server 2017"]
+      language: ["Javascript"],
+      frontend: [["ReactJs", "mobx"], "chart.js", "socket.io-client"],
+      backend: [["Nodedotjs, Express"], "socket.io", "SQL Server 2017"]
     },
     thumbnail: {
       paths: []
@@ -182,7 +237,7 @@ const projects: TProject.ProjectType[] = [
         frontBackground: "#FFF8F6",
         backBackground: "#FFF8F6"
       },
-      tags: ["C#", ".NET MVC", "SQL Server"],
+      tags: ["Csharp", "Dotnet", "Microsoftsqlserver"],
       description: ""
     },
     company: {

@@ -1,3 +1,5 @@
+import { TTag } from "@lib/tagIcons";
+
 export namespace TProject {
   export interface Preview {
     card: {
@@ -5,7 +7,7 @@ export namespace TProject {
       frontBackground: string;
       backBackground: string;
     };
-    tags: string[];
+    tags: TTag[];
     description: string;
   }
   export interface Company {

@@ -24,9 +24,6 @@ import {
   siWebgl,
   siRedux
 } from "simple-icons/icons";
-import Icon, { Oculus } from "@icons-pack/react-simple-icons";
-import { boolean } from "fp-ts";
-import { Nullable } from "@src/types/util";
 
 type TTagCloudProps = {
   options?: IOptions;
@@ -58,7 +55,6 @@ const TagCloud: React.FC<TTagCloudProps> = ({ options }) => {
     siOculus,
     siRedux
   ];
-  console.log(sIcons);
   const icons = sIcons.map(icon => {
     return renderSimpleIcon({
       icon,
