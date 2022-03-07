@@ -7,6 +7,8 @@ import palette from "@styles/palette";
 import IconText from "@components/ui/IconText";
 import viewports from "../../lib/viewports";
 import Button from "@components/ui/Button";
+import IconTextButton from "@components/ui/button/IconTextButton";
+import ResumeIcon from "@components/ui/icons/ResumeIcon";
 
 type TIntroduceProps = {
   onClickToggleSection?: () => void;
@@ -39,8 +41,9 @@ const ImageContainer = styled.div`
 const DescriptionContainer = styled.div`
   max-width: 35.5rem;
   overflow: hidden;
+  font-size: 1rem;
   & > p {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     line-height: 1.5rem;
   }
 
@@ -68,6 +71,9 @@ const ButtonContainer = styled.ul`
 `;
 
 const Introduce = ({ onClickToggleSection }: TIntroduceProps) => {
+  const StyledResumeIcon = (
+    <ResumeIcon width={25} height={25} fill={palette.blue_azure} />
+  );
   return (
     <Container>
       <ImageContainer>
@@ -104,11 +110,11 @@ const Introduce = ({ onClickToggleSection }: TIntroduceProps) => {
           관심이 많아 webGL 기반의 three.js를 학습하고 있습니다. 또한 렌더링
           최적화를 위해 rust 언어와 WebAssembly를 공부하고 있습니다.
         </p>
-        {/* <ButtonContainer>
-          <SButton>이력서</SButton>
-          <SButton>Github</SButton>
-          <SButton>Blog</SButton>
-        </ButtonContainer> */}
+        <ButtonContainer>
+          <IconTextButton text="Download CV" IconComponent={StyledResumeIcon} />
+          <IconTextButton text="Github" IconComponent={StyledResumeIcon} />
+          <IconTextButton text="Contact" IconComponent={StyledResumeIcon} />
+        </ButtonContainer>
       </DescriptionContainer>
     </Container>
   );
