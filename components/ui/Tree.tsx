@@ -4,7 +4,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { useSpring, a } from "@react-spring/web";
 import useMeasure from "react-use-measure";
 
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { animated } from "@react-spring/web";
 import palette from "@styles/palette";
 
@@ -17,9 +17,10 @@ function usePrevious<T>(value: T) {
 const Tree = React.memo<
   React.HTMLAttributes<HTMLDivElement> & {
     defaultOpen?: boolean;
+    root?: boolean;
     name: string | JSX.Element;
   }
->(({ children, name, style, defaultOpen = false }) => {
+>(({ children, name, style, defaultOpen = false, root = false }) => {
   const [isOpen, setOpen] = useState(defaultOpen);
   const previous = usePrevious(isOpen);
   const [ref, { height: viewHeight }] = useMeasure();
@@ -36,11 +37,18 @@ const Tree = React.memo<
     Icons[`${children ? (isOpen ? "Minus" : "Plus") : "Close"}SquareO`];
   return (
     <Frame>
-      <Icon
-        style={{ ...toggle, opacity: children ? 1 : 0.3 }}
-        onClick={() => setOpen(!isOpen)}
-      />
-      <Title style={style}>{name}</Title>
+      <Inner>
+        <Title style={style} className={root ? "tree-root" : "tree-sub"}>
+          {name}
+        </Title>
+        {!root && children && (
+          <Icon
+            style={{ ...toggle, opacity: children ? 1 : 0.3 }}
+            onClick={() => setOpen(!isOpen)}
+          />
+        )}
+      </Inner>
+
       <Content
         style={{
           opacity,
@@ -86,7 +94,11 @@ const Icons = {
   )
 };
 
-const Frame = styled("div")`
+const hoverTransition = css`
+  transition: all 250ms ease-in;
+`;
+
+const Frame = styled.div`
   position: relative;
   padding: 4px 0px 0px 0px;
   text-overflow: ellipsis;
@@ -97,22 +109,41 @@ const Frame = styled("div")`
   fill: ${palette.white_snow};
 `;
 
-const Title = styled("span")`
+const Title = styled.span`
   vertical-align: middle;
+  cursor: pointer;
+  ${hoverTransition}
+  &.tree-root {
+    font-size: 2rem;
+    padding-bottom: 1rem;
+  }
+  &.tree-sub :hover {
+    color: ${palette.blue_azure};
+  }
+`;
+
+const Inner = styled.div`
+  display: flex;
+  & > svg {
+    ${hoverTransition}
+    & :hover {
+      fill: ${palette.blue_azure};
+    }
+  }
 `;
 
 const Content = styled(animated.div)`
   will-change: transform, opacity, height;
   margin-left: 6px;
-  padding: 0px 0px 0px 14px;
-  border-left: 1px dashed rgba(255, 255, 255, 0.4);
+  /* padding: 0px 0px 0px 14px; */
+  /* border-left: 1px dashed rgba(255, 255, 255, 0.4); */
   overflow: hidden;
 `;
 
 const toggle = {
   width: "1em",
   height: "1em",
-  marginRight: 10,
+  marginLeft: 10,
   cursor: "pointer",
   verticalAlign: "middle"
 };

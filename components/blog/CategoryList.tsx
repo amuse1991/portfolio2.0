@@ -13,10 +13,8 @@ const Container = styled("div")`
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #191b21;
   overflow: hidden;
-  font-family: ui-monospace, monospace;
-  font-size: 14px;
+  font-size: 1.2rem;
   line-height: 21px;
   --webkit-user-select: none;
   user-select: none;
@@ -28,36 +26,16 @@ const Container = styled("div")`
 `;
 
 const CategoryList: React.FC<TCategoryList> = () => {
-  const { closeModal } = useModal();
   return (
     <Container>
-      <Tree name="main" defaultOpen>
-        <Tree name="hello" />
-        <Tree name="subtree with children">
+      <Tree name="Categories" defaultOpen root>
+        <Tree name="Frontend" />
+        <Tree name="Backend">
           <Tree name="hello" />
           <Tree name="sub-subtree with children">
             <Tree name="child 1" style={{ color: "#37ceff" }} />
             <Tree name="child 2" style={{ color: "#37ceff" }} />
             <Tree name="child 3" style={{ color: "#37ceff" }} />
-            <Tree name="custom content">
-              <div
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  height: 200,
-                  padding: 10
-                }}
-              >
-                <div
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    background: "black",
-                    borderRadius: 5
-                  }}
-                />
-              </div>
-            </Tree>
           </Tree>
           <Tree name="hello" />
         </Tree>
