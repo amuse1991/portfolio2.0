@@ -1,31 +1,36 @@
 import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
+import { Nullable } from "@src/types/util";
 import { HYDRATE } from "next-redux-wrapper";
 import { TModalState } from "./modal.types";
+import modalIndex from "@components/ui/modal/modal.index";
+import palette from "@styles/palette";
+
+const getModalComponent = (type: string) => {};
 
 const modalSlice = createSlice({
   name: "modal",
 
   initialState: {
-    opened: [] as TModalState[]
+    modal: null as Nullable<TModalState>,
+    visible: false
   },
 
   reducers: {
     open(state, action: PayloadAction<TModalState>) {
       const modalConfig = action.payload;
-      const { type } = modalConfig;
-      !state.opened.find(modal => modal.type === type) &&
-        state.opened.push(modalConfig);
+      const { type, options, props } = modalConfig;
+      return {
+        modal: {
+          type,
+          props,
+          options
+        },
+        visible: true
+      };
     },
-    close(state, action: PayloadAction<{ type: string }>) {
-      const { type } = action.payload;
-      if (type === "*") {
-        state.opened = [];
-      } else {
-        const target = state.opened.find(modal => modal.type === type);
-        state.opened = target
-          ? state.opened.filter(modal => modal.type !== target.type)
-          : state.opened;
-      }
+    close(state) {
+      state.modal = null;
+      state.visible = false;
     }
   },
 

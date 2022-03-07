@@ -14,6 +14,7 @@ import ContectPage from "./contact";
 import Home from "./home";
 import GNB from "@components/layout/GNB";
 import useScroll from "@hooks/useScroll";
+import SkillsAndExpPage from "./skillexp";
 
 interface TIndexProps {}
 
@@ -24,9 +25,11 @@ const Index: NextPage<TIndexProps> = () => {
       <GNB />
       <Home />
       <AboutPage />
+      <SkillsAndExpPage />
       <ProjectsPage />
       <PostsPage />
       <ContectPage />
+      {/* <ContectPage /> */}
     </>
   );
 };

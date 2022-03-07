@@ -1,3 +1,5 @@
+import { TTag } from "@components/ui/icons/TagIcons";
+
 export namespace TProject {
   export interface Preview {
     card: {
@@ -5,7 +7,7 @@ export namespace TProject {
       frontBackground: string;
       backBackground: string;
     };
-    tags: string[];
+    tags: TTag[];
     description: string;
   }
   export interface Company {
@@ -31,8 +33,12 @@ export namespace TProject {
     paths: string[];
   }
   export interface ProjectType {
-    _id: number;
+    _id: {
+      $oid: string;
+    };
     title: string;
+    type: "main" | "sub";
+    subStacks?: string[];
     preview: Preview;
     company: Company;
     devStack: DevStack;

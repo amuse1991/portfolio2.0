@@ -30,12 +30,11 @@ const SDate = styled.span`
 
 const Title = styled.span`
   color: ${palette.blue_cornflower};
-  display:block;
+  display: block;
   font-size: 1.5rem;
   line-height: 1.625rem;
   font-weight: bold;
   margin-right: 1rem;
-}
 `;
 
 const STagList = styled(TagList)`

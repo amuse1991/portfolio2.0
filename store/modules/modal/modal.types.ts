@@ -1,4 +1,5 @@
 import React from "react";
+import ReactModal from "react-modal";
 
 // export type TModalState = {
 //   opened: string[];
@@ -23,6 +24,6 @@ export type TModalConfigOptions = {
   role?: string;
   preventScroll?: boolean;
   testId?: string;
-  modalStyle?: React.CSSProperties;
+  modalStyle?: ReactModal.Styles;
   withHeader?: boolean;
 };

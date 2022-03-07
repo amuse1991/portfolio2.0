@@ -1,7 +1,7 @@
 // import { TProject } from "@store/modules/project/project.types";
 import { TProject } from "@src/types/project";
 import palette from "@styles/palette";
-import space from "@styles/space";
+import space from "@styles/layout";
 import typo from "@styles/typo";
 import moment from "moment";
 import React from "react";
@@ -17,7 +17,7 @@ type TProjectPostProps = {
 const Container = styled.div`
   background: ${palette.black_denim};
   color: ${palette.white_snow};
-  min-height: 100vh;
+  /* min-height: 100vh; */
   padding: 2rem;
 `;
 

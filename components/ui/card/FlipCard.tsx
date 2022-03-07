@@ -7,7 +7,12 @@ import { animated, useSpring } from "react-spring";
 import Link from "next/link";
 // import { TProject } from "@store/modules/project/project.types";
 import { TProject } from "@src/types/project";
-import space, { dpToRem } from "@styles/space";
+import space, { dpToRem } from "@styles/layout";
+import useModal from "@hooks/store/modal/useModal";
+import ThumbColudErp from "../images/ThumbCloudErp";
+
+const CARD_WIDTH = "400px";
+const CARD_HEIGHT = "500px";
 
 type TFlipCard = {
   data: TProject.ProjectType;
@@ -36,22 +41,30 @@ const Description = styled.p`
   padding: ${space.xLarge};
 `;
 
-const Front = styled(animated.div)`
+const Front = styled(animated.div)<{ type: string }>`
   border-radius: 18px;
-  width: 400px;
-  height: 500px;
+  width: ${CARD_WIDTH};
+  height: ${CARD_HEIGHT};
   position: absolute;
+  border-top: 2px solid #fd2155;
+  box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%),
+    0 1px 10px 0 rgb(0 0 0 / 12%);
+  & > h1 {
+    color: ${props => props.type === "dotnet" && palette.react};
+  }
 `;
 
-const Back = styled(animated.div)`
+const Back = styled(animated.div)<{ type: string }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 18px;
-  width: 400px;
-  height: 500px;
-  background: ${palette.react};
+  width: ${CARD_WIDTH};
+  height: ${CARD_HEIGHT};
+  border-top: 2px solid #fd2155;
+  box-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%), 0 4px 5px 0 rgb(0 0 0 / 14%),
+    0 1px 10px 0 rgb(0 0 0 / 12%);
 `;
 
 const BgImage = styled(Image)`
@@ -77,24 +90,22 @@ const Thumbnail = styled(Image)`
 // TODO: Generic 하게 변경할 것
 function FlipCard({ data: project }: TFlipCard) {
   const [flipped, setFlipped] = useState(false);
+  const { openModal } = useModal();
   const { transform, opacity } = useSpring({
     opacity: flipped ? 1 : 0,
     transform: `perspective(600px) rotateY(${flipped ? 180 : 0}deg)`,
     config: { mass: 5, tension: 500, friction: 80 }
   });
-
+  const cardType = project.preview.card.type || "default";
+  const bgImgSrc = `/image/card-${cardType}.png`;
   return (
     <Container onClick={() => setFlipped(state => !state)}>
-      <Front style={{ opacity: opacity.to(o => 1 - o), transform }}>
+      <Front
+        style={{ opacity: opacity.to(o => 1 - o), transform }}
+        type={cardType}
+      >
         <Title>{project.title}</Title>
-        <BgImage
-          className="animated-img"
-          src={"/image/card-react.png"}
-          alt="project thumbnail"
-          width={200}
-          height={200}
-          layout="fill"
-        />
+        <ThumbColudErp />
       </Front>
       <Back
         style={{
@@ -102,6 +113,7 @@ function FlipCard({ data: project }: TFlipCard) {
           transform,
           rotateY: "180deg"
         }}
+        type={cardType}
       >
         <Thumbnail
           src={"/image/card-js.png"}
@@ -110,14 +122,17 @@ function FlipCard({ data: project }: TFlipCard) {
           height={250}
         />
         <Description>{project?.preview?.description || ""}</Description>
-        {/* eslint-disable-next-line */}
-        <Link
-          href={{
-            pathname: `/projects/${encodeURIComponent(project._id)}`
-          }}
+        <SButton
+          onClick={() =>
+            openModal({
+              type: "project",
+              options: { withHeader: true },
+              props: { project }
+            })
+          }
         >
-          <SButton>VIEW MORE</SButton>
-        </Link>
+          VIEW MORE
+        </SButton>
       </Back>
     </Container>
   );

@@ -20,7 +20,6 @@ export default class MyDocument extends Document {
         styles: (
           <>
             {initalProps.styles}
-
             {sheet.getStyleElement()}
           </>
         )

@@ -6,7 +6,7 @@ type TListItem = {
 };
 
 const SListItem = styled.li`
-  font-family: "DungGeunMo";
+  font-family: "NanumGothic";
   font-size: 1.5rem;
   }
 `;
