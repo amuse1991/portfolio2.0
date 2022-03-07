@@ -28,7 +28,7 @@ const Index: NextPage<TIndexProps> = () => {
       <SkillsAndExpPage />
       <ProjectsPage />
       <PostsPage />
-
+      <ContectPage />
       {/* <ContectPage /> */}
     </>
   );

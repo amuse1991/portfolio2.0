@@ -23,6 +23,7 @@
     "babel-plugin-styled-components": "^2.0.2",
     "formidable": "^2.0.1",
     "fp-ts": "^2.11.8",
+    "google-map-react": "^2.1.10",
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
