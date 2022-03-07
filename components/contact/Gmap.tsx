@@ -16,14 +16,14 @@ const Marker: React.FC<React.HTMLAttributes<HTMLDivElement> & TMarkerProps> = ({
   lat,
   lng
 }) => {
-  const animation = useSpring({
+  const [animation] = useSpring(() => ({
     loop: { reverse: true },
     from: { y: -MARKER_HEIGHT },
     to: { y: -MARKER_HEIGHT + 20 },
     config: {
       duration: 1000
     }
-  });
+  }));
   return (
     // @ts-ignore
     <AniDiv lat={lat} lng={lng} style={animation}>
@@ -48,13 +48,8 @@ const Gmap: React.FC = () => {
   const _DEFAULT_ZOOM = 12;
 
   const createMapOptions = maps => ({
-    panControl: false,
-    mapTypeControl: false,
-    scrollwheel: false,
-    zoomControl: false,
     fullscreenControl: false,
     scaleControl: false,
-    draggable: false,
     minZoom: _DEFAULT_ZOOM,
     styles: [
       {
@@ -75,6 +70,8 @@ const Gmap: React.FC = () => {
         defaultCenter={_DEFAULT_CENTER}
         defaultZoom={_DEFAULT_ZOOM}
         options={createMapOptions}
+        yesIWantToUseGoogleMapApiInternals
+        onGoogleApiLoaded={({ map, maps }) => console.log(map, maps)}
       >
         <Marker lat={_DEFAULT_CENTER.lat} lng={_DEFAULT_CENTER.lng} />
       </GoogleMapReact>
@@ -84,8 +81,7 @@ const Gmap: React.FC = () => {
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
-  transform: translateY(-30vh);
+  height: 90vh;
 `;
 
 const AniDiv = styled(animated.div)`
