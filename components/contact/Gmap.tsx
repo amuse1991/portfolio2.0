@@ -9,14 +9,17 @@ type TMarkerProps = {
   lng: number;
 };
 
+const MARKER_WIDTH = 45;
+const MARKER_HEIGHT = 45;
+
 const Marker: React.FC<React.HTMLAttributes<HTMLDivElement> & TMarkerProps> = ({
   lat,
   lng
 }) => {
   const animation = useSpring({
     loop: { reverse: true },
-    from: { y: 0 },
-    to: { y: 20 },
+    from: { y: -MARKER_HEIGHT },
+    to: { y: -MARKER_HEIGHT + 20 },
     config: {
       duration: 1000
     }
@@ -28,7 +31,11 @@ const Marker: React.FC<React.HTMLAttributes<HTMLDivElement> & TMarkerProps> = ({
         동대문구
         <br /> 회기동
       </MarkerText>
-      <LocationMarkerIcon fill={palette.blue_azure} />
+      <LocationMarkerIcon
+        fill={palette.blue_azure}
+        width={MARKER_WIDTH}
+        height={MARKER_HEIGHT}
+      />
     </AniDiv>
   );
 };
