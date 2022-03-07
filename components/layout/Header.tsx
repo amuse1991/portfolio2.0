@@ -6,9 +6,9 @@ type THeaderProps = {
   overline?: string;
 };
 
-const Header: React.FC<THeaderProps> = ({ title, overline }) => {
+const Header: React.FC<THeaderProps> = ({ title, overline, ...props }) => {
   return (
-    <Container>
+    <Container {...props}>
       <Inner>
         {/* {overline && (
           <Overline>
@@ -28,6 +28,7 @@ const Container = styled.header`
   flex-direction: column;
   width: 100%;
   background: ${palette.black_denim};
+  padding: 3rem 0;
 `;
 
 const Inner = styled.div`
@@ -40,8 +41,6 @@ const Title = styled.h3`
   font-size: 2.4rem;
   line-height: 2.9rem;
   color: ${palette.white_snow};
-  margin-top: 0.3rem;
-  margin-bottom: 5.4rem;
 `;
 const Overline = styled.span`
   display: flex;

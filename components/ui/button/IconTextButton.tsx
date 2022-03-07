@@ -13,10 +13,11 @@ type TIconTextButtonProps = {
 const IconTextButton: React.FC<TIconTextButtonProps> = ({
   iconPath,
   IconComponent,
-  text
+  text,
+  ...props
 }) => {
   return (
-    <Container>
+    <Container {...props}>
       <IconContainer>{IconComponent}</IconContainer>
       <Link>{text}</Link>
     </Container>
