@@ -1,5 +1,7 @@
 export type TCareer = {
-  id: string;
+  _id?: {
+    $oid: string;
+  };
   companyName: string;
   position: string;
   department: string;
@@ -7,8 +9,6 @@ export type TCareer = {
   imgPath?: string;
   companyURL?: string;
   endDate?: string;
-  techTags?: TTechTags;
+  techTags?: string[];
   description?: string;
 };
-
-export type TTechTags = "node" | "react" | "js";
