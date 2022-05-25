@@ -11,21 +11,16 @@ type TPostCardProps = {
 };
 
 const PostCard: React.FC<TPostCardProps> = ({ post }) => {
-  const { title } = post;
+  const { title, summary, category } = post;
 
   return (
     <Container>
       <Header>
         <Icons>
-          <Category>JAVASCRIPT</Category>
+          <Category>{category}</Category>
         </Icons>
         <Title>{title}</Title>
-        <Description>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt
-          dolores consequatur ex quibusdam quam aliquid sunt esse soluta ad
-          officiis facere, exercitationem corrupti ipsum nulla sed facilis
-          commodi architecto magni.
-        </Description>
+        <Description>{summary}</Description>
       </Header>
     </Container>
   );
@@ -53,7 +48,9 @@ const Icons = styled.div`
   align-items: center;
 `;
 
-const Category = styled.span``;
+const Category = styled.span`
+  text-transform: uppercase;
+`;
 
 const LinkIcons = styled.div`
   margin-left: auto;
@@ -80,6 +77,11 @@ const Title = styled.h1`
 
 const Description = styled.p`
   color: ${palette.gray};
+  font-size: 1rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 9;
+  -webkit-box-orient: vertical;
 `;
 
 export default PostCard;

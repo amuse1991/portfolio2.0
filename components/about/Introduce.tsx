@@ -4,11 +4,11 @@ import React, { useState } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import palette from "@styles/palette";
-import IconText from "@components/ui/IconText";
-import viewports from "../../lib/viewports";
-import Button from "@components/ui/Button";
 import IconTextButton from "@components/ui/button/IconTextButton";
 import ResumeIcon from "@components/ui/icons/ResumeIcon";
+import Layout from "@components/layout/Layout";
+import layout from "@styles/layout";
+import { Github, Codesandbox } from "@icons-pack/react-simple-icons";
 
 type TIntroduceProps = {
   onClickToggleSection?: () => void;
@@ -24,8 +24,9 @@ const Container = styled.section`
 
 const ImageContainer = styled.div`
   position: relative;
-  width: 45.6rem;
-  height: 55.9rem;
+  width: ${IMAGE_WIDTH};
+  height: ${IMAGE_HEIGHT};
+  margin-right: ${layout.xLarge};
   & :after {
     content: "";
     position: absolute;
@@ -39,6 +40,8 @@ const ImageContainer = styled.div`
 `;
 
 const DescriptionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   max-width: 35.5rem;
   overflow: hidden;
   font-size: 1rem;
@@ -52,27 +55,22 @@ const DescriptionContainer = styled.div`
   }
 `;
 
-const SButton = styled.div`
-  width: 5.7rem;
-  height: 2.8rem;
-  background: ${palette.blue_azure};
-  box-shadow: 0 1.6rem 1.6rem rgb(51 51 51 / 25%);
-  border-radius: 25px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: ${palette.white_snow};
-`;
-
-const ButtonContainer = styled.ul`
+const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
+  margin-top: auto;
 `;
 
 const Introduce = ({ onClickToggleSection }: TIntroduceProps) => {
   const StyledResumeIcon = (
     <ResumeIcon width={25} height={25} fill={palette.blue_azure} />
+  );
+  const GithubIcon = (
+    <Github width={25} height={25} fill={palette.blue_azure} />
+  );
+
+  const SandboxIcon = (
+    <Codesandbox width={25} height={25} fill={palette.blue_azure} />
   );
   return (
     <Container>
@@ -112,8 +110,8 @@ const Introduce = ({ onClickToggleSection }: TIntroduceProps) => {
         </p>
         <ButtonContainer>
           <IconTextButton text="Download CV" IconComponent={StyledResumeIcon} />
-          <IconTextButton text="Github" IconComponent={StyledResumeIcon} />
-          <IconTextButton text="Contact" IconComponent={StyledResumeIcon} />
+          <IconTextButton text="Github" IconComponent={GithubIcon} />
+          <IconTextButton text="Sandbox" IconComponent={SandboxIcon} />
         </ButtonContainer>
       </DescriptionContainer>
     </Container>

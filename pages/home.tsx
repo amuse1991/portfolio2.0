@@ -46,7 +46,7 @@ const Home: NextPage = () => {
         <Trail open={open}>
           <TrailText>안녕하세요,</TrailText>
           <TrailText>
-            <em>프론트엔드 개발자</em>
+            <em>웹 개발자</em>
           </TrailText>
           <TrailText>
             <em>신윤호</em>
